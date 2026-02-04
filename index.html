@@ -3,501 +3,198 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>guide – Sentence Reader</title>
+<title>English_for_tourism – Sentence Reader</title>
 <style>
-:root{
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans", Arial;
-  background:#f6f7fb; color:#111827;
-}
-body{ margin:0; }
-.header{
-  background:#fff; border-bottom:1px solid #e5e7eb;
-  padding:12px 16px;
-}
-.title{ font-weight:900; font-size:18px; }
-.badge{
-  display:inline-block; margin-left:8px;
-  padding:3px 8px; border-radius:999px;
-  border:1px solid #e5e7eb; font-size:12px;
-  color:#374151; background:#fff;
-}
-.main{ max-width:1100px; margin:0 auto; padding:16px; }
-.grid{ display:grid; grid-template-columns: 1fr; gap:12px; }
-@media (min-width: 980px){ .grid{ grid-template-columns: 360px 1fr; } }
-
-.card{
-  background:#fff; border:1px solid #e5e7eb;
-  border-radius:16px; padding:14px;
-}
-.row{ display:flex; gap:10px; flex-wrap:wrap; align-items:flex-end; }
-.group{ flex:1; min-width:160px; }
-.label{ font-size:12px; color:#6b7280; margin-bottom:6px; }
-select, input[type="range"], input[type="checkbox"]{
-  font-size:14px;
-}
-select, input[type="range"]{
-  width:100%;
-  border:1px solid #e5e7eb; border-radius:12px;
-  padding:10px 12px; outline:none; background:#fff;
-}
-select:focus, input[type="range"]:focus{ border-color:#111827; }
-
-.actions{ display:flex; gap:10px; flex-wrap:wrap; margin-top:10px; }
-button{
-  border:1px solid #e5e7eb; background:#fff;
-  padding:10px 12px; border-radius:12px;
-  cursor:pointer; font-weight:900;
-}
-button.primary{ background:#111827; color:#fff; border-color:#111827; }
-button.danger{ background:#fff1f2; border-color:#fecaca; }
-.small{ font-size:12px; color:#6b7280; line-height:1.5; }
-.hr{ height:1px; background:#e5e7eb; border:0; margin:12px 0; }
-
-.kpiLine{ display:flex; gap:12px; flex-wrap:wrap; align-items:center; }
-.kpi{ font-weight:900; font-size:13px; }
-.mono{ font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
-
-.sentences{
-  display:flex; flex-direction:column; gap:8px;
-}
-.s{
-  padding:10px 12px;
-  border:1px solid #e5e7eb; border-radius:14px;
-  background:#fff;
-  cursor:pointer;
-  line-height:1.55;
-}
-.s:hover{ border-color:#9ca3af; }
-.s.active{ background:#111827; border-color:#111827; color:#fff; }
-.s.done{ background:#ecfdf5; border-color:#16a34a; }
-
-.topline{
-  display:flex; gap:10px; flex-wrap:wrap; align-items:center;
-  justify-content:space-between;
-}
-.pill{
-  display:inline-block; padding:3px 8px; border-radius:999px;
-  border:1px solid #e5e7eb; font-size:12px; color:#374151;
-}
-.notice{
-  padding:10px 12px;
-  border:1px dashed #d1d5db; border-radius:12px; background:#fff;
-}
+:root{font-family:system-ui,-apple-system,Segoe UI,Roboto,"Noto Sans",Arial;background:#f6f7fb;color:#111827;}
+body{margin:0;}
+.header{background:#fff;border-bottom:1px solid #e5e7eb;padding:12px 16px;}
+.main{max-width:1100px;margin:0 auto;padding:16px;}
+.card{background:#fff;border:1px solid #e5e7eb;border-radius:16px;padding:14px;margin-bottom:12px;}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end;}
+.group{flex:1;min-width:220px;}
+.label{font-size:12px;color:#6b7280;margin-bottom:6px;}
+select,input[type="range"]{width:100%;border:1px solid #e5e7eb;border-radius:12px;padding:10px 12px;font-size:14px;outline:none;background:#fff;}
+button{border:1px solid #e5e7eb;background:#fff;padding:10px 12px;border-radius:12px;cursor:pointer;font-weight:900;}
+button.primary{background:#111827;color:#fff;border-color:#111827;}
+button.danger{background:#fff1f2;border-color:#fecaca;}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px;}
+.small{font-size:12px;color:#6b7280;line-height:1.5;}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;}
+.s{padding:10px 12px;border:1px solid #e5e7eb;border-radius:14px;cursor:pointer;line-height:1.55;}
+.s.active{background:#111827;border-color:#111827;color:#fff;}
+.s.done{background:#ecfdf5;border-color:#16a34a;}
 </style>
 </head>
 <body>
-
-<div class="header">
-  <div class="title">guide – Sentence Reader <span class="badge">PPT → 分句 JSON → 逐句朗讀</span></div>
-</div>
+<div class="header"><b>Sentence Reader</b> <span class="small">（逐句朗讀＋高亮）</span></div>
 
 <div class="main">
-  <div class="grid">
+  <div class="card">
+    <div class="small">JSON 目標路徑：<span class="mono">./guide_corpus_sentences.json</span></div>
+    <div class="small">載入訊息：<span id="loadMsg" class="mono">loading...</span></div>
+    <div class="small">Decks：<span id="deckCount" class="mono">-</span> ｜ First deck：<span id="firstDeck" class="mono">-</span></div>
+  </div>
 
-    <!-- 左：控制面板 -->
-    <div class="card">
-      <div class="label">資料來源（JSON 檔）</div>
-      <div class="notice small">
-        請把 <span class="mono">guide_corpus_sentences.json</span> 放在同資料夾（與 index.html 同層）。<br/>
-        若載入失敗，請先確認 GitHub Pages 已開啟、檔名拼字一致。
+  <div class="card">
+    <div class="row">
+      <div class="group">
+        <div class="label">Deck（PPT）</div>
+        <select id="deckSel"></select>
       </div>
-
-      <hr class="hr"/>
-
-      <div class="row">
-        <div class="group">
-          <div class="label">Deck（PPT 檔）</div>
-          <select id="deckSel"></select>
-        </div>
-        <div class="group">
-          <div class="label">Slide（頁碼）</div>
-          <select id="slideSel"></select>
-        </div>
+      <div class="group">
+        <div class="label">Slide</div>
+        <select id="slideSel"></select>
       </div>
-
-      <div class="row" style="margin-top:8px;">
-        <div class="group">
-          <div class="label">Voice（英文語音）</div>
-          <select id="voiceSel"></select>
-          <div class="small">Voice 取決於你的裝置；US/UK 不一定每台都有。</div>
-        </div>
-        <div class="group">
-          <div class="label">語速 Rate：<span id="rateVal" class="mono">1.0</span></div>
-          <input id="rate" type="range" min="0.6" max="1.4" step="0.1" value="1.0" />
-          <div class="small">練習建議 0.8–1.0；熟悉後 1.1–1.2。</div>
-        </div>
-      </div>
-
-      <div class="row" style="margin-top:8px;">
-        <div class="group">
-          <div class="label">播放選項</div>
-          <label class="small" style="display:flex; gap:8px; align-items:center;">
-            <input id="autoNextSlide" type="checkbox" />
-            播完本頁自動跳下一頁
-          </label>
-          <label class="small" style="display:flex; gap:8px; align-items:center; margin-top:6px;">
-            <input id="loopSlide" type="checkbox" />
-            播完本頁重播（循環本頁）
-          </label>
-        </div>
-      </div>
-
-      <div class="actions">
-        <button id="play" class="primary">▶ 播放</button>
-        <button id="pause">⏸ 暫停</button>
-        <button id="resume">⏵ 繼續</button>
-        <button id="stop" class="danger">■ 停止</button>
-      </div>
-
-      <div class="small" style="margin-top:8px;">
-        小技巧：點右側任一句，可從該句開始播放。
-      </div>
-
-      <hr class="hr"/>
-
-      <div class="kpiLine">
-        <div class="kpi">狀態：<span id="status" class="mono">loading</span></div>
-        <div class="kpi">句子：<span id="count" class="mono">0</span></div>
-        <div class="kpi">目前：<span id="idx" class="mono">-</span></div>
+      <div class="group">
+        <div class="label">Rate：<span id="rateVal" class="mono">1.0</span></div>
+        <input id="rate" type="range" min="0.6" max="1.4" step="0.1" value="1.0" />
       </div>
     </div>
 
-    <!-- 右：句子列表 -->
-    <div class="card">
-      <div class="topline">
-        <div>
-          <div style="font-weight:900; font-size:18px;">句子列表</div>
-          <div class="small" id="meta">—</div>
-        </div>
-        <div class="pill" id="pill">Ready</div>
-      </div>
-
-      <hr class="hr"/>
-
-      <div id="sentBox" class="sentences"></div>
-
-      <div class="small" style="margin-top:10px;">
-        ✅ Done（綠色）：已播放過的句子　｜　⬛ Active（黑色）：正在播放
-      </div>
+    <div class="actions">
+      <button id="play" class="primary">▶ 播放</button>
+      <button id="pause">⏸ 暫停</button>
+      <button id="resume">⏵ 繼續</button>
+      <button id="stop" class="danger">■ 停止</button>
     </div>
 
+    <div class="small" style="margin-top:8px;">
+      點句子可從該句開始播放。
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="small" id="meta">—</div>
+    <div id="sentBox"></div>
   </div>
 </div>
 
 <script>
-/* ============================================================
-   Helpers
-============================================================ */
-const $ = (id) => document.getElementById(id);
-function setText(id, t){ $(id).textContent = t; }
-function clean(s){ return (s || "").trim(); }
+const $ = (id)=>document.getElementById(id);
+let DATA=null, deckIndex=0, slideIndex=0, cur=-1, isPlaying=false;
 
-/* ============================================================
-   Data model
-============================================================ */
-let DATA = null;              // loaded JSON
-let deckIndex = 0;
-let slideIndex = 0;
-let currentSentIndex = -1;
+function setLoadMsg(t){ $("loadMsg").textContent = t; }
+function setMeta(t){ $("meta").textContent = t; }
+function getDeck(){ return DATA?.decks?.[deckIndex] || null; }
+function getSlide(){ return getDeck()?.slides?.[slideIndex] || null; }
+function getSentences(){ return getSlide()?.sentences || []; }
 
-let voices = [];
-let isPlaying = false;
-let utter = null;
-
-function setStatus(s){
-  setText("status", s);
-  $("pill").textContent = s;
-}
-
-function getDeck(){
-  if(!DATA) return null;
-  return DATA.decks[deckIndex] || null;
-}
-
-function getSlide(){
-  const d = getDeck();
-  if(!d) return null;
-  return d.slides[slideIndex] || null;
-}
-
-function getSentences(){
-  const s = getSlide();
-  return s ? (s.sentences || []) : [];
-}
-
-/* ============================================================
-   Voice (TTS)
-============================================================ */
-function loadVoices(){
-  if(!("speechSynthesis" in window)){
-    $("voiceSel").innerHTML = `<option>SpeechSynthesis not supported</option>`;
-    return;
-  }
-  const all = window.speechSynthesis.getVoices() || [];
-  // Prefer English voices, but keep all if none
-  const en = all.filter(v => (v.lang || "").toLowerCase().startsWith("en"));
-  voices = en.length ? en : all;
-
-  $("voiceSel").innerHTML = "";
-  voices.forEach((v, i) => {
-    const opt = document.createElement("option");
-    opt.value = String(i);
-    opt.textContent = `${v.name} (${v.lang})`;
-    $("voiceSel").appendChild(opt);
-  });
-
-  // Prefer en-US, else en-GB, else 0
-  const iUS = voices.findIndex(v => (v.lang||"").toLowerCase() === "en-us");
-  const iGB = voices.findIndex(v => (v.lang||"").toLowerCase() === "en-gb");
-  $("voiceSel").value = String(iUS >= 0 ? iUS : (iGB >= 0 ? iGB : 0));
-}
-
-if("speechSynthesis" in window){
-  window.speechSynthesis.onvoiceschanged = () => loadVoices();
-}
-
-function speak(text, onEnd){
-  if(!("speechSynthesis" in window)){
-    alert("此瀏覽器不支援 SpeechSynthesis。建議用 Chrome / Edge。");
-    return;
-  }
-  window.speechSynthesis.cancel();
-
-  const u = new SpeechSynthesisUtterance(text);
-  const v = voices[Number($("voiceSel").value || 0)];
-  if(v) u.voice = v;
-
-  u.lang = v?.lang || "en-US";
-  u.rate = Number($("rate").value || 1.0);
-
-  u.onend = () => onEnd && onEnd();
-  u.onerror = () => { setStatus("error"); isPlaying = false; };
-
-  utter = u;
-  window.speechSynthesis.speak(u);
-}
-
-function pauseSpeak(){
-  if(!("speechSynthesis" in window)) return;
-  if(window.speechSynthesis.speaking && !window.speechSynthesis.paused){
-    window.speechSynthesis.pause();
-    setStatus("paused");
-  }
-}
-function resumeSpeak(){
-  if(!("speechSynthesis" in window)) return;
-  if(window.speechSynthesis.paused){
-    window.speechSynthesis.resume();
-    setStatus("playing");
-  }
-}
-function stopSpeak(){
-  if(!("speechSynthesis" in window)) return;
-  isPlaying = false;
-  window.speechSynthesis.cancel();
-  setStatus("ready");
-}
-
-/* ============================================================
-   Rendering
-============================================================ */
 function renderSelectors(){
   const deckSel = $("deckSel");
   const slideSel = $("slideSel");
-
   deckSel.innerHTML = "";
-  DATA.decks.forEach((d, i) => {
-    const opt = document.createElement("option");
-    opt.value = String(i);
-    opt.textContent = d.source_file;
+  DATA.decks.forEach((d,i)=>{
+    const opt=document.createElement("option");
+    opt.value=String(i);
+    opt.textContent=d.source_file || ("Deck "+(i+1));
     deckSel.appendChild(opt);
   });
   deckSel.value = String(deckIndex);
 
-  slideSel.innerHTML = "";
-  const d = getDeck();
-  d.slides.forEach((s, i) => {
-    const opt = document.createElement("option");
-    opt.value = String(i);
-    const label = `Slide ${s.slide}` + (s.title_guess ? ` — ${s.title_guess}` : "");
-    opt.textContent = label.length > 80 ? label.slice(0,80) + "…" : label;
+  slideSel.innerHTML="";
+  getDeck().slides.forEach((s,i)=>{
+    const opt=document.createElement("option");
+    opt.value=String(i);
+    opt.textContent = `Slide ${s.slide}` + (s.title_guess ? ` — ${s.title_guess}` : "");
     slideSel.appendChild(opt);
   });
   slideSel.value = String(slideIndex);
 }
 
+function mark(){
+  const nodes=[...document.querySelectorAll(".s")];
+  nodes.forEach((n,i)=>{
+    n.classList.remove("active","done");
+    if(i<cur) n.classList.add("done");
+    if(i===cur) n.classList.add("active");
+  });
+}
+
 function renderSentences(){
-  const box = $("sentBox");
-  box.innerHTML = "";
-
-  const d = getDeck();
-  const s = getSlide();
-  const arr = getSentences();
-
-  setText("count", String(arr.length));
-  setText("idx", currentSentIndex >= 0 ? String(currentSentIndex+1) : "-");
-
-  $("meta").textContent = d
-    ? `${d.source_file} ｜ Slide ${s.slide}${s.title_guess ? " ｜ " + s.title_guess : ""}`
-    : "—";
-
-  arr.forEach((t, i) => {
-    const div = document.createElement("div");
-    div.className = "s";
-    div.textContent = t;
-
-    div.onclick = () => {
-      stopSpeak();
-      currentSentIndex = i;
-      markSentences();
-      playFromCurrent();
-    };
-
+  const box=$("sentBox");
+  box.innerHTML="";
+  const d=getDeck(), s=getSlide(), arr=getSentences();
+  setMeta(`${d.source_file} ｜ Slide ${s.slide}${s.title_guess ? " ｜ "+s.title_guess : ""}`);
+  arr.forEach((t,i)=>{
+    const div=document.createElement("div");
+    div.className="s";
+    div.textContent=t;
+    div.onclick=()=>{ stop(); cur=i; mark(); playFromCur(); };
     box.appendChild(div);
   });
-
-  markSentences();
+  mark();
 }
 
-function markSentences(){
-  const nodes = Array.from(document.querySelectorAll(".s"));
-  nodes.forEach((n, i) => {
-    n.classList.remove("active");
-    n.classList.remove("done");
-    if(i < currentSentIndex) n.classList.add("done");
-    if(i === currentSentIndex) n.classList.add("active");
-  });
-  setText("idx", currentSentIndex >= 0 ? String(currentSentIndex+1) : "-");
+function speak(text, onEnd){
+  if(!("speechSynthesis" in window)){ alert("瀏覽器不支援 TTS"); return; }
+  speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.rate = Number($("rate").value || 1.0);
+  u.onend = ()=> onEnd && onEnd();
+  u.onerror = (e)=> { console.error(e); isPlaying=false; };
+  speechSynthesis.speak(u);
 }
 
-/* ============================================================
-   Playback logic
-============================================================ */
-function playFromCurrent(){
-  const arr = getSentences();
+function playFromCur(){
+  const arr=getSentences();
   if(!arr.length) return;
-
-  // if finished, restart
-  if(currentSentIndex >= arr.length) currentSentIndex = 0;
-  if(currentSentIndex < 0) currentSentIndex = 0;
-
-  isPlaying = true;
-  setStatus("playing");
-  markSentences();
-
-  const text = arr[currentSentIndex];
-
-  speak(text, () => {
+  if(cur<0) cur=0;
+  if(cur>=arr.length) cur=0;
+  isPlaying=true;
+  mark();
+  speak(arr[cur], ()=>{
     if(!isPlaying) return;
+    cur++;
+    if(cur>=arr.length){ isPlaying=false; return; }
+    mark();
+    playFromCur();
+  });
+}
+function stop(){ isPlaying=false; speechSynthesis?.cancel(); }
+function pause(){ if(speechSynthesis?.speaking && !speechSynthesis.paused) speechSynthesis.pause(); }
+function resume(){ if(speechSynthesis?.paused) speechSynthesis.resume(); }
 
-    currentSentIndex++;
-    if(currentSentIndex >= arr.length){
-      // Slide finished
-      isPlaying = false;
+$("rate").addEventListener("input", ()=> $("rateVal").textContent = Number($("rate").value).toFixed(1));
+$("deckSel").addEventListener("change", ()=>{
+  stop();
+  deckIndex=Number($("deckSel").value||0); slideIndex=0; cur=0;
+  renderSelectors(); renderSentences();
+});
+$("slideSel").addEventListener("change", ()=>{
+  stop();
+  slideIndex=Number($("slideSel").value||0); cur=0;
+  renderSentences();
+});
+$("play").onclick=()=>{ if(!DATA) return alert("JSON 未載入"); playFromCur(); };
+$("pause").onclick=()=>pause();
+$("resume").onclick=()=>resume();
+$("stop").onclick=()=>stop();
 
-      const loop = $("loopSlide").checked;
-      const autoNext = $("autoNextSlide").checked;
+async function boot(){
+  setLoadMsg("fetching JSON...");
+  try{
+    const res = await fetch("./guide_corpus_sentences.json", {cache:"no-store"});
+    if(!res.ok) throw new Error("HTTP "+res.status);
+    const json = await res.json();
+    DATA = json;
 
-      if(loop){
-        currentSentIndex = 0;
-        setStatus("loop");
-        markSentences();
-        setTimeout(()=> playFromCurrent(), 150);
-        return;
-      }
+    $("deckCount").textContent = String(DATA.decks?.length ?? 0);
+    $("firstDeck").textContent = String(DATA.decks?.[0]?.source_file ?? "-");
 
-      if(autoNext){
-        // go next slide if exists
-        const d = getDeck();
-        if(slideIndex + 1 < d.slides.length){
-          slideIndex++;
-          $("slideSel").value = String(slideIndex);
-          currentSentIndex = 0;
-          renderSentences();
-          setStatus("next-slide");
-          setTimeout(()=> playFromCurrent(), 200);
-          return;
-        }
-      }
-
-      setStatus("finished");
-      // mark all done
-      markSentences();
+    if(!DATA.decks || !DATA.decks.length){
+      setLoadMsg("JSON loaded but decks is empty / missing.");
       return;
     }
-
-    markSentences();
-    playFromCurrent();
-  });
-}
-
-/* ============================================================
-   Events
-============================================================ */
-$("rate").addEventListener("input", () => {
-  setText("rateVal", Number($("rate").value).toFixed(1));
-});
-
-$("deckSel").addEventListener("change", () => {
-  stopSpeak();
-  deckIndex = Number($("deckSel").value || 0);
-  slideIndex = 0;
-  currentSentIndex = 0;
-  renderSelectors();
-  renderSentences();
-  setStatus("ready");
-});
-
-$("slideSel").addEventListener("change", () => {
-  stopSpeak();
-  slideIndex = Number($("slideSel").value || 0);
-  currentSentIndex = 0;
-  renderSentences();
-  setStatus("ready");
-});
-
-$("play").onclick = () => {
-  if(!DATA){ alert("資料尚未載入。"); return; }
-  // If finished previously, restart at 0
-  const arr = getSentences();
-  if(currentSentIndex >= arr.length) currentSentIndex = 0;
-  playFromCurrent();
-};
-
-$("pause").onclick = () => pauseSpeak();
-$("resume").onclick = () => resumeSpeak();
-$("stop").onclick = () => stopSpeak();
-
-/* ============================================================
-   Load JSON
-============================================================ */
-async function boot(){
-  setStatus("loading");
-  setText("rateVal", Number($("rate").value).toFixed(1));
-  loadVoices();
-
-  try{
-    // JSON must be in same folder
-    const res = await fetch("./guide_corpus_sentences.json", { cache: "no-store" });
-    if(!res.ok) throw new Error("HTTP " + res.status);
-    DATA = await res.json();
-
-    // init indices
-    deckIndex = 0;
-    slideIndex = 0;
-    currentSentIndex = 0;
-
+    deckIndex=0; slideIndex=0; cur=0;
     renderSelectors();
     renderSentences();
-    setStatus("ready");
+    setLoadMsg("OK");
   }catch(e){
     console.error(e);
-    setStatus("load-failed");
-    alert("載入 JSON 失敗：請確認 guide_corpus_sentences.json 與 index.html 同層，且 GitHub Pages 已啟用。");
+    setLoadMsg("FAILED: " + (e.message || e));
   }
 }
 boot();
 </script>
-
 </body>
 </html>
