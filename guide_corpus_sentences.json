@@ -4,28 +4,28 @@
   "decks": [
     {
       "source_file": "分句用_1. Southern Fujian (Minnan).pptx",
-      "slides": [
-        {
-          "Slide 1":,
-          "title_guess": "How many completely well-preserved traditional “communities” are there in Kinmen?",
-          "text_blocks": [
-            "How many completely well-preserved traditional “communities” are there in Kinmen?\nUsually we call them “traditional villages” instead of “communities.” The well-kept traditional villages in Kinmen are eight in total, including Qionglin Village, Nanshan and Beishan Village in Guningtou, Folk Culture Village in Shanhou, Shueitou Village, Zhushan Village, and Oucu Village. All of them are under the maintenance of Kinmen National Park.",
-            "In Kinmen there are a lot of old houses of different styles and tastes. Can you tell us their special features? Do they only exist in Kinmen?\nThe old houses were built mostly in traditional Fujianese style. Although you do see some in Taiwan, there aren’t many there. Most of the similar traditional houses in Taiwan were torn down for modern development. Besides, those in Taiwan aren’t well maintained as well as those in Kinmen.",
-            "Introduction of Traditional Villages in Kinmen"
-          ],
-          "sentences": [
-            "How many completely well-preserved traditional “communities” are there in Kinmen?",
-            "Usually we call them “traditional villages” instead of “communities.” The well-kept traditional villages in Kinmen are eight in total, including Qionglin Village, Nanshan and Beishan Village in Guningtou, Folk Culture Village in Shanhou, Shueitou Village, Zhushan Village, and Oucu Village.",
-            "All of them are under the maintenance of Kinmen National Park.",
-            "In Kinmen there are a lot of old houses of different styles and tastes.",
-            "Can you tell us their special features?",
-            "Do they only exist in Kinmen?",
-            "The old houses were built mostly in traditional Fujianese style.",
-            "Although you do see some in Taiwan, there aren’t many there.",
-            "Most of the similar traditional houses in Taiwan were torn down for modern development.",
-            "Besides, those in Taiwan aren’t well maintained as well as those in Kinmen.",
-          ]
-        },
+     {
+  "slide": 1,
+  "title_guess": "How many completely well-preserved traditional “communities” are there in Kinmen?",
+  "text_blocks": [
+    "How many completely well-preserved traditional “communities” are there in Kinmen?\nUsually we call them “traditional villages” instead of “communities.” The well-kept traditional villages in Kinmen are eight in total, including Qionglin Village, Nanshan and Beishan Village in Guningtou, Folk Culture Village in Shanhou, Shueitou Village, Zhushan Village, and Oucu Village. All of them are under the maintenance of Kinmen National Park.",
+    "In Kinmen there are a lot of old houses of different styles and tastes. Can you tell us their special features? Do they only exist in Kinmen?\nThe old houses were built mostly in traditional Fujianese style. Although you do see some in Taiwan, there aren’t many there. Most of the similar traditional houses in Taiwan were torn down for modern development. Besides, those in Taiwan aren’t well maintained as well as those in Kinmen.",
+    "Introduction of Traditional Villages in Kinmen"
+  ],
+  "sentences": [
+    "How many completely well-preserved traditional “communities” are there in Kinmen?",
+    "Usually we call them “traditional villages” instead of “communities.” The well-kept traditional villages in Kinmen are eight in total, including Qionglin Village, Nanshan and Beishan Village in Guningtou, Folk Culture Village in Shanhou, Shueitou Village, Zhushan Village, and Oucu Village.",
+    "All of them are under the maintenance of Kinmen National Park.",
+    "In Kinmen there are a lot of old houses of different styles and tastes.",
+    "Can you tell us their special features?",
+    "Do they only exist in Kinmen?",
+    "The old houses were built mostly in traditional Fujianese style.",
+    "Although you do see some in Taiwan, there aren’t many there.",
+    "Most of the similar traditional houses in Taiwan were torn down for modern development.",
+    "Besides, those in Taiwan aren’t well maintained as well as those in Kinmen."
+  ]
+}
+
         {
           "slide": 2,
           "title_guess": "Apart from their aesthetic architectural value, they also reflect our ancestors’ wisdom. Some of them also served the pu",
