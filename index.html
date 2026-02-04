@@ -177,4 +177,327 @@ button.danger{ background:#fff1f2; border-color:#fecaca; }
       <div id="sentBox" class="sentences"></div>
 
       <div class="small" style="margin-top:10px;">
-        ✅ Done（綠色）：已播放過的句子　｜　⬛
+        ✅ Done（綠色）：已播放過的句子　｜　⬛ Active（黑色）：正在播放
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   Helpers
+============================================================ */
+const $ = (id) => document.getElementById(id);
+function setText(id, t){ $(id).textContent = t; }
+function clean(s){ return (s || "").trim(); }
+
+/* ============================================================
+   Data model
+============================================================ */
+let DATA = null;              // loaded JSON
+let deckIndex = 0;
+let slideIndex = 0;
+let currentSentIndex = -1;
+
+let voices = [];
+let isPlaying = false;
+let utter = null;
+
+function setStatus(s){
+  setText("status", s);
+  $("pill").textContent = s;
+}
+
+function getDeck(){
+  if(!DATA) return null;
+  return DATA.decks[deckIndex] || null;
+}
+
+function getSlide(){
+  const d = getDeck();
+  if(!d) return null;
+  return d.slides[slideIndex] || null;
+}
+
+function getSentences(){
+  const s = getSlide();
+  return s ? (s.sentences || []) : [];
+}
+
+/* ============================================================
+   Voice (TTS)
+============================================================ */
+function loadVoices(){
+  if(!("speechSynthesis" in window)){
+    $("voiceSel").innerHTML = `<option>SpeechSynthesis not supported</option>`;
+    return;
+  }
+  const all = window.speechSynthesis.getVoices() || [];
+  // Prefer English voices, but keep all if none
+  const en = all.filter(v => (v.lang || "").toLowerCase().startsWith("en"));
+  voices = en.length ? en : all;
+
+  $("voiceSel").innerHTML = "";
+  voices.forEach((v, i) => {
+    const opt = document.createElement("option");
+    opt.value = String(i);
+    opt.textContent = `${v.name} (${v.lang})`;
+    $("voiceSel").appendChild(opt);
+  });
+
+  // Prefer en-US, else en-GB, else 0
+  const iUS = voices.findIndex(v => (v.lang||"").toLowerCase() === "en-us");
+  const iGB = voices.findIndex(v => (v.lang||"").toLowerCase() === "en-gb");
+  $("voiceSel").value = String(iUS >= 0 ? iUS : (iGB >= 0 ? iGB : 0));
+}
+
+if("speechSynthesis" in window){
+  window.speechSynthesis.onvoiceschanged = () => loadVoices();
+}
+
+function speak(text, onEnd){
+  if(!("speechSynthesis" in window)){
+    alert("此瀏覽器不支援 SpeechSynthesis。建議用 Chrome / Edge。");
+    return;
+  }
+  window.speechSynthesis.cancel();
+
+  const u = new SpeechSynthesisUtterance(text);
+  const v = voices[Number($("voiceSel").value || 0)];
+  if(v) u.voice = v;
+
+  u.lang = v?.lang || "en-US";
+  u.rate = Number($("rate").value || 1.0);
+
+  u.onend = () => onEnd && onEnd();
+  u.onerror = () => { setStatus("error"); isPlaying = false; };
+
+  utter = u;
+  window.speechSynthesis.speak(u);
+}
+
+function pauseSpeak(){
+  if(!("speechSynthesis" in window)) return;
+  if(window.speechSynthesis.speaking && !window.speechSynthesis.paused){
+    window.speechSynthesis.pause();
+    setStatus("paused");
+  }
+}
+function resumeSpeak(){
+  if(!("speechSynthesis" in window)) return;
+  if(window.speechSynthesis.paused){
+    window.speechSynthesis.resume();
+    setStatus("playing");
+  }
+}
+function stopSpeak(){
+  if(!("speechSynthesis" in window)) return;
+  isPlaying = false;
+  window.speechSynthesis.cancel();
+  setStatus("ready");
+}
+
+/* ============================================================
+   Rendering
+============================================================ */
+function renderSelectors(){
+  const deckSel = $("deckSel");
+  const slideSel = $("slideSel");
+
+  deckSel.innerHTML = "";
+  DATA.decks.forEach((d, i) => {
+    const opt = document.createElement("option");
+    opt.value = String(i);
+    opt.textContent = d.source_file;
+    deckSel.appendChild(opt);
+  });
+  deckSel.value = String(deckIndex);
+
+  slideSel.innerHTML = "";
+  const d = getDeck();
+  d.slides.forEach((s, i) => {
+    const opt = document.createElement("option");
+    opt.value = String(i);
+    const label = `Slide ${s.slide}` + (s.title_guess ? ` — ${s.title_guess}` : "");
+    opt.textContent = label.length > 80 ? label.slice(0,80) + "…" : label;
+    slideSel.appendChild(opt);
+  });
+  slideSel.value = String(slideIndex);
+}
+
+function renderSentences(){
+  const box = $("sentBox");
+  box.innerHTML = "";
+
+  const d = getDeck();
+  const s = getSlide();
+  const arr = getSentences();
+
+  setText("count", String(arr.length));
+  setText("idx", currentSentIndex >= 0 ? String(currentSentIndex+1) : "-");
+
+  $("meta").textContent = d
+    ? `${d.source_file} ｜ Slide ${s.slide}${s.title_guess ? " ｜ " + s.title_guess : ""}`
+    : "—";
+
+  arr.forEach((t, i) => {
+    const div = document.createElement("div");
+    div.className = "s";
+    div.textContent = t;
+
+    div.onclick = () => {
+      stopSpeak();
+      currentSentIndex = i;
+      markSentences();
+      playFromCurrent();
+    };
+
+    box.appendChild(div);
+  });
+
+  markSentences();
+}
+
+function markSentences(){
+  const nodes = Array.from(document.querySelectorAll(".s"));
+  nodes.forEach((n, i) => {
+    n.classList.remove("active");
+    n.classList.remove("done");
+    if(i < currentSentIndex) n.classList.add("done");
+    if(i === currentSentIndex) n.classList.add("active");
+  });
+  setText("idx", currentSentIndex >= 0 ? String(currentSentIndex+1) : "-");
+}
+
+/* ============================================================
+   Playback logic
+============================================================ */
+function playFromCurrent(){
+  const arr = getSentences();
+  if(!arr.length) return;
+
+  // if finished, restart
+  if(currentSentIndex >= arr.length) currentSentIndex = 0;
+  if(currentSentIndex < 0) currentSentIndex = 0;
+
+  isPlaying = true;
+  setStatus("playing");
+  markSentences();
+
+  const text = arr[currentSentIndex];
+
+  speak(text, () => {
+    if(!isPlaying) return;
+
+    currentSentIndex++;
+    if(currentSentIndex >= arr.length){
+      // Slide finished
+      isPlaying = false;
+
+      const loop = $("loopSlide").checked;
+      const autoNext = $("autoNextSlide").checked;
+
+      if(loop){
+        currentSentIndex = 0;
+        setStatus("loop");
+        markSentences();
+        setTimeout(()=> playFromCurrent(), 150);
+        return;
+      }
+
+      if(autoNext){
+        // go next slide if exists
+        const d = getDeck();
+        if(slideIndex + 1 < d.slides.length){
+          slideIndex++;
+          $("slideSel").value = String(slideIndex);
+          currentSentIndex = 0;
+          renderSentences();
+          setStatus("next-slide");
+          setTimeout(()=> playFromCurrent(), 200);
+          return;
+        }
+      }
+
+      setStatus("finished");
+      // mark all done
+      markSentences();
+      return;
+    }
+
+    markSentences();
+    playFromCurrent();
+  });
+}
+
+/* ============================================================
+   Events
+============================================================ */
+$("rate").addEventListener("input", () => {
+  setText("rateVal", Number($("rate").value).toFixed(1));
+});
+
+$("deckSel").addEventListener("change", () => {
+  stopSpeak();
+  deckIndex = Number($("deckSel").value || 0);
+  slideIndex = 0;
+  currentSentIndex = 0;
+  renderSelectors();
+  renderSentences();
+  setStatus("ready");
+});
+
+$("slideSel").addEventListener("change", () => {
+  stopSpeak();
+  slideIndex = Number($("slideSel").value || 0);
+  currentSentIndex = 0;
+  renderSentences();
+  setStatus("ready");
+});
+
+$("play").onclick = () => {
+  if(!DATA){ alert("資料尚未載入。"); return; }
+  // If finished previously, restart at 0
+  const arr = getSentences();
+  if(currentSentIndex >= arr.length) currentSentIndex = 0;
+  playFromCurrent();
+};
+
+$("pause").onclick = () => pauseSpeak();
+$("resume").onclick = () => resumeSpeak();
+$("stop").onclick = () => stopSpeak();
+
+/* ============================================================
+   Load JSON
+============================================================ */
+async function boot(){
+  setStatus("loading");
+  setText("rateVal", Number($("rate").value).toFixed(1));
+  loadVoices();
+
+  try{
+    // JSON must be in same folder
+    const res = await fetch("./guide_corpus_sentences.json", { cache: "no-store" });
+    if(!res.ok) throw new Error("HTTP " + res.status);
+    DATA = await res.json();
+
+    // init indices
+    deckIndex = 0;
+    slideIndex = 0;
+    currentSentIndex = 0;
+
+    renderSelectors();
+    renderSentences();
+    setStatus("ready");
+  }catch(e){
+    console.error(e);
+    setStatus("load-failed");
+    alert("載入 JSON 失敗：請確認 guide_corpus_sentences.json 與 index.html 同層，且 GitHub Pages 已啟用。");
+  }
+}
+boot();
+</script>
+
+</body>
+</html>
