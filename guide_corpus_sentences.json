@@ -1,0 +1,1004 @@
+{
+  "version": "1.0",
+  "note": "Sentence segmentation from PPTX, style A (faithful to original wording; minimal splitting).",
+  "decks": [
+    {
+      "source_file": "分句用_1. Southern Fujian (Minnan).pptx",
+      "slides": [
+        {
+          "slide": 1,
+          "title_guess": "How many completely well-preserved traditional “communities” are there in Kinmen?",
+          "text_blocks": [
+            "How many completely well-preserved traditional “communities” are there in Kinmen?\nUsually we call them “traditional villages” instead of “communities.” The well-kept traditional villages in Kinmen are eight in total, including Qionglin Village, Nanshan and Beishan Village in Guningtou, Folk Culture Village in Shanhou, Shueitou Village, Zhushan Village, and Oucu Village. All of them are under the maintenance of Kinmen National Park.",
+            "In Kinmen there are a lot of old houses of different styles and tastes. Can you tell us their special features? Do they only exist in Kinmen?\nThe old houses were built mostly in traditional Fujianese style. Although you do see some in Taiwan, there aren’t many there. Most of the similar traditional houses in Taiwan were torn down for modern development. Besides, those in Taiwan aren’t well maintained as well as those in Kinmen.",
+            "Introduction of Traditional Villages in Kinmen"
+          ],
+          "sentences": [
+            "How many completely well-preserved traditional “communities” are there in Kinmen?",
+            "Usually we call them “traditional villages” instead of “communities.” The well-kept traditional villages in Kinmen are eight in total, including Qionglin Village, Nanshan and Beishan Village in Guningtou, Folk Culture Village in Shanhou, Shueitou Village, Zhushan Village, and Oucu Village.",
+            "All of them are under the maintenance of Kinmen National Park.",
+            "In Kinmen there are a lot of old houses of different styles and tastes.",
+            "Can you tell us their special features?",
+            "Do they only exist in Kinmen?",
+            "The old houses were built mostly in traditional Fujianese style.",
+            "Although you do see some in Taiwan, there aren’t many there.",
+            "Most of the similar traditional houses in Taiwan were torn down for modern development.",
+            "Besides, those in Taiwan aren’t well maintained as well as those in Kinmen.",
+            "Introduction of Traditional Villages in Kinmen"
+          ]
+        },
+        {
+          "slide": 2,
+          "title_guess": "Apart from their aesthetic architectural value, they also reflect our ancestors’ wisdom. Some of them also served the pu",
+          "text_blocks": [
+            "Apart from their aesthetic architectural value, they also reflect our ancestors’ wisdom. Some of them also served the purpose of self-defense. For example, they have the characteristics of “keeping warm in winter, while cool in summer,” and the functions of “storing up water and preventing disasters.”",
+            "The houses look a little different from one another. Can you explain the differences to us?\nThe traditional old Fujian houses can be divided into two different styles: “swallow-tailed roofs” and “saddleback roofs.” The “swallow-tailed roof” curves upwards on both ends and looks like a swallow-tail. But the “saddleback roof” is shaped like a round gable roof, or a saddle.",
+            "Do the two different roof shapes have a significant meaning? Generally speaking, the swallow-tailed roofs could only be possessed by distinguished people, while the ordinary people lived in the houses with the saddleback roof."
+          ],
+          "sentences": [
+            "Apart from their aesthetic architectural value, they also reflect our ancestors’ wisdom.",
+            "Some of them also served the purpose of self-defense.",
+            "For example, they have the characteristics of “keeping warm in winter, while cool in summer,” and the functions of “storing up water and preventing disasters.”",
+            "The houses look a little different from one another.",
+            "Can you explain the differences to us?",
+            "The traditional old Fujian houses can be divided into two different styles: “swallow-tailed roofs” and “saddleback roofs.” The “swallow-tailed roof” curves upwards on both ends and looks like a swallow-tail.",
+            "But the “saddleback roof” is shaped like a round gable roof, or a saddle.",
+            "Do the two different roof shapes have a significant meaning?",
+            "Generally speaking, the swallow-tailed roofs could only be possessed by distinguished people, while the ordinary people lived in the houses with the saddleback roof."
+          ]
+        },
+        {
+          "slide": 3,
+          "title_guess": "Warm up",
+          "text_blocks": [
+            "Warm up",
+            "Good morning, how is your going? Did you go anywhere during the 228 holidays?\nI went to a traditional village to see old houses, and they are …\nI also had a bite of hotdog-on-omelette …\nHow about your holidays? Anything interesting?"
+          ],
+          "sentences": [
+            "Warm up",
+            "Good morning, how is your going?",
+            "Did you go anywhere during the 228 holidays?",
+            "I went to a traditional village to see old houses, and they are …",
+            "I also had a bite of hotdog-on-omelette …",
+            "How about your holidays?",
+            "Anything interesting?"
+          ]
+        },
+        {
+          "slide": 4,
+          "title_guess": "Where are we going now/Where will we visit next?",
+          "text_blocks": [
+            "Where are we going now/Where will we visit next?\nWe are at Shueitou Village now. Shueitou Village is located in the southwestern part of Kinmen island.",
+            "What is the history of this village/Is there special historical background about this village?\nYes. During the Yuan dynasty, the Huang family and the Lee families were the first to move here from Tong-An County of Fujian. Afterwards the Huang, the Tsai family, and the Chen family also settled down here. All of these families have made Shueitou a multi-clan village. At present, the dominant clans in Shueitou villages are the Huangs, the Lees, the Tsais, and the Chens.",
+            "What specific places are worth visiting in the village/What spots in the village are worth seeing?\nShueitou is a culturally rich and diversified village, which embraces many scenic sites including “Deyue Tower and Western style houses”, “Jinshuei Elementary School”, “Stories of the Overseas Chinese”, and “Overseas Chinese Hometown Cultural Exhibition Hall”. They all represent a combination of Chinese and Western culture. Walking along the alleys at Shueitou, one can easily admire the village for its cultural combination of traditional Fujian style houses and houses of western style.",
+            "Shueitou Village-\nThe Huang Family Youtang Villa"
+          ],
+          "sentences": [
+            "Where are we going now/Where will we visit next?",
+            "We are at Shueitou Village now.",
+            "Shueitou Village is located in the southwestern part of Kinmen island.",
+            "What is the history of this village/Is there special historical background about this village?",
+            "Yes.",
+            "During the Yuan dynasty, the Huang family and the Lee families were the first to move here from Tong-An County of Fujian.",
+            "Afterwards the Huang, the Tsai family, and the Chen family also settled down here.",
+            "All of these families have made Shueitou a multi-clan village.",
+            "At present, the dominant clans in Shueitou villages are the Huangs, the Lees, the Tsais, and the Chens.",
+            "What specific places are worth visiting in the village/What spots in the village are worth seeing?",
+            "Shueitou is a culturally rich and diversified village, which embraces many scenic sites including “Deyue Tower and Western style houses”, “Jinshuei Elementary School”, “Stories of the Overseas Chinese”, and “Overseas Chinese Hometown Cultural Exhibition Hall”.",
+            "They all represent a combination of Chinese and Western culture.",
+            "Walking along the alleys at Shueitou, one can easily admire the village for its cultural combination of traditional Fujian style houses and houses of western style.",
+            "Shueitou Village-",
+            "The Huang Family Youtang Villa"
+          ]
+        },
+        {
+          "slide": 5,
+          "title_guess": "What was the Huang Family Youtang Villa for, and who built it?",
+          "text_blocks": [
+            "What was the Huang Family Youtang Villa for, and who built it?\nThe Huang Family Youtang Villa is rated as a national historical relic of second class. It was built in the Ching Dynasty (A.D.1766) by a wealthy millionaire whose name was Huang Jun (also called Huang Bai-Wan, or Millionaire Huang). He made a great fortune doing business in Fujian Province and became the richest man in Kinmen at that time. Then he returned home to build the villa. On the front door of the villa, there once hung a tablet with “Youtang,” carved on it; hence the name of the villa. The villa was once used as a local private school, and was later designated by Commander Hu Lian as a typesetting office for the “Cheng-Chi-Zhong-Hua Daily News” during his tenure of office in Kinmen.",
+            "Does the villa have any special features?\nThe villa has a pond in the front. The pond of the villa is called “Sun Moon Pond.” With the Sun Moon Pond in the front, and the hills in the back, this villa has the characteristics of a stylish Soochow garden."
+          ],
+          "sentences": [
+            "What was the Huang Family Youtang Villa for, and who built it?",
+            "The Huang Family Youtang Villa is rated as a national historical relic of second class.",
+            "It was built in the Ching Dynasty (A.D.1766) by a wealthy millionaire whose name was Huang Jun (also called Huang Bai-Wan, or Millionaire Huang).",
+            "He made a great fortune doing business in Fujian Province and became the richest man in Kinmen at that time.",
+            "Then he returned home to build the villa.",
+            "On the front door of the villa, there once hung a tablet with “Youtang,” carved on it; hence the name of the villa.",
+            "The villa was once used as a local private school, and was later designated by Commander Hu Lian as a typesetting office for the “Cheng-Chi-Zhong-Hua Daily News” during his tenure of office in Kinmen.",
+            "Does the villa have any special features?",
+            "The villa has a pond in the front.",
+            "The pond of the villa is called “Sun Moon Pond.” With the Sun Moon Pond in the front, and the hills in the back, this villa has the characteristics of a stylish Soochow garden."
+          ]
+        },
+        {
+          "slide": 6,
+          "title_guess": "Are the ponds in the front common in Kinmen?",
+          "text_blocks": [
+            "Are the ponds in the front common in Kinmen?\nIt is one of the few houses in Kinmen with a pond. There are few traditional houses in Kinmen that have a pond of their own. Two of them are the “Sun Moon Pond” and the “Half Moon Pond” of the Folk Culture Village at Shanhou.\nAre those western-style houses also traditional buildings?\nWell, the western-style houses were owned by the local people who had gone to Southeast Asian countries to do business and had become rich. After returning to their hometown, they built houses blending both the Chinese style and Southeast Asian colonial architectural style together. Hence, the houses have an exotic flavor.",
+            "May I see them?\nYes, you may. Kinmen National Park has renovated the houses around “Deyue Tower” as a site for displaying overseas Chinese culture, along with the two typical houses, namely, “Stories of the Overseas Chinese” and “Overseas Chinese Hometown Culture.” Both of the exhibits are the main attraction.",
+            "Are there other ways that I can learn more about these western houses?\nThe exhibition hall displays pictures with Enlgish subtitles. These pictures can help us trace back to the time when the houses were first built. The subtitles show us how hard the emigrants worked to earn their money. You can also understand how people made a living in the early stages of Kinmen."
+          ],
+          "sentences": [
+            "Are the ponds in the front common in Kinmen?",
+            "It is one of the few houses in Kinmen with a pond.",
+            "There are few traditional houses in Kinmen that have a pond of their own.",
+            "Two of them are the “Sun Moon Pond” and the “Half Moon Pond” of the Folk Culture Village at Shanhou.",
+            "Are those western-style houses also traditional buildings?",
+            "Well, the western-style houses were owned by the local people who had gone to Southeast Asian countries to do business and had become rich.",
+            "After returning to their hometown, they built houses blending both the Chinese style and Southeast Asian colonial architectural style together.",
+            "Hence, the houses have an exotic flavor.",
+            "May I see them?",
+            "Yes, you may.",
+            "Kinmen National Park has renovated the houses around “Deyue Tower” as a site for displaying overseas Chinese culture, along with the two typical houses, namely, “Stories of the Overseas Chinese” and “Overseas Chinese Hometown Culture.” Both of the exhibits are the main attraction.",
+            "Are there other ways that I can learn more about these western houses?",
+            "The exhibition hall displays pictures with Enlgish subtitles.",
+            "These pictures can help us trace back to the time when the houses were first built.",
+            "The subtitles show us how hard the emigrants worked to earn their money.",
+            "You can also understand how people made a living in the early stages of Kinmen."
+          ]
+        },
+        {
+          "slide": 7,
+          "title_guess": "What can we see at Qionglin Villages/What do you recommend/ Can you recommend something interesting in Qionglin Village?",
+          "text_blocks": [
+            "What can we see at Qionglin Villages/What do you recommend/ Can you recommend something interesting in Qionglin Village? Qionglin is located at the narrowest place in the center of Kinmen. It’s also called “Pinglin,” which means “flat woods” because many trees are planted on this level land. Besides that, you can see a combination of traditional culture and military relics in this village.",
+            "What are the main clans in Qionglin Village?\nThe village of Qionglin is one of the oldest traditional villages in Kinmen. The majority of the residents in the village are of the Tsai family. In the Ming and Ching dynasties, many distinguished people were born, including six “Jinshis” (officials who passed the imperial examination), seven “Jurens” (officials who passed the provincial examination), and six generals.",
+            "Now preserved in the villages are not only many Fujian-styled buildings, but also seven ancestral halls of the Tsai family. In addition, this village has the highest ratio of ancestral halls in Kinmen. Here, people can sense the literary atmosphere, while enjoying the view of the old red brick houses. Now “Yi Gu Hall” and the other seven ancestral halls, as well as two Wind Lion God statues of the village have all been graded national historical relics.",
+            "Cyonglin Village"
+          ],
+          "sentences": [
+            "What can we see at Qionglin Villages/What do you recommend/ Can you recommend something interesting in Qionglin Village?",
+            "Qionglin is located at the narrowest place in the center of Kinmen.",
+            "It’s also called “Pinglin,” which means “flat woods” because many trees are planted on this level land.",
+            "Besides that, you can see a combination of traditional culture and military relics in this village.",
+            "What are the main clans in Qionglin Village?",
+            "The village of Qionglin is one of the oldest traditional villages in Kinmen.",
+            "The majority of the residents in the village are of the Tsai family.",
+            "In the Ming and Ching dynasties, many distinguished people were born, including six “Jinshis” (officials who passed the imperial examination), seven “Jurens” (officials who passed the provincial examination), and six generals.",
+            "Now preserved in the villages are not only many Fujian-styled buildings, but also seven ancestral halls of the Tsai family.",
+            "In addition, this village has the highest ratio of ancestral halls in Kinmen.",
+            "Here, people can sense the literary atmosphere, while enjoying the view of the old red brick houses.",
+            "Now “Yi Gu Hall” and the other seven ancestral halls, as well as two Wind Lion God statues of the village have all been graded national historical relics.",
+            "Cyonglin Village"
+          ]
+        },
+        {
+          "slide": 8,
+          "title_guess": "What else do we have yet to see in this village?",
+          "text_blocks": [
+            "What else do we have yet to see in this village?\nQionglin village has an arch called “Three Widows Chastity Arch,” which is graded as a county historical monument. It was built in 1831 in the Ching Dynasty to commemorate the three widows’ chaste deeds, namely two Madam Chens, and Madam Huang, who were Tsai Zhong-Huan’s wife and daughters-in-law. They survived their husbands at a young age, and raised their children by themselves.",
+            "In Qionglin village, what are some other scenic sites besides the old houses?\nThe village was maintained as a battle village during wartime. Therefore, there are underground tunnels in all directions under the village. And, it also has a statue of Kinmen’s defense god, the Wind Lion God, outside the village."
+          ],
+          "sentences": [
+            "What else do we have yet to see in this village?",
+            "Qionglin village has an arch called “Three Widows Chastity Arch,” which is graded as a county historical monument.",
+            "It was built in 1831 in the Ching Dynasty to commemorate the three widows’ chaste deeds, namely two Madam Chens, and Madam Huang, who were Tsai Zhong-Huan’s wife and daughters-in-law.",
+            "They survived their husbands at a young age, and raised their children by themselves.",
+            "In Qionglin village, what are some other scenic sites besides the old houses?",
+            "The village was maintained as a battle village during wartime.",
+            "Therefore, there are underground tunnels in all directions under the village.",
+            "And, it also has a statue of Kinmen’s defense god, the Wind Lion God, outside the village."
+          ]
+        },
+        {
+          "slide": 9,
+          "title_guess": "Where is Shanhou Folk Cuture Village?",
+          "text_blocks": [
+            "Where is Shanhou Folk Cuture Village?\nShanhou Folk Culture Village is located in Jinsha township, on the east side of Kinmen island. It was built by Wang Guo- Zhen and his son Wang Jing–Xiang, who co-sponsored the construction after becoming wealthy through business in Japan.",
+            "When was the construction of Shanhou Village finished?\nThe construction took about 24 years during the Ching Dynasty from 1876 to 1900. The Village is Fujian-style, consisting of 18 houses with two wings, which is also called the “Shanhou 18 Residences,” that is, 16 grand houses, one ancestral hall, and a private school.",
+            "Shanhou Folk Culture Village"
+          ],
+          "sentences": [
+            "Where is Shanhou Folk Cuture Village?",
+            "Shanhou Folk Culture Village is located in Jinsha township, on the east side of Kinmen island.",
+            "It was built by Wang Guo- Zhen and his son Wang Jing–Xiang, who co-sponsored the construction after becoming wealthy through business in Japan.",
+            "When was the construction of Shanhou Village finished?",
+            "The construction took about 24 years during the Ching Dynasty from 1876 to 1900.",
+            "The Village is Fujian-style, consisting of 18 houses with two wings, which is also called the “Shanhou 18 Residences,” that is, 16 grand houses, one ancestral hall, and a private school.",
+            "Shanhou Folk Culture Village"
+          ]
+        },
+        {
+          "slide": 10,
+          "title_guess": "Is Shanhou Village noted for its architecture/What are the architectural features of Shanhou Village?",
+          "text_blocks": [
+            "Is Shanhou Village noted for its architecture/What are the architectural features of Shanhou Village?\nMost buildings of the Folk Culture Village are houses with two wings and swallow-tail shaped roofs, with a few exceptions of saddleback shape. Nevertheless, all of the houses are arrayed in conformity. The walls of the houses are decorated with exquisitely colored bricks and ceramics that show the traditional culture of the village. In addition, most houses have very elaborate roof decorations, exquisite stone columns and woodcarvings.",
+            "Does the architecture blend the philosophy of Feng-Shui? Yes. Shanhou is located below Wuhu Mountain (literally “Five Tigers Mountain”), and is described as the “reversing head of the five tigers.” By the side of the Wang Family Ancestral Hall, there is a “dragon’s cave” where it is said lived a dragon with an invisible tail. According to legend and Feng-Shui, one of the huge rocks sticking out of the ancestral hall is said to be the head of the dragon that can protect the younger generations. So Shanhou is one of the best places for sightseeing as well as for studying traditional houses and culture in Kinmen."
+          ],
+          "sentences": [
+            "Is Shanhou Village noted for its architecture/What are the architectural features of Shanhou Village?",
+            "Most buildings of the Folk Culture Village are houses with two wings and swallow-tail shaped roofs, with a few exceptions of saddleback shape.",
+            "Nevertheless, all of the houses are arrayed in conformity.",
+            "The walls of the houses are decorated with exquisitely colored bricks and ceramics that show the traditional culture of the village.",
+            "In addition, most houses have very elaborate roof decorations, exquisite stone columns and woodcarvings.",
+            "Does the architecture blend the philosophy of Feng-Shui?",
+            "Yes.",
+            "Shanhou is located below Wuhu Mountain (literally “Five Tigers Mountain”), and is described as the “reversing head of the five tigers.” By the side of the Wang Family Ancestral Hall, there is a “dragon’s cave” where it is said lived a dragon with an invisible tail.",
+            "According to legend and Feng-Shui, one of the huge rocks sticking out of the ancestral hall is said to be the head of the dragon that can protect the younger generations.",
+            "So Shanhou is one of the best places for sightseeing as well as for studying traditional houses and culture in Kinmen."
+          ]
+        },
+        {
+          "slide": 11,
+          "title_guess": "How long did it take to build the old houses here? About 24 years. The reason why it took so long is that the main build",
+          "text_blocks": [
+            "How long did it take to build the old houses here? About 24 years. The reason why it took so long is that the main building materials came from Zhuangzhou, Quanzhou of Fujian Province, and even from Jiangxi Province of mainland China. In those early days, traffic and transportation were not so convenient between Kinmen and the mainland; therefore, the construction took a long time.",
+            "Here is a characteristically traditicnal old house, with a pond in front of it. How is it similar to the one in Shuitou Village?\nIt used to be a private school called “Hai Zhu Hall,” and the pond in front is called “Half Moon Pond.” The school faces the eastern direction, and in the distant foreground is the sea. From here you can see the sun rise every morning, as well as the rise and set of the moon, just like a bright pearl floating in the sea, so the hall is called “Hai Zhu Hall,” the Sea Pearl Hall."
+          ],
+          "sentences": [
+            "How long did it take to build the old houses here?",
+            "About 24 years.",
+            "The reason why it took so long is that the main building materials came from Zhuangzhou, Quanzhou of Fujian Province, and even from Jiangxi Province of mainland China.",
+            "In those early days, traffic and transportation were not so convenient between Kinmen and the mainland; therefore, the construction took a long time.",
+            "Here is a characteristically traditicnal old house, with a pond in front of it.",
+            "How is it similar to the one in Shuitou Village?",
+            "It used to be a private school called “Hai Zhu Hall,” and the pond in front is called “Half Moon Pond.” The school faces the eastern direction, and in the distant foreground is the sea.",
+            "From here you can see the sun rise every morning, as well as the rise and set of the moon, just like a bright pearl floating in the sea, so the hall is called “Hai Zhu Hall,” the Sea Pearl Hall."
+          ]
+        },
+        {
+          "slide": 12,
+          "title_guess": "But didn’t the houses get ruined or damaged during the battles?",
+          "text_blocks": [
+            "But didn’t the houses get ruined or damaged during the battles?\nYes, they did. Flames of war plus long exposure to the sun and sea wind badly damaged the old houses. Therefore, Kinmen County Government spent a lot of money to renovate them in 1979. The renovation included setting up an antiquities hall, a ceremonial hall, a wedding hall, a martial arts hall and so on, all providing exhibitions for tourists.",
+            "I believe the Wang Family was very rich at that time.\nWithout a doubt. Nevertheless, there is an old saying which goes, “You-Shanhou-Fu, Wu- Shanhou-Cuo.” It means that in Kinmen though one is as rich as the people of Shanhou, one has no house as elegant as those in Shanhou. So this proverb highly values these grand and elegant houses in Shanhou. Besides these, the village is regarded as one of the island’s finest examples of traditional architectures; therefore, it is often used for shooting domestic films or TV shows."
+          ],
+          "sentences": [
+            "But didn’t the houses get ruined or damaged during the battles?",
+            "Yes, they did.",
+            "Flames of war plus long exposure to the sun and sea wind badly damaged the old houses.",
+            "Therefore, Kinmen County Government spent a lot of money to renovate them in 1979.",
+            "The renovation included setting up an antiquities hall, a ceremonial hall, a wedding hall, a martial arts hall and so on, all providing exhibitions for tourists.",
+            "I believe the Wang Family was very rich at that time.",
+            "Without a doubt.",
+            "Nevertheless, there is an old saying which goes, “You-Shanhou-Fu, Wu- Shanhou-Cuo.” It means that in Kinmen though one is as rich as the people of Shanhou, one has no house as elegant as those in Shanhou.",
+            "So this proverb highly values these grand and elegant houses in Shanhou.",
+            "Besides these, the village is regarded as one of the island’s finest examples of traditional architectures; therefore, it is often used for shooting domestic films or TV shows."
+          ]
+        }
+      ]
+    },
+    {
+      "source_file": "分句用_2. Wartime history.pptx",
+      "slides": [
+        {
+          "slide": 1,
+          "title_guess": "How long ago was the Guningtou Battle Museum built?",
+          "text_blocks": [
+            "How long ago was the Guningtou Battle Museum built?\nIf was built to commemorate the Guningtou Battle which began at 2:00A.M. on Oct.25th, 1949. Construction of the Guningtou Battle Museum started in 1983 and was completed the following year. It is located on the former battlefield.",
+            "What’s so special about the appearance of the museum?\nThe appearance of the museum is magnificent. It imitates the appearance of an old-fashioned castle. The sculptures on both sides of the main gate celebrate the glory of our soldiers and their courage during the war.",
+            "Wow, look at the tanks displayed on the grassland? Any special history behind them?\nOn the grassland on both sides are displayed M5A1-shaped tanks named the “Bear of Kinmen” that lit up the battlefield in those times. Inside there are 14 oil paintings that depict the battle scenes. Also displayed are illustrations of war history, war trophies, and documents, as well as the pictures of the commanding officers of the war. The museum also provides films that record the “Guningtou Battle” so that tourists can experience the essence of the combat."
+          ],
+          "sentences": [
+            "How long ago was the Guningtou Battle Museum built?",
+            "If was built to commemorate the Guningtou Battle which began at 2:00A.M.",
+            "on Oct.25th, 1949.",
+            "Construction of the Guningtou Battle Museum started in 1983 and was completed the following year.",
+            "It is located on the former battlefield.",
+            "What’s so special about the appearance of the museum?",
+            "The appearance of the museum is magnificent.",
+            "It imitates the appearance of an old-fashioned castle.",
+            "The sculptures on both sides of the main gate celebrate the glory of our soldiers and their courage during the war.",
+            "Wow, look at the tanks displayed on the grassland?",
+            "Any special history behind them?",
+            "On the grassland on both sides are displayed M5A1-shaped tanks named the “Bear of Kinmen” that lit up the battlefield in those times.",
+            "Inside there are 14 oil paintings that depict the battle scenes.",
+            "Also displayed are illustrations of war history, war trophies, and documents, as well as the pictures of the commanding officers of the war.",
+            "The museum also provides films that record the “Guningtou Battle” so that tourists can experience the essence of the combat."
+          ]
+        },
+        {
+          "slide": 2,
+          "title_guess": "I knew that several famous battles occurred in Kinmen. Can you tell me about them?",
+          "text_blocks": [
+            "I knew that several famous battles occurred in Kinmen. Can you tell me about them?\nIn 1949, the Chinese Communist’s army took advantage of the darkness of night and landed in Kinmen. The battle was launched thereafter and lasted for 56 hours, nearly 3 days and 3 nights. Finally, our military captured over 7,000 POWs and confiscated many weapons. This battle was thus called “Triumph Over Guningtou”. Besides that, the ensuing battles that occurred in Kinmen include the Dadan and Erdan Battle in 1950, the September 3rd Battle in 1954, and the August 23rd Artillery Battle in 1958.",
+            "How did the Chinese Communist’s army land in Kinmen?\nThey went across the sea and reached Kinmen using over 200 fishing boats from Lianhe, Aotou, and Dadeng Islet of the mainland.",
+            "What effect did the battle have on Kinmen during that time?\nThe battle raised our army’s confidence and became the “turning point” of the whole situation. The victory also frustrated the Chinese Communists’ attempt to liberate Taiwan by force, with the result of maintaining Taiwan’s sovereignty and retaining the country’s future."
+          ],
+          "sentences": [
+            "I knew that several famous battles occurred in Kinmen.",
+            "Can you tell me about them?",
+            "In 1949, the Chinese Communist’s army took advantage of the darkness of night and landed in Kinmen.",
+            "The battle was launched thereafter and lasted for 56 hours, nearly 3 days and 3 nights.",
+            "Finally, our military captured over 7,000 POWs and confiscated many weapons.",
+            "This battle was thus called “Triumph Over Guningtou”.",
+            "Besides that, the ensuing battles that occurred in Kinmen include the Dadan and Erdan Battle in 1950, the September 3rd Battle in 1954, and the August 23rd Artillery Battle in 1958.",
+            "How did the Chinese Communist’s army land in Kinmen?",
+            "They went across the sea and reached Kinmen using over 200 fishing boats from Lianhe, Aotou, and Dadeng Islet of the mainland.",
+            "What effect did the battle have on Kinmen during that time?",
+            "The battle raised our army’s confidence and became the “turning point” of the whole situation.",
+            "The victory also frustrated the Chinese Communists’ attempt to liberate Taiwan by force, with the result of maintaining Taiwan’s sovereignty and retaining the country’s future."
+          ]
+        },
+        {
+          "slide": 3,
+          "title_guess": "This is truly a famous battle with worldwide significance! How can we learn more about it?",
+          "text_blocks": [
+            "This is truly a famous battle with worldwide significance! How can we learn more about it?\nYou can look at the oil paintings with English captions. Besides that, you can enjoy the film recording of the battle. It lasts for about 13 minutes.",
+            "That’s great. Can I take some pictures in the museum?\nNo, you can’t. The oil paintings are very valuable. The camera flash will cause deterioration that can eventually destroy them. So, no flash light is allowed.”",
+            "Is there any painting here more significant than the others?\nYes. One of the paintings is a 3D created by Professor Gu Chong-Guang of Taiwan Normal University. It’s called “Generalissimo Chiang’s Army Review”. From wherever you stand, the jeep in the middle will be facing you, as if you were examining the troops."
+          ],
+          "sentences": [
+            "This is truly a famous battle with worldwide significance!",
+            "How can we learn more about it?",
+            "You can look at the oil paintings with English captions.",
+            "Besides that, you can enjoy the film recording of the battle.",
+            "It lasts for about 13 minutes.",
+            "That’s great.",
+            "Can I take some pictures in the museum?",
+            "No, you can’t.",
+            "The oil paintings are very valuable.",
+            "The camera flash will cause deterioration that can eventually destroy them.",
+            "So, no flash light is allowed.”",
+            "Is there any painting here more significant than the others?",
+            "Yes.",
+            "One of the paintings is a 3D created by Professor Gu Chong-Guang of Taiwan Normal University.",
+            "It’s called “Generalissimo Chiang’s Army Review”.",
+            "From wherever you stand, the jeep in the middle will be facing you, as if you were examining the troops."
+          ]
+        },
+        {
+          "slide": 4,
+          "title_guess": "Can you tell us about the history of August 23rd Artillery Battle? Displayed outside the museum are jet fighters, tanks ",
+          "text_blocks": [
+            "Can you tell us about the history of August 23rd Artillery Battle? Displayed outside the museum are jet fighters, tanks and cannons used during the battles. In the museum there are historical documents of the battle, military intelligence data, and reports of battle status, all reflecting the details and the causes and effects of the battle relevant to the present time. The museum serves as a historical record. One of the newly completed facilities inside the museum provides the tourists with moving experiences of the war. They can feel the fierceness and sadness of the war. Meanwhile, they are brought into the presence of the lively bombardment where they can better understand the violence of the artillery battle.",
+            "When did August 23rd Artillery Battle happen?\nThe artillery battle occurred at 6:30P.M., August. 23rd, 1958. The Chinese communist’s military focused 342 cannons of various kinds and shelled Kinmen for two consecutive hours. The artillery shells totaled about 57,500. Our artillerymen fought back, too.",
+            "How long did this battle last?\nForty-four days in all. The Chinese communists fired a total of 478,911 artillery shells. At that time, it could be said that everyone had heard of “Kinmen”, because the artillery sounded the alarm.",
+            "August 23rd Artillery Battle Museum"
+          ],
+          "sentences": [
+            "Can you tell us about the history of August 23rd Artillery Battle?",
+            "Displayed outside the museum are jet fighters, tanks and cannons used during the battles.",
+            "In the museum there are historical documents of the battle, military intelligence data, and reports of battle status, all reflecting the details and the causes and effects of the battle relevant to the present time.",
+            "The museum serves as a historical record.",
+            "One of the newly completed facilities inside the museum provides the tourists with moving experiences of the war.",
+            "They can feel the fierceness and sadness of the war.",
+            "Meanwhile, they are brought into the presence of the lively bombardment where they can better understand the violence of the artillery battle.",
+            "When did August 23rd Artillery Battle happen?",
+            "The artillery battle occurred at 6:30P.M., August.",
+            "23rd, 1958.",
+            "The Chinese communist’s military focused 342 cannons of various kinds and shelled Kinmen for two consecutive hours.",
+            "The artillery shells totaled about 57,500.",
+            "Our artillerymen fought back, too.",
+            "How long did this battle last?",
+            "Forty-four days in all.",
+            "The Chinese communists fired a total of 478,911 artillery shells.",
+            "At that time, it could be said that everyone had heard of “Kinmen”, because the artillery sounded the alarm.",
+            "August 23rd Artillery Battle Museum"
+          ]
+        },
+        {
+          "slide": 5,
+          "title_guess": "Under such circumstances, Kinmen was a very dangerous place, wasn’t it? How was Kinmen able to survive?",
+          "text_blocks": [
+            "Under such circumstances, Kinmen was a very dangerous place, wasn’t it? How was Kinmen able to survive?",
+            "Not only were the airport and the harbor both destroyed by artillery shells, but also all supplies from the air and the sea were cut off. Thanks to their perseverance, soldiers and civilians did survive the disaster.",
+            "Did any other countries help Kinmen?\nYes, the American military sent warships to cruise in the Taiwan Straits to help, and they played a remarkable role in stabilizing the whole situation.",
+            "The “August 23rd Artillery Battle” must have meant a lot to Kinmen.\nKinmen is considered the first line of Taiwan’s defense. The victory has altered the history of Kinmen, changed the fate of both sides, and has offered Taiwan a firm platform for future development. By the way, after the war, local people collected artillery shells and sold them to knife factories, making the so- called “Kinmen Artillery Shell Knives” so famous and popular.",
+            "Do the characters on the walls of both sides of the museum have any special meaning?\nDefinitely! Carved on the walls are the names of the soldiers killed in the battle-altogether 578 soldiers of all ranks.\nWhat is the museum opposite here?\nThe museum opposite here is the “Memorial Museum of Dr. Yu Da Wei”. He was the defense minister at the time. Displayed in the memorial museum are his relics, pictures, and medals of honor from abroad. We can drop by there after we finish here."
+          ],
+          "sentences": [
+            "Under such circumstances, Kinmen was a very dangerous place, wasn’t it?",
+            "How was Kinmen able to survive?",
+            "Not only were the airport and the harbor both destroyed by artillery shells, but also all supplies from the air and the sea were cut off.",
+            "Thanks to their perseverance, soldiers and civilians did survive the disaster.",
+            "Did any other countries help Kinmen?",
+            "Yes, the American military sent warships to cruise in the Taiwan Straits to help, and they played a remarkable role in stabilizing the whole situation.",
+            "The “August 23rd Artillery Battle” must have meant a lot to Kinmen.",
+            "Kinmen is considered the first line of Taiwan’s defense.",
+            "The victory has altered the history of Kinmen, changed the fate of both sides, and has offered Taiwan a firm platform for future development.",
+            "By the way, after the war, local people collected artillery shells and sold them to knife factories, making the so- called “Kinmen Artillery Shell Knives” so famous and popular.",
+            "Do the characters on the walls of both sides of the museum have any special meaning?",
+            "Definitely!",
+            "Carved on the walls are the names of the soldiers killed in the battle-altogether 578 soldiers of all ranks.",
+            "What is the museum opposite here?",
+            "The museum opposite here is the “Memorial Museum of Dr.",
+            "Yu Da Wei”.",
+            "He was the defense minister at the time.",
+            "Displayed in the memorial museum are his relics, pictures, and medals of honor from abroad.",
+            "We can drop by there after we finish here."
+          ]
+        },
+        {
+          "slide": 6,
+          "title_guess": "Warm up",
+          "text_blocks": [
+            "Warm up",
+            "Good morning, the fog season is coming. How is everything?\nThe scenery is good but the humidity is high and it is easy to have mold…\nDid you check out those introduced attractions?\nYes! I did go to 823 Artillery battle museum to memorize the event …\nNo! I was a kind of busy. The school work is killing me and I need to …\nAny plan for the Tomb Sweeping Festival? Are you heading back to mainland Taiwan or planning to go somewhere?"
+          ],
+          "sentences": [
+            "Warm up",
+            "Good morning, the fog season is coming.",
+            "How is everything?",
+            "The scenery is good but the humidity is high and it is easy to have mold…",
+            "Did you check out those introduced attractions?",
+            "Yes!",
+            "I did go to 823 Artillery battle museum to memorize the event …",
+            "No!",
+            "I was a kind of busy.",
+            "The school work is killing me and I need to …",
+            "Any plan for the Tomb Sweeping Festival?",
+            "Are you heading back to mainland Taiwan or planning to go somewhere?"
+          ]
+        },
+        {
+          "slide": 7,
+          "title_guess": "Can you share the historical background of Zhaishan Tunnel with us?",
+          "text_blocks": [
+            "Can you share the historical background of Zhaishan Tunnel with us?\nZhaishan Tunnel was dug in 1961, because of the war needs. Located southwest of Gugang village, Jincheng township, it was once called “Damaoshan Tunnel”. The main function of the tunnel was to provide the military boats a waterway for supplying goods to the wharf inside the tunnel.",
+            "When did the tunnel finish/When was it finished?\nThe construction of the tunnel took about five years, and was finished in 1966. After its completion, the tunnel was garrisoned by the second battalion of the navy. However, the tunnel became silted with sand, thus diminishing its purpose for war preparedness. It was abandoned in 1986. Kinmen National Park took over the tunnel from the hands of the Kinmen Defense Command and opened it to tourists in 1997.",
+            "What are the special features of this tunnel?\nThe tunnel is an A-shaped waterway functioning for war preparedness. It measures approximately 375m in length, 11.5m in width, and 8m in height. It can accommodate 42 military boats beside the wharf. When entering the tunnel, it’s hard to resist feeling the attraction of the tunnel. The chiseled features of the granite rocks and the spattering sound of the waves suddenly carve an amazing picture in one’s mind.",
+            "Zhaishan Tunnel"
+          ],
+          "sentences": [
+            "Can you share the historical background of Zhaishan Tunnel with us?",
+            "Zhaishan Tunnel was dug in 1961, because of the war needs.",
+            "Located southwest of Gugang village, Jincheng township, it was once called “Damaoshan Tunnel”.",
+            "The main function of the tunnel was to provide the military boats a waterway for supplying goods to the wharf inside the tunnel.",
+            "When did the tunnel finish/When was it finished?",
+            "The construction of the tunnel took about five years, and was finished in 1966.",
+            "After its completion, the tunnel was garrisoned by the second battalion of the navy.",
+            "However, the tunnel became silted with sand, thus diminishing its purpose for war preparedness.",
+            "It was abandoned in 1986.",
+            "Kinmen National Park took over the tunnel from the hands of the Kinmen Defense Command and opened it to tourists in 1997.",
+            "What are the special features of this tunnel?",
+            "The tunnel is an A-shaped waterway functioning for war preparedness.",
+            "It measures approximately 375m in length, 11.5m in width, and 8m in height.",
+            "It can accommodate 42 military boats beside the wharf.",
+            "When entering the tunnel, it’s hard to resist feeling the attraction of the tunnel.",
+            "The chiseled features of the granite rocks and the spattering sound of the waves suddenly carve an amazing picture in one’s mind.",
+            "Zhaishan Tunnel"
+          ]
+        },
+        {
+          "slide": 8,
+          "title_guess": "The tunnel feels safe and sound. What is its rock formation?",
+          "text_blocks": [
+            "The tunnel feels safe and sound. What is its rock formation?\nIt’s carved into bedrock of granite gneiss. It’s also Kinmen’s primary rock formation. The tunnel has the characteristic of being warm in winter, while being cool in summer.",
+            "But it’s a little different from other tunnels, isn’t it? Are there any other features of the tunnel?\nYes, there are. One of the most unique features is that the tunnel is divided into a walkway and a waterway, unlike most of the other tunnels in Kinmen.",
+            "Are there any other tunnels like this in Kinmen?\nMore than one. There is another one like this on the list of scenic sites opened to tourists. It is on Little Kinmen, and is known as “Siwei Tunnel” or “Jiougong Tunnel.” Are there any rules for using the tunnel?\nYes. No food, water, or littering are permitted, because the waterway opens\nto the sea. If you throw garbage into the water, it will pollute the sea."
+          ],
+          "sentences": [
+            "The tunnel feels safe and sound.",
+            "What is its rock formation?",
+            "It’s carved into bedrock of granite gneiss.",
+            "It’s also Kinmen’s primary rock formation.",
+            "The tunnel has the characteristic of being warm in winter, while being cool in summer.",
+            "But it’s a little different from other tunnels, isn’t it?",
+            "Are there any other features of the tunnel?",
+            "Yes, there are.",
+            "One of the most unique features is that the tunnel is divided into a walkway and a waterway, unlike most of the other tunnels in Kinmen.",
+            "Are there any other tunnels like this in Kinmen?",
+            "More than one.",
+            "There is another one like this on the list of scenic sites opened to tourists.",
+            "It is on Little Kinmen, and is known as “Siwei Tunnel” or “Jiougong Tunnel.” Are there any rules for using the tunnel?",
+            "Yes.",
+            "No food, water, or littering are permitted, because the waterway opens",
+            "to the sea.",
+            "If you throw garbage into the water, it will pollute the sea."
+          ]
+        },
+        {
+          "slide": 9,
+          "title_guess": "Where is Beishan? What is the history and geographic location of Beishan Old Western Style House? What is the geographic",
+          "text_blocks": [
+            "Where is Beishan? What is the history and geographic location of Beishan Old Western Style House? What is the geographic location of Beishan and its history?\nBeishan is part of the Guningtou Village. In other words, Guningtou can be divided into three villages: Nanshan, Beishan, and Lincuo. The house located at the entrance of Beishan village is called Beishan Old Western Style House. It was owned by an overseas Chinese businessman whose name was Lee. Presently, the house is maintained and managed by the Kinmen National Park.",
+            "What happened during the Guningtou Battle?\nDuring the Guningtou Battle (in 1949), some of the communist soldiers landed on Kinmen and circled around Nanshan and Beishan villages before they launched a street battle with our soldiers. This old house bore the brunt of the attack and was used as the command post of the communist military. Later on, our soldiers unleashed a counterattack, raiding the entire village and successfully capturing the fleeing invaders.",
+            "Beishan\nOld Western Style House"
+          ],
+          "sentences": [
+            "Where is Beishan?",
+            "What is the history and geographic location of Beishan Old Western Style House?",
+            "What is the geographic location of Beishan and its history?",
+            "Beishan is part of the Guningtou Village.",
+            "In other words, Guningtou can be divided into three villages: Nanshan, Beishan, and Lincuo.",
+            "The house located at the entrance of Beishan village is called Beishan Old Western Style House.",
+            "It was owned by an overseas Chinese businessman whose name was Lee.",
+            "Presently, the house is maintained and managed by the Kinmen National Park.",
+            "What happened during the Guningtou Battle?",
+            "During the Guningtou Battle (in 1949), some of the communist soldiers landed on Kinmen and circled around Nanshan and Beishan villages before they launched a street battle with our soldiers.",
+            "This old house bore the brunt of the attack and was used as the command post of the communist military.",
+            "Later on, our soldiers unleashed a counterattack, raiding the entire village and successfully capturing the fleeing invaders.",
+            "Beishan",
+            "Old Western Style House"
+          ]
+        },
+        {
+          "slide": 10,
+          "title_guess": "What produced the holes in the walls of the house?",
+          "text_blocks": [
+            "What produced the holes in the walls of the house?\nMost were caused by gunfire during the Guningtou battle. At the time of the battle, communist soldiers landed on Kinmen and poured into the Nanshan and Beishan villages. Since this Old Western House is located right at the entrance of Beishan village, it happened to be the first target struck, and thus it became the makeshift command post of the enemy.",
+            "I think it was because of its height that the Old Western House became the enemy’s command post. Is that true?\nCompared to the old, traditional Fujian-styled houses in Kinmen, this house is much taller. Generally, the traditional Fujian-styled buildings are single story houses, but this western style house has two floors. Therefore, the enemy took advantage of its height to maintain military control of the surroundings."
+          ],
+          "sentences": [
+            "What produced the holes in the walls of the house?",
+            "Most were caused by gunfire during the Guningtou battle.",
+            "At the time of the battle, communist soldiers landed on Kinmen and poured into the Nanshan and Beishan villages.",
+            "Since this Old Western House is located right at the entrance of Beishan village, it happened to be the first target struck, and thus it became the makeshift command post of the enemy.",
+            "I think it was because of its height that the Old Western House became the enemy’s command post.",
+            "Is that true?",
+            "Compared to the old, traditional Fujian-styled houses in Kinmen, this house is much taller.",
+            "Generally, the traditional Fujian-styled buildings are single story houses, but this western style house has two floors.",
+            "Therefore, the enemy took advantage of its height to maintain military control of the surroundings."
+          ]
+        },
+        {
+          "slide": 11,
+          "title_guess": "What is the historical background of Dadan and Erdan Islands?",
+          "text_blocks": [
+            "What is the historical background of Dadan and Erdan Islands?\nThe original name of “Dadan” (phonetically similar to ‘boldness’ in Chinese) was “Da-dang” (phonetically similar to ‘burden’ in Chinese). When Chiang, Jing-guo, the late President of the R.O.C., served as the minister of General Political Warfare, he inspected Da-dang in 1951 and encouraged soldiers with the words “With ‘boldness’ you are bound with the ‘burden’ of national recovery”. So the name “Da-dang” was changed into “Dadan”. Up to the present day, Dadan Island is still renowned for its reputation as “Boldness upon burden, a never abandoned islet”.",
+            "Can you tell us the history of “Big V at Dadan”?\nOn July 27th, 1950, the Communist soldiers began to fire at Dadan Island from Baishipaotai, Sitou, Tatou, and Wuyu of the mainland. About Four hours later, approximately 700 soldiers set sail from Xiamen Harbor and landed on the east and the west sides of Dadan. The battle occurred during a typhoon at night, and the failure of military communication put our soldiers in jeopardy. After fighting a hard and brave resistance for one day, our military captured over 200 enemy soldiers with just the manpower of two and a half companies. The rest of the enemies were either dead or wounded, most of them having drowned at sea. This battle was thus noted as “Big V at Dadan.”",
+            "Dadan and Erdan Islands"
+          ],
+          "sentences": [
+            "What is the historical background of Dadan and Erdan Islands?",
+            "The original name of “Dadan” (phonetically similar to ‘boldness’ in Chinese) was “Da-dang” (phonetically similar to ‘burden’ in Chinese).",
+            "When Chiang, Jing-guo, the late President of the R.O.C., served as the minister of General Political Warfare, he inspected Da-dang in 1951 and encouraged soldiers with the words “With ‘boldness’ you are bound with the ‘burden’ of national recovery”.",
+            "So the name “Da-dang” was changed into “Dadan”.",
+            "Up to the present day, Dadan Island is still renowned for its reputation as “Boldness upon burden, a never abandoned islet”.",
+            "Can you tell us the history of “Big V at Dadan”?",
+            "On July 27th, 1950, the Communist soldiers began to fire at Dadan Island from Baishipaotai, Sitou, Tatou, and Wuyu of the mainland.",
+            "About Four hours later, approximately 700 soldiers set sail from Xiamen Harbor and landed on the east and the west sides of Dadan.",
+            "The battle occurred during a typhoon at night, and the failure of military communication put our soldiers in jeopardy.",
+            "After fighting a hard and brave resistance for one day, our military captured over 200 enemy soldiers with just the manpower of two and a half companies.",
+            "The rest of the enemies were either dead or wounded, most of them having drowned at sea.",
+            "This battle was thus noted as “Big V at Dadan.”",
+            "Dadan and Erdan Islands"
+          ]
+        },
+        {
+          "slide": 12,
+          "title_guess": "The war history is awesome. Where are these two islands situated? Yes, it is indeed, Dadan and Erdan islands are off the",
+          "text_blocks": [
+            "The war history is awesome. Where are these two islands situated? Yes, it is indeed, Dadan and Erdan islands are off the shore of Little Kinmen and on the sea-route into Xiamen Harbor.",
+            "What is the significance of the location?\nThe two islands were so close to Xiamen that they acted as a blockade as well as a defense during the war providing an effective sea defense.",
+            "Can I visit these islands?\nOh, I don’t think this will happen because they are still guarded by our military forces. Civilians are not allowed there before the islands are opened to tourists. The local government planned to open the islands to tourists; however, up to the present time the plan is still “like a castle in the air.”"
+          ],
+          "sentences": [
+            "The war history is awesome.",
+            "Where are these two islands situated?",
+            "Yes, it is indeed, Dadan and Erdan islands are off the shore of Little Kinmen and on the sea-route into Xiamen Harbor.",
+            "What is the significance of the location?",
+            "The two islands were so close to Xiamen that they acted as a blockade as well as a defense during the war providing an effective sea defense.",
+            "Can I visit these islands?",
+            "Oh, I don’t think this will happen because they are still guarded by our military forces.",
+            "Civilians are not allowed there before the islands are opened to tourists.",
+            "The local government planned to open the islands to tourists; however, up to the present time the plan is still “like a castle in the air.”"
+          ]
+        }
+      ]
+    },
+    {
+      "source_file": "分句用_3. Natural sightseeing spots.pptx",
+      "slides": [
+        {
+          "slide": 1,
+          "title_guess": "Taiwu Mountain",
+          "text_blocks": [
+            "Taiwu Mountain",
+            "Are there any mountains in Kinmen? What is the highest mountain?\nYes, there are, but not many. The highest mountain of Kinmen is Taiwu Mountain, which is also called God’s Mountain. It’s located in the center of Kinmen, and is the highest mountain on Kinmen. The mountain measures 252m in height and is made of hard granite-gneiss bedrock.",
+            "What is the special feature of Taiwu Mountain?\nInterweaving tunnels have been dug inside the mountain, and these passages provide the best defense. They achieved wonders in the battle of August 23rd. At the same time, the mountain tunnels comprise a notable underground castle. Also, “Huagangshi (Granite) Military Hospital” and “Cing Tian Hall” situated inside the mountain are also worth noting.",
+            "Yes. The way up to the mountain measures a total of 3.5 kilometers, from “Yuchang Road Arch” by the cemetery to the “Wu Wang Zai Ju” Inscribed Rock. On the way up the mountain, visitors can get a nice view of Kinmen. There are many charming scenic spots along the road, such as the Place Where Koxinga Reviewed the Military and Played Chess, Wu Wang Zai Ju Inscribed Rock, Haiin Temple, and others.",
+            "How long are we going to stay here? About two hours.",
+            "Why are we staying here for such a long time?\nEverybody should change into ligher clothing and hiking shoes now because we will take a small hike. Today is a little different from usual, and we might sweat a bit. This will be sort of like an army trek.",
+            "Can tourists go mountain climbing there?"
+          ],
+          "sentences": [
+            "Taiwu Mountain",
+            "Are there any mountains in Kinmen?",
+            "What is the highest mountain?",
+            "Yes, there are, but not many.",
+            "The highest mountain of Kinmen is Taiwu Mountain, which is also called God’s Mountain.",
+            "It’s located in the center of Kinmen, and is the highest mountain on Kinmen.",
+            "The mountain measures 252m in height and is made of hard granite-gneiss bedrock.",
+            "What is the special feature of Taiwu Mountain?",
+            "Interweaving tunnels have been dug inside the mountain, and these passages provide the best defense.",
+            "They achieved wonders in the battle of August 23rd.",
+            "At the same time, the mountain tunnels comprise a notable underground castle.",
+            "Also, “Huagangshi (Granite) Military Hospital” and “Cing Tian Hall” situated inside the mountain are also worth noting.",
+            "Yes.",
+            "The way up to the mountain measures a total of 3.5 kilometers, from “Yuchang Road Arch” by the cemetery to the “Wu Wang Zai Ju” Inscribed Rock.",
+            "On the way up the mountain, visitors can get a nice view of Kinmen.",
+            "There are many charming scenic spots along the road, such as the Place Where Koxinga Reviewed the Military and Played Chess, Wu Wang Zai Ju Inscribed Rock, Haiin Temple, and others.",
+            "How long are we going to stay here?",
+            "About two hours.",
+            "Why are we staying here for such a long time?",
+            "Everybody should change into ligher clothing and hiking shoes now because we will take a small hike.",
+            "Today is a little different from usual, and we might sweat a bit.",
+            "This will be sort of like an army trek.",
+            "Can tourists go mountain climbing there?"
+          ]
+        },
+        {
+          "slide": 2,
+          "title_guess": "Mountain hiking! Will that be hard? Are we walking on the road or climbing stairs?",
+          "text_blocks": [
+            "Mountain hiking! Will that be hard? Are we walking on the road or climbing stairs?\nIt’s as hard as you think. It takes about an hour to walk on a road from the bottom to the summit of the mountain. Along the road you will view the charming scenery and have plenty of free time. So, just take it easy.",
+            "What other sites are worth seeing on the way up to the summit? You will view the beauty of the entire island on the way up the mountain. The breeze feels very comfortable as you walk on the road. Along the way re noteworthy places such as the Place Where Koxinga Reviewed Military and Played Chess, Wu-Wang- Zai-Ju Inscribed Rock, and Haiin Temple. At the Place Where Koxinga Reviewed Military and Played Chess you have a bird’s- eye view of the northern seashore of Kinmen. Standing in the same place and looking in the opposite direction, you can enjoy the beautiful scenery of Jinhu township and Liaoluo Bay.",
+            "Could you provide some details of the scenic sites?\nYes, for example The Place Where Koxinga Reviewed the Military and Played Chess recalls the time at the end of the Ming Dynasty when Zheng Cheng-Gong (Koxinga) watched his soldiers drilling, and also played chess. It’s a natural cave, which measures 13 meters in depth, seven meters in width, and four meters in height. In the cave, there was an old broken chessboard made of stone. This was later restored by the Kinmen County Government to its present appearance."
+          ],
+          "sentences": [
+            "Mountain hiking!",
+            "Will that be hard?",
+            "Are we walking on the road or climbing stairs?",
+            "It’s as hard as you think.",
+            "It takes about an hour to walk on a road from the bottom to the summit of the mountain.",
+            "Along the road you will view the charming scenery and have plenty of free time.",
+            "So, just take it easy.",
+            "What other sites are worth seeing on the way up to the summit?",
+            "You will view the beauty of the entire island on the way up the mountain.",
+            "The breeze feels very comfortable as you walk on the road.",
+            "Along the way re noteworthy places such as the Place Where Koxinga Reviewed Military and Played Chess, Wu-Wang- Zai-Ju Inscribed Rock, and Haiin Temple.",
+            "At the Place Where Koxinga Reviewed Military and Played Chess you have a bird’s- eye view of the northern seashore of Kinmen.",
+            "Standing in the same place and looking in the opposite direction, you can enjoy the beautiful scenery of Jinhu township and Liaoluo Bay.",
+            "Could you provide some details of the scenic sites?",
+            "Yes, for example The Place Where Koxinga Reviewed the Military and Played Chess recalls the time at the end of the Ming Dynasty when Zheng Cheng-Gong (Koxinga) watched his soldiers drilling, and also played chess.",
+            "It’s a natural cave, which measures 13 meters in depth, seven meters in width, and four meters in height.",
+            "In the cave, there was an old broken chessboard made of stone.",
+            "This was later restored by the Kinmen County Government to its present appearance."
+          ]
+        },
+        {
+          "slide": 3,
+          "title_guess": "What about the noted Wu Wang Zai Ju Inscribed Rock?",
+          "text_blocks": [
+            "What about the noted Wu Wang Zai Ju Inscribed Rock?\nYes, the Wu Wang Zai Ju Inscribed Rock is also highly recommended. The four characters of “Wu Wang Zai Ju” inscribed on the rock were written by the late President Chiang Kai-Shek in 1952, when he inspected the military in Kinmen. His purpose was to remind both military and civilians of General Tian Dan’s spirit of winning against the superior forces at Ju city in the ancient country of Chi. Nowadays, it has become an outstanding sightseeing point, and tourists consider this as one of the best places for taking pictures.\nI heard there is an old temple on top of the mountain? What is it called?\nThe temple, named Haiin Temple, is also called Taiwuyan"
+          ],
+          "sentences": [
+            "What about the noted Wu Wang Zai Ju Inscribed Rock?",
+            "Yes, the Wu Wang Zai Ju Inscribed Rock is also highly recommended.",
+            "The four characters of “Wu Wang Zai Ju” inscribed on the rock were written by the late President Chiang Kai-Shek in 1952, when he inspected the military in Kinmen.",
+            "His purpose was to remind both military and civilians of General Tian Dan’s spirit of winning against the superior forces at Ju city in the ancient country of Chi.",
+            "Nowadays, it has become an outstanding sightseeing point, and tourists consider this as one of the best places for taking pictures.",
+            "I heard there is an old temple on top of the mountain?",
+            "What is it called?",
+            "The temple, named Haiin Temple, is also called Taiwuyan"
+          ]
+        },
+        {
+          "slide": 4,
+          "title_guess": "Temple. It was built in the Song Dynasty (1265-1274 A.D.), over 800 years ago. Nowadays, the temple exhibits Guanyin Bud",
+          "text_blocks": [
+            "Temple. It was built in the Song Dynasty (1265-1274 A.D.), over 800 years ago. Nowadays, the temple exhibits Guanyin Buddha, Buddha, and eighteen Arhan for people to worship. In 1958, during the Aug. 23rd bombardment, the temple was destroyed by the artillery shells and was rebuilt in 1961. The people of Kinmen go to the temple and worship deities routinely on every ninth day of the first month according to the lunar calendar, which is believed to be the “Birthday of Heaven”. Also, on the left front side of Haiin Temple is a stone door called “Shimen Pass” with the carved characters of “Hai-Shan-Di-Yi” (Number One in the World). It’s classified as a county historical relic.",
+            "And what else?\nThere is also an “An Shin Stone” (Soothing Stone) in the Haiin Temple. Rumor has it that, when you touch the stone with your right hand while touching your heart with the left hand, you will feel no pain at all. Tranquility and comfort will fill your heart. Just try it. By the way, Haiin Temple is at the end of our trekking journey. You can sip the non-polluted tap water of the mountain spring in the front of the temple. Have a nice break.",
+            "What else should we pay attention to?\nOh, you can’t walk on the deserted trails or roads with “No Trespassing” signs, because some of them lead to military camps, and it is also for the sake of safety. After the break, you must go back by the same way because we will go up and down the mountain on the same road. The car will be waiting for us in the same place where we got off."
+          ],
+          "sentences": [
+            "Temple.",
+            "It was built in the Song Dynasty (1265-1274 A.D.), over 800 years ago.",
+            "Nowadays, the temple exhibits Guanyin Buddha, Buddha, and eighteen Arhan for people to worship.",
+            "In 1958, during the Aug.",
+            "23rd bombardment, the temple was destroyed by the artillery shells and was rebuilt in 1961.",
+            "The people of Kinmen go to the temple and worship deities routinely on every ninth day of the first month according to the lunar calendar, which is believed to be the “Birthday of Heaven”.",
+            "Also, on the left front side of Haiin Temple is a stone door called “Shimen Pass” with the carved characters of “Hai-Shan-Di-Yi” (Number One in the World).",
+            "It’s classified as a county historical relic.",
+            "And what else?",
+            "There is also an “An Shin Stone” (Soothing Stone) in the Haiin Temple.",
+            "Rumor has it that, when you touch the stone with your right hand while touching your heart with the left hand, you will feel no pain at all.",
+            "Tranquility and comfort will fill your heart.",
+            "Just try it.",
+            "By the way, Haiin Temple is at the end of our trekking journey.",
+            "You can sip the non-polluted tap water of the mountain spring in the front of the temple.",
+            "Have a nice break.",
+            "What else should we pay attention to?",
+            "Oh, you can’t walk on the deserted trails or roads with “No Trespassing” signs, because some of them lead to military camps, and it is also for the sake of safety.",
+            "After the break, you must go back by the same way because we will go up and down the mountain on the same road.",
+            "The car will be waiting for us in the same place where we got off."
+          ]
+        },
+        {
+          "slide": 5,
+          "title_guess": "Where is Banyan Gaden? What is its significance? Is there any legend about it?",
+          "text_blocks": [
+            "Where is Banyan Gaden? What is its significance? Is there any legend about it?\nBanyan Garden is located behind Tai Lake. Its original name was Xihong Village and Fengshan Village. The garden used to be the old residence of the prominent Hong family during the Ming Dynasty. Although the garden village had few residents, most of them served the emperor’s regime at that time, according to the old proverb, “Less than a hundred village residents, and more than 36 palace officials.”",
+            "What is the history of Banyan Garden?\nAt the end of the Ming Dynasty, Zheng Cheng Gong (Koxinga) felled trees and made boats at the expense of land conservation. Thus, the entire village was exposed to the strong winds, and was eventually buried in sand, except for one house, which remains to the present time.",
+            "When was it built?\nIn August of 1967 when Mr. Chiang, Jing-Guo, the late President of our country visited the garden, he considered the place, which was shaded by green leaves of the old banyan trees, to be an appropriate recreation resort. Consequently, he named the place “Banyan Garden” and renovated the only old house before he bestowed its name “Wei-Lu.”",
+            "Banyan Garden"
+          ],
+          "sentences": [
+            "Where is Banyan Gaden?",
+            "What is its significance?",
+            "Is there any legend about it?",
+            "Banyan Garden is located behind Tai Lake.",
+            "Its original name was Xihong Village and Fengshan Village.",
+            "The garden used to be the old residence of the prominent Hong family during the Ming Dynasty.",
+            "Although the garden village had few residents, most of them served the emperor’s regime at that time, according to the old proverb, “Less than a hundred village residents, and more than 36 palace officials.”",
+            "What is the history of Banyan Garden?",
+            "At the end of the Ming Dynasty, Zheng Cheng Gong (Koxinga) felled trees and made boats at the expense of land conservation.",
+            "Thus, the entire village was exposed to the strong winds, and was eventually buried in sand, except for one house, which remains to the present time.",
+            "When was it built?",
+            "In August of 1967 when Mr.",
+            "Chiang, Jing-Guo, the late President of our country visited the garden, he considered the place, which was shaded by green leaves of the old banyan trees, to be an appropriate recreation resort.",
+            "Consequently, he named the place “Banyan Garden” and renovated the only old house before he bestowed its name “Wei-Lu.”",
+            "Banyan Garden"
+          ]
+        },
+        {
+          "slide": 6,
+          "title_guess": "What else can we see besides Wei-Lu?",
+          "text_blocks": [
+            "What else can we see besides Wei-Lu?\nAlong side of Banyan Garden is “Tai Lake,” the biggest man- made fresh-water lake in Kinmen. It measures 36 hectares in area, and provides the largest single source of water supply in Kinmen. The main function of the lake is to offer water for the residents of Jinhu town. In the middle of the lake are two islets with a pavilion on both of them. All in all, being a part of “Chiang Kai-Shek Park,” the lake just silhouettes the natural beauty of the entire park.",
+            "Are water activities allowed in the lake? For example, can we row a boat or go swimming?\nNo, you can’t. Since “Tai Lake” is the largest man-made fresh- water lake, and its main function is to supply water to the residents, such activities are not allowed.",
+            "So what can we do for fun around the lake?\nIn the front of the lake is “Chiang, Kai-shek Park,” and behind it is the “Banyan Garden,” the “August 23rd Artillery Battle Museum,” and “Mr. Yu Da-Wei Memorial Hall.”",
+            "I see so many old banyan trees around here! No wonder it’s called the Banyan Garden.\nYes. There are more than 10 trees that are over one hundred years old.\nWow. They are old!\nThe trees were planted during the Ching Dynasty, more than a hundred years ago, so they are definitely old.　Under the influence of this greenery, you can see the tree vines intertwining beautifully together."
+          ],
+          "sentences": [
+            "What else can we see besides Wei-Lu?",
+            "Along side of Banyan Garden is “Tai Lake,” the biggest man- made fresh-water lake in Kinmen.",
+            "It measures 36 hectares in area, and provides the largest single source of water supply in Kinmen.",
+            "The main function of the lake is to offer water for the residents of Jinhu town.",
+            "In the middle of the lake are two islets with a pavilion on both of them.",
+            "All in all, being a part of “Chiang Kai-Shek Park,” the lake just silhouettes the natural beauty of the entire park.",
+            "Are water activities allowed in the lake?",
+            "For example, can we row a boat or go swimming?",
+            "No, you can’t.",
+            "Since “Tai Lake” is the largest man-made fresh- water lake, and its main function is to supply water to the residents, such activities are not allowed.",
+            "So what can we do for fun around the lake?",
+            "In the front of the lake is “Chiang, Kai-shek Park,” and behind it is the “Banyan Garden,” the “August 23rd Artillery Battle Museum,” and “Mr.",
+            "Yu Da-Wei Memorial Hall.”",
+            "I see so many old banyan trees around here!",
+            "No wonder it’s called the Banyan Garden.",
+            "Yes.",
+            "There are more than 10 trees that are over one hundred years old.",
+            "Wow.",
+            "They are old!",
+            "The trees were planted during the Ching Dynasty, more than a hundred years ago, so they are definitely old.",
+            "Under the influence of this greenery, you can see the tree vines intertwining beautifully together."
+          ]
+        },
+        {
+          "slide": 7,
+          "title_guess": "When was Sun Yat-Sen Memorial Forest developed? Sun Yat-Sen Memorial Forest was developed in 1983. It is located along t",
+          "text_blocks": [
+            "When was Sun Yat-Sen Memorial Forest developed? Sun Yat-Sen Memorial Forest was developed in 1983. It is located along the Central Highway (Boyu Road), between Xiguoshan and Shuangrushan. This is the biggest forest for sightseeing in Kinmen. It measures about 100 hectares in area. There are trees and flowers throughout the forest, and a theater stage and an amusement park providing nice facilities for family",
+            "picnics, camping, BBQs, and recreation.",
+            "What can tourists see there?\nOn the northern tip of Sun Yat-Sen Memorial Forest, is Chiang Jing-Guo Memorial Hall. Completed in 1989, it is the shape of a traditional Chinese mansion, and has quiet and beautiful surroundings. At the entrance to the Memorial Hall is a bronze statue of Mr. Chiang Jing-Guo, the late President. On display inside the hall are pictures and some of his from the time of the war. Besides that, there is the “Old Rushan Fort” near the memorial hall. It’s a simulated military battlefield where there are exhibitions of battle planes and tanks.",
+            "Sun Yat-Sen Memorial Forest"
+          ],
+          "sentences": [
+            "When was Sun Yat-Sen Memorial Forest developed?",
+            "Sun Yat-Sen Memorial Forest was developed in 1983.",
+            "It is located along the Central Highway (Boyu Road), between Xiguoshan and Shuangrushan.",
+            "This is the biggest forest for sightseeing in Kinmen.",
+            "It measures about 100 hectares in area.",
+            "There are trees and flowers throughout the forest, and a theater stage and an amusement park providing nice facilities for family",
+            "picnics, camping, BBQs, and recreation.",
+            "What can tourists see there?",
+            "On the northern tip of Sun Yat-Sen Memorial Forest, is Chiang Jing-Guo Memorial Hall.",
+            "Completed in 1989, it is the shape of a traditional Chinese mansion, and has quiet and beautiful surroundings.",
+            "At the entrance to the Memorial Hall is a bronze statue of Mr.",
+            "Chiang Jing-Guo, the late President.",
+            "On display inside the hall are pictures and some of his from the time of the war.",
+            "Besides that, there is the “Old Rushan Fort” near the memorial hall.",
+            "It’s a simulated military battlefield where there are exhibitions of battle planes and tanks.",
+            "Sun Yat-Sen Memorial Forest"
+          ]
+        },
+        {
+          "slide": 8,
+          "title_guess": "Is this a National Park?",
+          "text_blocks": [
+            "Is this a National Park?\nYes. In fact, the Kinmen National Park Administration offices were established in the park on October 18th, 1995, when the administration office and a tourist center were constructed inside the memorial forest.　The many trees and flowers, the grassy areas provide a peaceful feeling as you walk along the paths in the forest.",
+            "What are some significant things to see?\nWell, there are some lemon-scented gum trees and pine trees. The trunks of the gum trees are white and straight. And one thing even more interesting is that when you stick your ear to the trunks and listen carefully, you can hear the underground water flowing. Also, the many pinecones in the pine forest are often used for decorations during the Christmas season.",
+            "There are signs of military life here. Could you please explain this?\nIn the memorial forest, you can see the planes and tanks of the wartime. Another military site to experience is at the “Old Rushan Fort,” which is an old military campsite where soldiers lived. Nowadays, Kinmen is no longer considered a battle front, so military personnel reduction is underway. A short time ago this base was transferred to the National Park Administration for renovation, and was reopened to tourists as an original feature.",
+            "What does the National Park Administration do to preserve the presence of the military?\nAfter the National Park Administration had taken over and renovated the forest, they used many wax figures to portray the soldiers who were stationed here to defend this place. Therefore, the Old Rushan Fort actually simulates military combat as well."
+          ],
+          "sentences": [
+            "Is this a National Park?",
+            "Yes.",
+            "In fact, the Kinmen National Park Administration offices were established in the park on October 18th, 1995, when the administration office and a tourist center were constructed inside the memorial forest.",
+            "The many trees and flowers, the grassy areas provide a peaceful feeling as you walk along the paths in the forest.",
+            "What are some significant things to see?",
+            "Well, there are some lemon-scented gum trees and pine trees.",
+            "The trunks of the gum trees are white and straight.",
+            "And one thing even more interesting is that when you stick your ear to the trunks and listen carefully, you can hear the underground water flowing.",
+            "Also, the many pinecones in the pine forest are often used for decorations during the Christmas season.",
+            "There are signs of military life here.",
+            "Could you please explain this?",
+            "In the memorial forest, you can see the planes and tanks of the wartime.",
+            "Another military site to experience is at the “Old Rushan Fort,” which is an old military campsite where soldiers lived.",
+            "Nowadays, Kinmen is no longer considered a battle front, so military personnel reduction is underway.",
+            "A short time ago this base was transferred to the National Park Administration for renovation, and was reopened to tourists as an original feature.",
+            "What does the National Park Administration do to preserve the presence of the military?",
+            "After the National Park Administration had taken over and renovated the forest, they used many wax figures to portray the soldiers who were stationed here to defend this place.",
+            "Therefore, the Old Rushan Fort actually simulates military combat as well."
+          ]
+        },
+        {
+          "slide": 9,
+          "title_guess": "Where is Lake Ci?",
+          "text_blocks": [
+            "Where is Lake Ci?\nLake Ci is located at the northwest corner of Kinmen. The original place is the entrance of Lake Shuangli (Two Carps). In 1969, Ma An-Lan, the commander of the Kinmen Defense Command, initiated construction of the lake and finished it the following year. Lake Ci’s causeway was also built with a view to combine war-preparedness, transportation, and people’s livelihood.",
+            "What is the significance of Lake Ci?\nLake Ci’s causeway is also called the Great Wall Bridge. It measures about 550m in length and connects Jincheng city and Guningtou village. Separating Lake Ci and the sea, the causeway makes the lake half saltwater and half fresh water. The lake’s waterway leads directly to the sea, and fish and shrimp are so abundant that many fishermen will gather here.",
+            "What kinds of natural species can we see around Lake Ci? Around Lake Ci are wetlands with fish farms, swamps, trees, and so on, making this the largest habitat for migratory birds in Kinmen. Inside the bird-watching area, different species of birds gather and form an ideal place for bird ecology as well as one of the best bird-watching spots in Kinmen. The bird species of Lake Ci normally include cormorants, goose- ducks, storks, ibis, and many others.",
+            "Lake Ci faces Little Kinmen and Mainland China across the sea. Besides bird-watching, visitors can also catch a glimpse of Little Kinmen and the Mainland. At dusk, taking a walk and viewing the sea is most favorable and highly enjoyable. Accompanied by the whispering waves and the starry night sky when there is little light interference, couples cannot help but enjoy a stroll around Lake Ci with their date.",
+            "Lake Ci"
+          ],
+          "sentences": [
+            "Where is Lake Ci?",
+            "Lake Ci is located at the northwest corner of Kinmen.",
+            "The original place is the entrance of Lake Shuangli (Two Carps).",
+            "In 1969, Ma An-Lan, the commander of the Kinmen Defense Command, initiated construction of the lake and finished it the following year.",
+            "Lake Ci’s causeway was also built with a view to combine war-preparedness, transportation, and people’s livelihood.",
+            "What is the significance of Lake Ci?",
+            "Lake Ci’s causeway is also called the Great Wall Bridge.",
+            "It measures about 550m in length and connects Jincheng city and Guningtou village.",
+            "Separating Lake Ci and the sea, the causeway makes the lake half saltwater and half fresh water.",
+            "The lake’s waterway leads directly to the sea, and fish and shrimp are so abundant that many fishermen will gather here.",
+            "What kinds of natural species can we see around Lake Ci?",
+            "Around Lake Ci are wetlands with fish farms, swamps, trees, and so on, making this the largest habitat for migratory birds in Kinmen.",
+            "Inside the bird-watching area, different species of birds gather and form an ideal place for bird ecology as well as one of the best bird-watching spots in Kinmen.",
+            "The bird species of Lake Ci normally include cormorants, goose- ducks, storks, ibis, and many others.",
+            "Lake Ci faces Little Kinmen and Mainland China across the sea.",
+            "Besides bird-watching, visitors can also catch a glimpse of Little Kinmen and the Mainland.",
+            "At dusk, taking a walk and viewing the sea is most favorable and highly enjoyable.",
+            "Accompanied by the whispering waves and the starry night sky when there is little light interference, couples cannot help but enjoy a stroll around Lake Ci with their date.",
+            "Lake Ci"
+          ]
+        },
+        {
+          "slide": 10,
+          "title_guess": "What was the purpose of building the Lake Ci causeway? The construction of the causeway adds about 70 hectares of reclai",
+          "text_blocks": [
+            "What was the purpose of building the Lake Ci causeway? The construction of the causeway adds about 70 hectares of reclaimed land from the sea and 120 hectares of breeding pools. Another function of the causeway was to protect the island from invading enemies during wartime. Besides that, the causeway has contributed a great deal to both construction and people’s livelihood in Kinmen.",
+            "I understand! By the way, I have noticed that the trees over there are especially white. Why?\nThat is the excrement of the migratory birds that has painted the trees white. You don’t have to wonder about the huge numbers of birds. And most of the migratory birds come to Kinmen in winter before Christmas Eve; therefore, they are also called “Santa Claus’s Greeting” by the local people.",
+            "What attracts the birds and causes them to stay here?\nIn the intertidal land along the coast of Lake Ci are plenty of living creatures that attract the birds looking for food. And around the Lake, there are fish farms and wetlands that provide a good habitat for migratory birds."
+          ],
+          "sentences": [
+            "What was the purpose of building the Lake Ci causeway?",
+            "The construction of the causeway adds about 70 hectares of reclaimed land from the sea and 120 hectares of breeding pools.",
+            "Another function of the causeway was to protect the island from invading enemies during wartime.",
+            "Besides that, the causeway has contributed a great deal to both construction and people’s livelihood in Kinmen.",
+            "I understand!",
+            "By the way, I have noticed that the trees over there are especially white.",
+            "Why?",
+            "That is the excrement of the migratory birds that has painted the trees white.",
+            "You don’t have to wonder about the huge numbers of birds.",
+            "And most of the migratory birds come to Kinmen in winter before Christmas Eve; therefore, they are also called “Santa Claus’s Greeting” by the local people.",
+            "What attracts the birds and causes them to stay here?",
+            "In the intertidal land along the coast of Lake Ci are plenty of living creatures that attract the birds looking for food.",
+            "And around the Lake, there are fish farms and wetlands that provide a good habitat for migratory birds."
+          ]
+        },
+        {
+          "slide": 11,
+          "title_guess": "When is the best time for us to watch the birds?",
+          "text_blocks": [
+            "When is the best time for us to watch the birds?\nThe best time for bird-watching is at dawn or dusk, and the best seasons are spring, autumn, and winter. Especially during autumn each year, hundreds of thousands of birds come to rest and find food here, making this surrounding a bird paradise.\nWhere are the migratory birds from?\nOf special interest are the cormorants which migrate from Siberia, and spend November-March here.\nIf we want to watch the birds, what do we have to bring with us?\nBe equipped with binoculars, cameras, and bird-watching brochures. Another thing you need to pay attention to is that you don’t wear colorful clothes, lest you scare the birds away.",
+            "Besides the birds, are there any other animals here?\nThere are otters that are facing extinction. So they are legally protected now. I think this area is the best ecological class of the natural inhabitants in Kinmen."
+          ],
+          "sentences": [
+            "When is the best time for us to watch the birds?",
+            "The best time for bird-watching is at dawn or dusk, and the best seasons are spring, autumn, and winter.",
+            "Especially during autumn each year, hundreds of thousands of birds come to rest and find food here, making this surrounding a bird paradise.",
+            "Where are the migratory birds from?",
+            "Of special interest are the cormorants which migrate from Siberia, and spend November-March here.",
+            "If we want to watch the birds, what do we have to bring with us?",
+            "Be equipped with binoculars, cameras, and bird-watching brochures.",
+            "Another thing you need to pay attention to is that you don’t wear colorful clothes, lest you scare the birds away.",
+            "Besides the birds, are there any other animals here?",
+            "There are otters that are facing extinction.",
+            "So they are legally protected now.",
+            "I think this area is the best ecological class of the natural inhabitants in Kinmen."
+          ]
+        },
+        {
+          "slide": 12,
+          "title_guess": "What a beautiful building. What is it called?",
+          "text_blocks": [
+            "What a beautiful building. What is it called?\nThis is “Juguang Tower”, one of the famous landmarks for sightseeing in Kinmen. It is located in the eastern suburb of Jincheng downtown.",
+            "When was it built?\nThe tower was built in 1952 and completed the following year. In order to commemorate the bravery and glory of the soldiers who participated in battles in Kinmen, General Hu Lian gave orders to have this tower built. The tower was also named after the story of “Don’t Forget the Time at Ju” based on late President Chiang Kai-Shek’s philosophy to enhance military morale. This magnificent looking tower is a modification of a traditional city wall tower. The three characters on a wooden tablet bearing the tower’s name were written by Lai Sheng-Ming, a war hero of the Daerdan Battle. The tablet is hung on the top floor of the tower. On October 25, 2003, this tower was opened again to the public with a brand-new perspective. On the first floor, a multimedia profile of Kinmen is presented. The second floor provides the panorama of geographical and ecological Kinmen, and the third floor is a showcase of Kinmen during the wartime.",
+            "What can we do in Juguang Tower?\nJuguang Tower faces the estuary of Wujiang Brook, and overlooks Lake Juguang. The scenery around it is very\nattractive. From the top floor visitors can have a b i r d ’s- e y e vi e w o f downtown Jincheng, the ebb and flow of Wujiang Brook, and Lieyu Island\n(Little Kinmen), and can catch a glimpse of Mainland China just a short distance away. Juguang Tower was adopted as a motif for domestic stamps many",
+            "Juguang Tower"
+          ],
+          "sentences": [
+            "What a beautiful building.",
+            "What is it called?",
+            "This is “Juguang Tower”, one of the famous landmarks for sightseeing in Kinmen.",
+            "It is located in the eastern suburb of Jincheng downtown.",
+            "When was it built?",
+            "The tower was built in 1952 and completed the following year.",
+            "In order to commemorate the bravery and glory of the soldiers who participated in battles in Kinmen, General Hu Lian gave orders to have this tower built.",
+            "The tower was also named after the story of “Don’t Forget the Time at Ju” based on late President Chiang Kai-Shek’s philosophy to enhance military morale.",
+            "This magnificent looking tower is a modification of a traditional city wall tower.",
+            "The three characters on a wooden tablet bearing the tower’s name were written by Lai Sheng-Ming, a war hero of the Daerdan Battle.",
+            "The tablet is hung on the top floor of the tower.",
+            "On October 25, 2003, this tower was opened again to the public with a brand-new perspective.",
+            "On the first floor, a multimedia profile of Kinmen is presented.",
+            "The second floor provides the panorama of geographical and ecological Kinmen, and the third floor is a showcase of Kinmen during the wartime.",
+            "What can we do in Juguang Tower?",
+            "Juguang Tower faces the estuary of Wujiang Brook, and overlooks Lake Juguang.",
+            "The scenery around it is very",
+            "attractive.",
+            "From the top floor visitors can have a b i r d ’s- e y e vi e w o f downtown Jincheng, the ebb and flow of Wujiang Brook, and Lieyu Island",
+            "(Little Kinmen), and can catch a glimpse of Mainland China just a short distance away.",
+            "Juguang Tower was adopted as a motif for domestic stamps many",
+            "Juguang Tower"
+          ]
+        },
+        {
+          "slide": 13,
+          "title_guess": "times between 1959 and 1964. Needless to say, this tower is a landmark building as well as an eye-catching scenic spot i",
+          "text_blocks": [
+            "times between 1959 and 1964. Needless to say, this tower is a landmark building as well as an eye-catching scenic spot in Kinmen.",
+            "What does the name of tower mean?\nThe first character “Ju”, which has the same meaning with “Wu Wang Zai Ju” (Don’t forget the time at Ju) inscription on the summit of Taiwu Mountain, is historically meaningful.",
+            "But what’s the historical meaning?\nWell, in ancient China a general called Tian Dan recovered his homeland from the hands of invaders at the stronghold city of “Ju”, using a last-ditch strategy. So this story was related to strengthening military morale in a war zone like Kinmen.",
+            "What should we see in the tower?\nAfter renovation work, this tower was opened to the public again in brand-new decor on October 25, 2003, the day commemorating the “Guningtou Battle” of 1949. On the third floor several precious pictures of the war are preserved and exhibited along with historical documents of General Hu, Lian.",
+            "This is beautiful, and what a lovely view!\nYes! On the balcony of the top floor you can see all of downtown Jincheng and the mouth of Wuchiang Brook. To catch a farther glimpse of the view from there, you can use binoculars on both sides. Little Kinmen and Mainland China are very close by.\n單字"
+          ],
+          "sentences": [
+            "times between 1959 and 1964.",
+            "Needless to say, this tower is a landmark building as well as an eye-catching scenic spot in Kinmen.",
+            "What does the name of tower mean?",
+            "The first character “Ju”, which has the same meaning with “Wu Wang Zai Ju” (Don’t forget the time at Ju) inscription on the summit of Taiwu Mountain, is historically meaningful.",
+            "But what’s the historical meaning?",
+            "Well, in ancient China a general called Tian Dan recovered his homeland from the hands of invaders at the stronghold city of “Ju”, using a last-ditch strategy.",
+            "So this story was related to strengthening military morale in a war zone like Kinmen.",
+            "What should we see in the tower?",
+            "After renovation work, this tower was opened to the public again in brand-new decor on October 25, 2003, the day commemorating the “Guningtou Battle” of 1949.",
+            "On the third floor several precious pictures of the war are preserved and exhibited along with historical documents of General Hu, Lian.",
+            "This is beautiful, and what a lovely view!",
+            "Yes!",
+            "On the balcony of the top floor you can see all of downtown Jincheng and the mouth of Wuchiang Brook.",
+            "To catch a farther glimpse of the view from there, you can use binoculars on both sides.",
+            "Little Kinmen and Mainland China are very close by.",
+            "單字"
+          ]
+        },
+        {
+          "slide": 14,
+          "title_guess": "Where is Old Wen Tai Pagoda?",
+          "text_blocks": [
+            "Where is Old Wen Tai Pagoda?\nOld Wei Tai Pagoda is located on the southeast side of Jinmencheng (also called Old Jincheng). It’s a five-storied hexagonal construction made of granite and was built in 1387 during the Ming Dynasty, over 600 years ago. The pagoda has been rated a national historic relic.",
+            "Is it the only pagoda in Kinmen?\nKinmen had three large pagodas in its history, including Taiwu Mountain’s Daoying Pagoda, Shuitou Village’s Maoshan Pagoda, and Jinmencheng’s Old Wen Tai Pagoda. They all functioned as lighthouses for sailors in the nearby sea. The Daoying Pagoda on Taiwu Mountain was destroyed in 1918 by an earthquake, while the Maoshan Pagoda in Shuitou village was ruined in 1961 during the August 23rd Bombardment. Fortunately, Old Wen Tai Pagoda survived the other two, and is now well-preserved. The two towers that were destroyed have been reconstructed.",
+            "What is written on the huge rock near Old Wen Tai Pagoda? On this huge rock near Old Wen Tai Pagoda are four characters: “Xu Jian Xiao Wo” written by Yu, Da-You, a general of the Ming Dynasty during his tour of duty in Kinmen.\nWhat was the function of the three pagodas?\nIt’s said that the pagodas were used for sailors’ safety, and were considered the guardian angels of the sailors. The pagodas were just like lighthouses for the navigators. When they were seen in a line, the navigators could easily locate the island of Kinmen, without mistaking it for the mainland of China. Besides that, they were also thought of as “feng-shui pagodas” where people prayed for good fortune.",
+            "Old Wen Tai Pagoda"
+          ],
+          "sentences": [
+            "Where is Old Wen Tai Pagoda?",
+            "Old Wei Tai Pagoda is located on the southeast side of Jinmencheng (also called Old Jincheng).",
+            "It’s a five-storied hexagonal construction made of granite and was built in 1387 during the Ming Dynasty, over 600 years ago.",
+            "The pagoda has been rated a national historic relic.",
+            "Is it the only pagoda in Kinmen?",
+            "Kinmen had three large pagodas in its history, including Taiwu Mountain’s Daoying Pagoda, Shuitou Village’s Maoshan Pagoda, and Jinmencheng’s Old Wen Tai Pagoda.",
+            "They all functioned as lighthouses for sailors in the nearby sea.",
+            "The Daoying Pagoda on Taiwu Mountain was destroyed in 1918 by an earthquake, while the Maoshan Pagoda in Shuitou village was ruined in 1961 during the August 23rd Bombardment.",
+            "Fortunately, Old Wen Tai Pagoda survived the other two, and is now well-preserved.",
+            "The two towers that were destroyed have been reconstructed.",
+            "What is written on the huge rock near Old Wen Tai Pagoda?",
+            "On this huge rock near Old Wen Tai Pagoda are four characters: “Xu Jian Xiao Wo” written by Yu, Da-You, a general of the Ming Dynasty during his tour of duty in Kinmen.",
+            "What was the function of the three pagodas?",
+            "It’s said that the pagodas were used for sailors’ safety, and were considered the guardian angels of the sailors.",
+            "The pagodas were just like lighthouses for the navigators.",
+            "When they were seen in a line, the navigators could easily locate the island of Kinmen, without mistaking it for the mainland of China.",
+            "Besides that, they were also thought of as “feng-shui pagodas” where people prayed for good fortune.",
+            "Old Wen Tai Pagoda"
+          ]
+        },
+        {
+          "slide": 15,
+          "title_guess": "Are there any legends or stories concerning this?",
+          "text_blocks": [
+            "Are there any legends or stories concerning this?\nIt’s said that Old Wen Tai Pagoda was a “feng-shui pagoda” and an “astrology pagoda.” The emperor of the Ming Dynasty believed what his astrologer had said, that Kinmen was going to have a native emperor. Therefore, the emperor took precautions and built this pagoda to destroy the “feng-shui” (geomantic omen) spirit.",
+            "Besides the old pagoda, what are some other things to see? There is a rock not far from the pagoda called the “Xu-Jiang- Xiao-Wo”. From this rock you can feel no boundary between the sea and the sky. And, if you are fortunate enough, you can also observe some migratory birds and ducklings here.",
+            "Sounds amazing! This must also be a highlight for bird watchers, isn’t it?\nYes. The main reason birds come here is because Kinmen Liquor Factory nearby discards “distilled grains” that attract birds looking for food."
+          ],
+          "sentences": [
+            "Are there any legends or stories concerning this?",
+            "It’s said that Old Wen Tai Pagoda was a “feng-shui pagoda” and an “astrology pagoda.” The emperor of the Ming Dynasty believed what his astrologer had said, that Kinmen was going to have a native emperor.",
+            "Therefore, the emperor took precautions and built this pagoda to destroy the “feng-shui” (geomantic omen) spirit.",
+            "Besides the old pagoda, what are some other things to see?",
+            "There is a rock not far from the pagoda called the “Xu-Jiang- Xiao-Wo”.",
+            "From this rock you can feel no boundary between the sea and the sky.",
+            "And, if you are fortunate enough, you can also observe some migratory birds and ducklings here.",
+            "Sounds amazing!",
+            "This must also be a highlight for bird watchers, isn’t it?",
+            "Yes.",
+            "The main reason birds come here is because Kinmen Liquor Factory nearby discards “distilled grains” that attract birds looking for food."
+          ]
+        }
+      ]
+    }
+  ]
+}
