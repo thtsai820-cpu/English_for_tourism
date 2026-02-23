@@ -12,9 +12,11 @@
   .title { font-weight:900; font-size:18px; }
   .badge { display:inline-block; padding:3px 8px; border-radius:999px; border:1px solid #e5e7eb; font-size:12px; color:#374151; background:#fff; }
 
-  .main { max-width:980px; margin:0 auto; padding:16px; }
-  .card { background:#fff; border:1px solid #e5e7eb; border-radius:16px; padding:14px; }
+  .main { max-width:1100px; margin:0 auto; padding:16px; }
+  .grid { display:grid; grid-template-columns: 1fr; gap:12px; }
+  @media (min-width: 980px){ .grid { grid-template-columns: 360px 1fr; } }
 
+  .card { background:#fff; border:1px solid #e5e7eb; border-radius:16px; padding:14px; }
   .row { display:flex; gap:12px; flex-wrap:wrap; align-items:flex-end; }
   .group { min-width:180px; }
   .label { font-size:12px; color:#6b7280; margin-bottom:6px; }
@@ -23,10 +25,11 @@
   .seg button { border:0; background:#fff; padding:8px 10px; cursor:pointer; }
   .seg .active { background:#111827; color:#fff; }
 
-  select, input[type="range"]{
+  select, input[type="range"], input[type="search"]{
     border:1px solid #e5e7eb; border-radius:12px; padding:8px 10px; background:#fff; outline:none;
+    width:100%;
   }
-  select:focus { border-color:#111827; }
+  select:focus, input[type="search"]:focus { border-color:#111827; }
 
   .actions { margin-top:12px; display:flex; gap:10px; flex-wrap:wrap; }
   .primary, .ghost, .playBtn, .danger {
@@ -61,99 +64,131 @@
   .meta { margin-top:6px; display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
   .chip { font-size:12px; border:1px solid #e5e7eb; background:#fff; border-radius:999px; padding:3px 8px; color:#374151; }
 
-  textarea{
-    width:100%; min-height:160px;
-    border-radius:12px; border:1px solid #e5e7eb;
-    padding:10px 12px; font-size:14px; outline:none;
+  .list { display:flex; flex-direction:column; gap:8px; }
+  .item {
+    border:1px solid #e5e7eb; border-radius:14px; padding:10px; background:#fff; cursor:pointer;
   }
-  textarea:focus{ border-color:#111827; }
+  .item:hover { border-color:#cbd5e1; }
+  .item.active { border-color:#111827; box-shadow:0 10px 18px rgba(17,24,39,0.08); }
+  .itemTitle { font-weight:900; }
+  .itemSub { font-size:12px; color:#6b7280; margin-top:2px; line-height:1.4; }
 
-  .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+  .pillRow { display:flex; gap:6px; flex-wrap:wrap; margin-top:6px; }
+  .pill { font-size:12px; border:1px solid #e5e7eb; background:#fff; border-radius:999px; padding:2px 8px; color:#374151; }
+
+  .twoCols { display:grid; grid-template-columns: 1fr; gap:10px; }
+  @media (min-width: 980px){ .twoCols { grid-template-columns: 1fr 1fr; } }
+
+  .kbd { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
 </style>
 </head>
 
 <body>
   <div class="header">
-    <div class="title">English Sentence Reader <span class="badge">上一句 / 朗讀 / 下一句 + 自動朗讀 + 逐詞聚焦</span></div>
+    <div class="title">English Sentence Reader <span class="badge">主題/Slide 選擇 + 朗讀逐詞聚焦</span></div>
     <div class="badge" id="statusBadge">資料：未載入</div>
   </div>
 
   <div class="main">
-    <div class="card">
-      <div class="row">
-        <div class="group">
-          <div class="label">資料來源</div>
-          <div class="seg">
-            <button id="loadFileBtn" class="active">讀取 english_data.json</button>
-            <button id="pasteBtn">貼上 JSON</button>
+    <div class="grid">
+
+      <!-- 左：主題/Slide 選擇與預覽 -->
+      <div class="card">
+        <div style="font-weight:900; font-size:16px;">📚 主題 / Slide</div>
+        <div class="small" style="margin-top:4px;">
+          從 JSON 的 <span class="kbd">decks → slides → sentences</span> 結構讀取。
+        </div>
+
+        <hr class="hr" />
+
+        <div class="row">
+          <div class="group" style="min-width:100%;">
+            <div class="label">搜尋（主題/Slide 標題/句子）</div>
+            <input id="searchBox" type="search" placeholder="輸入關鍵字，例如: restaurant / airport / shadowing ..." />
           </div>
-          <div class="small">預設讀取同資料夾的 <span class="mono">english_data.json</span></div>
-        </div>
 
-        <div class="group">
-          <div class="label">Voice（TTS）</div>
-          <select id="voiceSel"></select>
-          <div class="small">若沒有英語 voice，仍可播放（瀏覽器會選預設）</div>
-        </div>
+          <div class="group" style="min-width:100%;">
+            <div class="label">主題（Deck）</div>
+            <select id="deckSel"></select>
+            <div class="small">選擇主題後，可再選 Slide 篩句子。</div>
+          </div>
 
-        <div class="group">
-          <div class="label">語速</div>
-          <input id="rateRange" type="range" min="0.6" max="1.2" step="0.05" value="0.95" />
-          <div class="small">rate: <span id="rateVal">0.95</span></div>
-        </div>
-
-        <div class="group">
-          <div class="label">播放順序</div>
-          <div class="seg">
-            <button id="seqBtn" class="active">依序</button>
-            <button id="randBtn">隨機</button>
+          <div class="group" style="min-width:100%;">
+            <div class="label">Slide</div>
+            <select id="slideSel"></select>
           </div>
         </div>
+
+        <div class="note small">
+          你可以先選主題/Slide，再用右側「自動朗讀（全部）」或單句朗讀。
+        </div>
+
+        <hr class="hr" />
+
+        <div style="font-weight:900;">🔎 句子預覽（點一下直接跳到那一句）</div>
+        <div class="small" style="margin:4px 0 10px;">顯示最多 80 句（避免太長卡住）。</div>
+        <div id="previewList" class="list"></div>
       </div>
 
-      <hr class="hr" />
+      <!-- 右：朗讀與控制 -->
+      <div class="card">
+        <div class="row">
+          <div class="group" style="min-width:240px;">
+            <div class="label">資料來源</div>
+            <div class="seg">
+              <button id="loadFileBtn" class="active">讀取 english_data.json</button>
+            </div>
+            <div class="small">預設讀取同資料夾的 <span class="kbd">english_data.json</span></div>
+          </div>
 
-      <div class="sentenceBox">
-        <div id="sentence" class="sentence">（尚未載入句子）</div>
-        <div class="meta">
-          <span class="chip" id="idxChip">#-/-</span>
-          <span class="chip" id="srcChip">source: -</span>
-          <span class="chip" id="deckChip">deck: -</span>
+          <div class="group" style="min-width:240px;">
+            <div class="label">Voice（僅 en-US）</div>
+            <select id="voiceSel"></select>
+            <div class="small">只列出 <span class="kbd">en-US</span> 的 voice。</div>
+          </div>
+
+          <div class="group" style="min-width:220px;">
+            <div class="label">語速</div>
+            <input id="rateRange" type="range" min="0.6" max="1.2" step="0.05" value="0.95" />
+            <div class="small">rate: <span id="rateVal">0.95</span></div>
+          </div>
+
+          <div class="group" style="min-width:220px;">
+            <div class="label">播放順序</div>
+            <div class="seg">
+              <button id="seqBtn" class="active">依序</button>
+              <button id="randBtn">隨機</button>
+            </div>
+          </div>
+        </div>
+
+        <hr class="hr" />
+
+        <div class="sentenceBox">
+          <div id="sentence" class="sentence">（尚未載入句子）</div>
+          <div class="meta">
+            <span class="chip" id="idxChip">#-/-</span>
+            <span class="chip" id="srcChip">source: -</span>
+            <span class="chip" id="deckChip">deck: -</span>
+            <span class="chip" id="slideChip">slide: -</span>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button id="prevBtn" class="ghost">⬅ 上一句</button>
+          <button id="speakBtn" class="playBtn">🔊 朗讀</button>
+          <button id="nextBtn" class="primary">下一句 ➡</button>
+
+          <button id="autoBtn" class="ghost">▶ 自動朗讀（目前篩選）</button>
+          <button id="stopAutoBtn" class="danger" disabled>停止自動</button>
+        </div>
+
+        <div class="note small">
+          逐詞聚焦：用 <span class="kbd">SpeechSynthesisUtterance.onboundary</span> 事件（Chrome/Edge 最穩）。
+          自動朗讀會以「目前主題/Slide/搜尋」的篩選結果為清單播放。
         </div>
       </div>
 
-      <div class="actions">
-        <button id="prevBtn" class="ghost">⬅ 上一句</button>
-        <button id="speakBtn" class="playBtn">🔊 朗讀</button>
-        <button id="nextBtn" class="primary">下一句 ➡</button>
-
-        <button id="autoBtn" class="ghost">▶ 自動朗讀（全部）</button>
-        <button id="stopAutoBtn" class="danger" disabled>停止自動</button>
-      </div>
-
-      <div class="note small">
-        新增功能：朗讀時會逐詞聚焦（顏色/陰影）。若你的瀏覽器不觸發 onboundary，可能會變成只朗讀不聚焦（Chrome/Edge 最穩）。
-      </div>
-    </div>
-  </div>
-
-  <!-- JSON 貼上區（彈出） -->
-  <div id="pasteModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.4); padding:18px;">
-    <div class="card" style="max-width:980px; margin:0 auto; height: calc(100vh - 36px); overflow:auto;">
-      <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;">
-        <div style="font-weight:900; font-size:18px;">貼上你的英文句庫 JSON</div>
-        <button id="closePaste" class="ghost">關閉</button>
-      </div>
-      <div class="small" style="margin-top:6px;">
-        只要 JSON 裡面能抽到句子即可；我會自動識別（decks/slides/sentences 或 root.sentences）。
-      </div>
-      <div style="margin-top:10px;">
-        <textarea id="jsonPasteArea" placeholder='請貼上 JSON...'></textarea>
-      </div>
-      <div class="actions">
-        <button id="applyPaste" class="primary">載入</button>
-        <button id="pasteExample" class="playBtn">貼上範例</button>
-      </div>
     </div>
   </div>
 
@@ -171,39 +206,55 @@ function safeText(s){ return (s||"").toString().replace(/\s+/g," ").trim(); }
 function clamp(x,a,b){ return Math.max(a, Math.min(b, x)); }
 
 /* ============================================================
+   資料結構（保留 deck/slide）
+   - decks: [{ source_file/name, slides:[{slide, title?, sentences:[]}] }]
+============================================================ */
+let rawData = null;
+let decks = [];              // normalized decks
+let allSentences = [];       // flattened list for fast filtering
+let filtered = [];           // current filtered list (subset)
+let idx = 0;
+let playMode = "seq";        // seq | rand
+
+/* ============================================================
    TTS：英文朗讀 + 逐詞聚焦（onboundary）
+   - Voice only en-US
 ============================================================ */
 let voices = [];
 let selectedVoiceURI = "";
 let ttsRate = 0.95;
 
-// 逐詞聚焦用：保存目前句子的 token spans & token ranges
-let tokenSpans = [];   // [HTMLSpanElement]
-let tokenRanges = [];  // [{start,end}] based on utterance.text indices
+let tokenSpans = [];
+let tokenRanges = [];
 let activeTokenIndex = -1;
 
 function loadVoices(){
   if(!("speechSynthesis" in window)) return;
-  voices = window.speechSynthesis.getVoices?.() || [];
+  const all = window.speechSynthesis.getVoices?.() || [];
+
+  // 僅 en-US
+  voices = all.filter(v => (v.lang || "").toLowerCase() === "en-us");
 
   const sel = document.getElementById("voiceSel");
   sel.innerHTML = "";
 
-  // 優先英文
-  const list = voices
-    .map(v => ({ v, isEN: (v.lang||"").toLowerCase().startsWith("en") }))
-    .sort((a,b)=> (b.isEN - a.isEN));
-
-  list.forEach(({v})=>{
+  voices.forEach(v=>{
     const opt = document.createElement("option");
     opt.value = v.voiceURI;
     opt.textContent = `${v.name} (${v.lang})`;
     sel.appendChild(opt);
   });
 
-  const en = list.find(x => x.isEN);
-  selectedVoiceURI = (en?.v.voiceURI) || (list[0]?.v.voiceURI) || "";
+  selectedVoiceURI = voices[0]?.voiceURI || "";
   if(selectedVoiceURI) sel.value = selectedVoiceURI;
+
+  if(voices.length === 0){
+    const opt = document.createElement("option");
+    opt.value = "";
+    opt.textContent = "（找不到 en-US voice，將用瀏覽器預設）";
+    sel.appendChild(opt);
+    selectedVoiceURI = "";
+  }
 }
 
 if("speechSynthesis" in window){
@@ -225,12 +276,6 @@ function setHighlight(i){
   }
 }
 
-/**
- * 把句子渲染成 token spans，以便逐詞聚焦
- * 規則：用英文常見「單字 token」做聚焦（含 apostrophe）
- * - token: /[A-Za-z0-9']+/g
- * - 其他符號、空格保留原樣（不聚焦）
- */
 function renderSentenceWithTokens(text){
   const box = document.getElementById("sentence");
   box.innerHTML = "";
@@ -248,12 +293,10 @@ function renderSentenceWithTokens(text){
     const start = m.index;
     const end = start + m[0].length;
 
-    // before token
     if(start > last){
       box.appendChild(document.createTextNode(s.slice(last, start)));
     }
 
-    // token span
     const sp = document.createElement("span");
     sp.className = "tok";
     sp.textContent = s.slice(start, end);
@@ -265,12 +308,10 @@ function renderSentenceWithTokens(text){
     last = end;
   }
 
-  // tail
   if(last < s.length){
     box.appendChild(document.createTextNode(s.slice(last)));
   }
 
-  // 如果句子完全沒有 token，fallback：直接顯示文字
   if(tokenSpans.length === 0){
     box.textContent = s;
   }
@@ -281,7 +322,6 @@ function speakENWithHighlight(text){
     alert("此瀏覽器不支援 SpeechSynthesis。建議 Chrome/Edge。");
     return;
   }
-
   const t = safeText(text);
   if(!t) return;
 
@@ -295,15 +335,10 @@ function speakENWithHighlight(text){
   const v = voices.find(x => x.voiceURI === selectedVoiceURI);
   if(v) u.voice = v;
 
-  // onboundary：逐詞聚焦
-  // 注意：各瀏覽器 onboundary 支援度不一，Chrome/Edge 較穩
   u.onboundary = (ev) => {
-    // 有些瀏覽器會給 word boundary，有些只給 char boundary
     const ci = typeof ev.charIndex === "number" ? ev.charIndex : -1;
     if(ci < 0 || tokenRanges.length === 0) return;
 
-    // 找到 charIndex 落在哪個 token range
-    // 這裡用「最後一個 start <= ci 的 token」作為目前 token
     let lo = 0, hi = tokenRanges.length - 1, ans = -1;
     while(lo <= hi){
       const mid = (lo + hi) >> 1;
@@ -317,55 +352,60 @@ function speakENWithHighlight(text){
     if(ans >= 0) setHighlight(ans);
   };
 
-  u.onend = () => {
-    // 結束後清掉聚焦
-    setTimeout(()=> clearHighlight(), 120);
-  };
-  u.onerror = () => {
-    setTimeout(()=> clearHighlight(), 120);
-  };
+  u.onend = () => setTimeout(()=> clearHighlight(), 120);
+  u.onerror = () => setTimeout(()=> clearHighlight(), 120);
 
   window.speechSynthesis.speak(u);
 }
 
 /* ============================================================
-   句庫：載入與抽取（簡潔保留）
+   讀取與正規化 decks/slides/sentences
 ============================================================ */
-let sentenceList = []; // [{ text, source, deck }]
-let idx = 0;
-let playMode = "seq"; // seq | rand
+function setStatus(msg){
+  document.getElementById("statusBadge").textContent = msg;
+}
 
-function flattenSentences(obj){
+function normalizeDecks(obj){
   const out = [];
+  const ds = Array.isArray(obj?.decks) ? obj.decks : [];
 
-  // decks -> slides -> sentences
-  if(obj && Array.isArray(obj.decks)){
-    obj.decks.forEach(deck=>{
-      const deckName = deck.source_file || deck.name || "deck";
-      const slides = deck.slides || deck.items || [];
-      if(Array.isArray(slides)){
-        slides.forEach(s=>{
-          const ss = s.sentences || s.lines || [];
-          if(Array.isArray(ss)){
-            ss.forEach(t=>{
-              const text = safeText(t);
-              if(text) out.push({ text, source: `slide ${s.slide ?? ""}`.trim(), deck: deckName });
-            });
-          }
+  ds.forEach((d, di)=>{
+    const deckName = d.source_file || d.name || `deck_${di+1}`;
+    const slides = Array.isArray(d.slides) ? d.slides : (Array.isArray(d.items) ? d.items : []);
+
+    const normSlides = [];
+    slides.forEach((s, si)=>{
+      const slideNo = (s.slide ?? s.index ?? (si+1));
+      const title = safeText(s.title || s.topic || s.name || "");
+      const ss = Array.isArray(s.sentences) ? s.sentences : (Array.isArray(s.lines) ? s.lines : []);
+      const sent = ss.map(x => safeText(x)).filter(Boolean);
+      normSlides.push({ slide: slideNo, title, sentences: sent });
+    });
+
+    out.push({ name: deckName, slides: normSlides });
+  });
+
+  return out;
+}
+
+function flattenAll(decks){
+  const out = [];
+  decks.forEach(d=>{
+    d.slides.forEach(s=>{
+      s.sentences.forEach((t, ti)=>{
+        out.push({
+          text: t,
+          deck: d.name,
+          slide: s.slide,
+          slideTitle: s.title || "",
+          source: `slide ${s.slide}`.trim(),
+          key: `${d.name}||${s.slide}||${t.toLowerCase()}`
         });
-      }
+      });
     });
-  }
+  });
 
-  // root.sentences
-  if(obj && Array.isArray(obj.sentences)){
-    obj.sentences.forEach(t=>{
-      const text = safeText(t);
-      if(text) out.push({ text, source:"sentences", deck:"root" });
-    });
-  }
-
-  // 去重
+  // 去重（全域）
   const seen = new Set();
   return out.filter(x=>{
     const k = x.text.toLowerCase();
@@ -375,65 +415,232 @@ function flattenSentences(obj){
   });
 }
 
-function setStatus(msg){
-  document.getElementById("statusBadge").textContent = msg;
-}
-
-function renderSentence(){
-  if(sentenceList.length === 0){
-    document.getElementById("sentence").textContent = "（尚未載入句子）";
-    document.getElementById("idxChip").textContent = "#-/-";
-    document.getElementById("srcChip").textContent = "source: -";
-    document.getElementById("deckChip").textContent = "deck: -";
-    tokenSpans = []; tokenRanges = []; activeTokenIndex = -1;
-    return;
-  }
-  const s = sentenceList[idx];
-  renderSentenceWithTokens(s.text);
-  document.getElementById("idxChip").textContent = `#${idx+1}/${sentenceList.length}`;
-  document.getElementById("srcChip").textContent = `source: ${s.source || "-"}`;
-  document.getElementById("deckChip").textContent = `deck: ${s.deck || "-"}`;
-}
-
 async function loadJSONFile(){
   try{
     setStatus("資料：載入中…");
     const res = await fetch(DATA_FILE, { cache:"no-store" });
     if(!res.ok) throw new Error("HTTP " + res.status);
-    const obj = await res.json();
-    sentenceList = flattenSentences(obj);
-    idx = 0;
-    setStatus(`資料：已載入（${sentenceList.length} 句）`);
-    renderSentence();
+    rawData = await res.json();
+
+    decks = normalizeDecks(rawData);
+    allSentences = flattenAll(decks);
+
+    setStatus(`資料：已載入（${decks.length} 主題 / ${allSentences.length} 句）`);
+
+    buildSelectors();
+    applyFilter(); // init filtered & preview
+    renderCurrent();
+
     setAutoUI();
   }catch(e){
-    setStatus("資料：載入失敗（改用貼上 JSON）");
-    alert("讀取 " + DATA_FILE + " 失敗：\n" + (e.message || e) + "\n\n你可以改用「貼上 JSON」或確認檔名/路徑。");
+    setStatus("資料：載入失敗");
+    alert("讀取 " + DATA_FILE + " 失敗：\n" + (e.message || e) + "\n\n請確認檔名/路徑。");
   }
 }
 
 /* ============================================================
-   播放控制：上一句/下一句 + 依序/隨機
+   主題/Slide UI：選擇器 + 預覽清單
 ============================================================ */
-function nextIndex(){
-  if(sentenceList.length === 0) return 0;
-  if(playMode === "rand") return rand(sentenceList.length);
-  return (idx + 1) % sentenceList.length;
+function buildSelectors(){
+  const deckSel = document.getElementById("deckSel");
+  const slideSel = document.getElementById("slideSel");
+
+  deckSel.innerHTML = "";
+  // Deck options
+  const optAll = document.createElement("option");
+  optAll.value = "__ALL__";
+  optAll.textContent = "（全部主題）";
+  deckSel.appendChild(optAll);
+
+  decks.forEach(d=>{
+    const opt = document.createElement("option");
+    opt.value = d.name;
+    opt.textContent = d.name;
+    deckSel.appendChild(opt);
+  });
+
+  // Slide options initial
+  slideSel.innerHTML = "";
+  const sAll = document.createElement("option");
+  sAll.value = "__ALL__";
+  sAll.textContent = "（全部 slide）";
+  slideSel.appendChild(sAll);
+
+  deckSel.onchange = ()=>{
+    rebuildSlideOptions();
+    applyFilter();
+  };
+  slideSel.onchange = ()=> applyFilter();
+  document.getElementById("searchBox").oninput = ()=> applyFilter();
+
+  rebuildSlideOptions();
 }
-function prevIndex(){
-  if(sentenceList.length === 0) return 0;
-  if(playMode === "rand") return rand(sentenceList.length);
-  return (idx - 1 + sentenceList.length) % sentenceList.length;
+
+function rebuildSlideOptions(){
+  const deckSel = document.getElementById("deckSel");
+  const slideSel = document.getElementById("slideSel");
+  const deckVal = deckSel.value;
+
+  slideSel.innerHTML = "";
+  const sAll = document.createElement("option");
+  sAll.value = "__ALL__";
+  sAll.textContent = "（全部 slide）";
+  slideSel.appendChild(sAll);
+
+  let slides = [];
+  if(deckVal === "__ALL__"){
+    // union all slides
+    decks.forEach(d=> d.slides.forEach(s=> slides.push({ deck:d.name, slide:s.slide, title:s.title })));
+  }else{
+    const d = decks.find(x => x.name === deckVal);
+    if(d) slides = d.slides.map(s=> ({ deck:d.name, slide:s.slide, title:s.title }));
+  }
+
+  // unique slide label by (deck,slide)
+  slides.forEach(s=>{
+    const opt = document.createElement("option");
+    opt.value = `${s.deck}||${s.slide}`;
+    const t = s.title ? ` — ${s.title}` : "";
+    opt.textContent = `[${s.deck}] slide ${s.slide}${t}`;
+    slideSel.appendChild(opt);
+  });
+
+  slideSel.value = "__ALL__";
+}
+
+function applyFilter(){
+  const deckVal = document.getElementById("deckSel").value;
+  const slideVal = document.getElementById("slideSel").value;
+  const q = safeText(document.getElementById("searchBox").value).toLowerCase();
+
+  filtered = allSentences.filter(s=>{
+    let ok = true;
+
+    if(deckVal !== "__ALL__") ok = ok && (s.deck === deckVal);
+
+    if(slideVal !== "__ALL__"){
+      const [d, sl] = slideVal.split("||");
+      ok = ok && (s.deck === d) && (String(s.slide) === String(sl));
+    }
+
+    if(q){
+      const hay = `${s.deck} ${s.slide} ${s.slideTitle} ${s.text}`.toLowerCase();
+      ok = ok && hay.includes(q);
+    }
+
+    return ok;
+  });
+
+  idx = 0;
+  buildPreview();
+  renderCurrent();
+  setAutoUI();
+}
+
+function buildPreview(){
+  const box = document.getElementById("previewList");
+  box.innerHTML = "";
+
+  const max = 80;
+  const list = filtered.slice(0, max);
+
+  if(filtered.length === 0){
+    const div = document.createElement("div");
+    div.className = "note small";
+    div.textContent = "目前篩選結果為 0 句。請調整主題/Slide/搜尋條件。";
+    box.appendChild(div);
+    return;
+  }
+
+  list.forEach((s, i)=>{
+    const it = document.createElement("div");
+    it.className = "item" + (i === idx ? " active" : "");
+
+    const title = document.createElement("div");
+    title.className = "itemTitle";
+    title.textContent = s.text;
+
+    const sub = document.createElement("div");
+    sub.className = "itemSub";
+    const t = s.slideTitle ? ` — ${s.slideTitle}` : "";
+    sub.textContent = `[${s.deck}] slide ${s.slide}${t}`;
+
+    const pills = document.createElement("div");
+    pills.className = "pillRow";
+    const p1 = document.createElement("span"); p1.className="pill"; p1.textContent = "點我跳到此句";
+    const p2 = document.createElement("span"); p2.className="pill"; p2.textContent = "可朗讀";
+    pills.appendChild(p1); pills.appendChild(p2);
+
+    it.appendChild(title);
+    it.appendChild(sub);
+    it.appendChild(pills);
+
+    it.onclick = ()=>{
+      stopAuto();
+      idx = i;
+      renderCurrent();
+      // re-highlight active item
+      buildPreview();
+    };
+
+    box.appendChild(it);
+  });
+
+  if(filtered.length > max){
+    const more = document.createElement("div");
+    more.className = "note small";
+    more.textContent = `預覽只顯示前 ${max} 句；目前共有 ${filtered.length} 句。可用搜尋縮小範圍。`;
+    box.appendChild(more);
+  }
 }
 
 /* ============================================================
-   自動朗讀（全部）+ 停止
+   顯示/導航（針對 filtered）
+============================================================ */
+function renderCurrent(){
+  if(filtered.length === 0){
+    document.getElementById("sentence").textContent = "（目前沒有句子）";
+    document.getElementById("idxChip").textContent = "#-/-";
+    document.getElementById("srcChip").textContent = "source: -";
+    document.getElementById("deckChip").textContent = "deck: -";
+    document.getElementById("slideChip").textContent = "slide: -";
+    tokenSpans = []; tokenRanges = []; activeTokenIndex = -1;
+    return;
+  }
+  idx = clamp(idx, 0, filtered.length - 1);
+  const s = filtered[idx];
+
+  renderSentenceWithTokens(s.text);
+  document.getElementById("idxChip").textContent = `#${idx+1}/${filtered.length}`;
+  document.getElementById("srcChip").textContent = `source: ${s.source || "-"}`;
+  document.getElementById("deckChip").textContent = `deck: ${s.deck || "-"}`;
+  const t = s.slideTitle ? ` — ${s.slideTitle}` : "";
+  document.getElementById("slideChip").textContent = `slide: ${s.slide}${t}`;
+
+  // 同步左側預覽的 active 樣式（避免每次都重建太重）
+  // 這裡用重建（因為最多 80）
+  buildPreview();
+}
+
+function nextIndex(){
+  if(filtered.length === 0) return 0;
+  if(playMode === "rand") return rand(filtered.length);
+  return (idx + 1) % filtered.length;
+}
+function prevIndex(){
+  if(filtered.length === 0) return 0;
+  if(playMode === "rand") return rand(filtered.length);
+  return (idx - 1 + filtered.length) % filtered.length;
+}
+
+/* ============================================================
+   自動朗讀（針對 filtered）+ 停止
 ============================================================ */
 let autoPlaying = false;
 let autoTimer = null;
 
 function setAutoUI(){
-  document.getElementById("autoBtn").disabled = autoPlaying || sentenceList.length === 0;
+  document.getElementById("autoBtn").disabled = autoPlaying || filtered.length === 0;
   document.getElementById("stopAutoBtn").disabled = !autoPlaying;
 }
 
@@ -442,26 +649,24 @@ function stopAuto(){
   if(autoTimer) clearTimeout(autoTimer);
   autoTimer = null;
   setAutoUI();
-  // 清掉聚焦
   clearHighlight();
   if("speechSynthesis" in window) window.speechSynthesis.cancel();
 }
 
 function startAuto(){
-  if(sentenceList.length === 0) return;
+  if(filtered.length === 0) return;
   autoPlaying = true;
   setAutoUI();
 
   const playOne = () => {
     if(!autoPlaying) return;
-    const s = sentenceList[idx];
+    const s = filtered[idx];
     speakENWithHighlight(s.text);
 
-    // 估算一句長度 + 緩衝（避免太快切句）
     const ms = clamp(900 + s.text.length * 55, 2000, 10000);
     autoTimer = setTimeout(()=>{
       idx = nextIndex();
-      renderSentence();
+      renderCurrent();
       playOne();
     }, ms);
   };
@@ -493,22 +698,21 @@ document.getElementById("randBtn").onclick = ()=>{
 };
 
 document.getElementById("prevBtn").onclick = ()=>{
-  if(sentenceList.length === 0) return;
-  stopAuto(); // 手動操作時停止自動，避免衝突
+  if(filtered.length === 0) return;
+  stopAuto();
   idx = prevIndex();
-  renderSentence();
+  renderCurrent();
 };
 document.getElementById("nextBtn").onclick = ()=>{
-  if(sentenceList.length === 0) return;
+  if(filtered.length === 0) return;
   stopAuto();
   idx = nextIndex();
-  renderSentence();
+  renderCurrent();
 };
 document.getElementById("speakBtn").onclick = ()=>{
-  if(sentenceList.length === 0) return;
-  stopAuto(); // 手動朗讀時停止自動，避免衝突
-  const s = sentenceList[idx];
-  speakENWithHighlight(s.text);
+  if(filtered.length === 0) return;
+  stopAuto();
+  speakENWithHighlight(filtered[idx].text);
 };
 
 document.getElementById("autoBtn").onclick = startAuto;
@@ -519,40 +723,6 @@ document.getElementById("loadFileBtn").onclick = ()=>{
   loadJSONFile();
 };
 
-/* paste modal */
-const pasteModal = document.getElementById("pasteModal");
-document.getElementById("pasteBtn").onclick = ()=> pasteModal.style.display="block";
-document.getElementById("closePaste").onclick = ()=> pasteModal.style.display="none";
-
-document.getElementById("pasteExample").onclick = ()=>{
-  document.getElementById("jsonPasteArea").value = JSON.stringify({
-    version:"example",
-    sentences:[
-      "Hello everyone.",
-      "Please repeat after me.",
-      "Today we practice shadowing.",
-      "Speak clearly and slowly."
-    ]
-  }, null, 2);
-};
-
-document.getElementById("applyPaste").onclick = ()=>{
-  try{
-    stopAuto();
-    const raw = document.getElementById("jsonPasteArea").value.trim();
-    if(!raw) return alert("請先貼上 JSON。");
-    const obj = JSON.parse(raw);
-    sentenceList = flattenSentences(obj);
-    idx = 0;
-    setStatus(`資料：已載入（${sentenceList.length} 句 / pasted）`);
-    renderSentence();
-    setAutoUI();
-    pasteModal.style.display="none";
-  }catch(e){
-    alert("JSON 解析失敗：" + (e.message || e));
-  }
-};
-
 /* ============================================================
    初始化
 ============================================================ */
@@ -561,7 +731,7 @@ document.getElementById("applyPaste").onclick = ()=>{
   ttsRate = parseFloat(document.getElementById("rateRange").value);
   document.getElementById("rateVal").textContent = ttsRate.toFixed(2);
 
-  renderSentence();
+  renderCurrent();
   loadJSONFile();
   setAutoUI();
 })();
