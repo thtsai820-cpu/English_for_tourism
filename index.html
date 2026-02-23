@@ -3,512 +3,966 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>English_for_tourism – Sentence Listener</title>
+<title>English Sentence Listener + Shadowing</title>
 <style>
-:root{
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans", Arial;
-  background:#f6f7fb; color:#111827;
-}
-body{ margin:0; }
-.header{ background:#fff; border-bottom:1px solid #e5e7eb; padding:12px 16px; }
-.title{ font-weight:900; font-size:18px; }
-.badge{
-  display:inline-block; margin-left:8px;
-  padding:3px 8px; border-radius:999px;
-  border:1px solid #e5e7eb; font-size:12px; color:#374151; background:#fff;
-}
-.main{ max-width:1100px; margin:0 auto; padding:16px; }
-.grid{ display:grid; grid-template-columns:1fr; gap:12px; }
-@media (min-width: 980px){ .grid{ grid-template-columns: 400px 1fr; } }
-
-.card{ background:#fff; border:1px solid #e5e7eb; border-radius:16px; padding:14px; }
-.row{ display:flex; gap:10px; flex-wrap:wrap; align-items:flex-end; }
-.group{ flex:1; min-width:180px; }
-.label{ font-size:12px; color:#6b7280; margin-bottom:6px; }
-select, input[type="range"]{
-  width:100%;
-  border:1px solid #e5e7eb;
-  border-radius:12px;
-  padding:10px 12px;
-  font-size:14px;
-  outline:none;
-  background:#fff;
-}
-select:focus, input[type="range"]:focus{ border-color:#111827; }
-
-.actions{ display:flex; gap:10px; flex-wrap:wrap; margin-top:10px; }
-button{
-  border:1px solid #e5e7eb; background:#fff;
-  padding:10px 12px; border-radius:12px;
-  cursor:pointer; font-weight:900;
-}
-button.primary{ background:#111827; color:#fff; border-color:#111827; }
-button.ghost{ background:#fff; }
-button.danger{ background:#fff1f2; border-color:#fecaca; }
-.small{ font-size:12px; color:#6b7280; line-height:1.5; }
-.hr{ height:1px; background:#e5e7eb; border:0; margin:12px 0; }
-.mono{ font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
-
-.topline{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:space-between; }
-.pill{
-  display:inline-block; padding:3px 8px; border-radius:999px;
-  border:1px solid #e5e7eb; font-size:12px; color:#374151;
-}
-.notice{
-  padding:10px 12px; border:1px dashed #d1d5db;
-  border-radius:12px; background:#fff;
-}
-
-.sentences{ display:flex; flex-direction:column; gap:8px; }
-.s{
-  padding:10px 12px;
-  border:1px solid #e5e7eb;
-  border-radius:14px;
-  background:#fff;
-  cursor:pointer;
-  line-height:1.55;
-}
-.s:hover{ border-color:#9ca3af; }
-.s.active{ background:#111827; border-color:#111827; color:#fff; }
-.s.done{ background:#ecfdf5; border-color:#16a34a; }
-
-.kpiLine{ display:flex; gap:12px; flex-wrap:wrap; align-items:center; }
-.kpi{ font-weight:900; font-size:13px; }
+  :root { font-family: system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans", Arial; background:#f6f7fb; }
+  body { margin:0; }
+  .header { background:#fff; border-bottom:1px solid #e5e7eb; padding:12px 16px; display:flex; gap:10px; align-items:center; justify-content:space-between; flex-wrap:wrap; }
+  .title { font-weight:900; font-size:18px; }
+  .badge { display:inline-block; padding:3px 8px; border-radius:999px; border:1px solid #e5e7eb; font-size:12px; color:#374151; background:#fff; }
+  .main { max-width:1100px; margin:0 auto; padding:16px; }
+  .grid { display:grid; grid-template-columns:1fr; gap:12px; }
+  @media (min-width: 980px){ .grid { grid-template-columns: 1.2fr 0.8fr; } }
+  .card { background:#fff; border:1px solid #e5e7eb; border-radius:16px; padding:14px; }
+  .row { display:flex; gap:12px; flex-wrap:wrap; align-items:flex-end; }
+  .group { min-width:180px; }
+  .label { font-size:12px; color:#6b7280; margin-bottom:6px; }
+  .seg { display:inline-flex; border:1px solid #e5e7eb; border-radius:12px; overflow:hidden; }
+  .seg button { border:0; background:#fff; padding:8px 10px; cursor:pointer; }
+  .seg .active { background:#111827; color:#fff; }
+  .actions { margin-top:12px; display:flex; gap:10px; flex-wrap:wrap; }
+  .primary, .ghost, .playBtn, .danger {
+    padding:10px 12px; border-radius:12px; cursor:pointer; font-weight:800;
+    border:1px solid #e5e7eb; background:#fff;
+  }
+  .primary { background:#111827; color:#fff; border-color:#111827; }
+  .playBtn { border-style:dashed; }
+  .danger { border-color:#fecaca; background:#fff1f2; }
+  .hr { height:1px; background:#e5e7eb; margin:10px 0; border:0; }
+  .kpi { font-size:18px; font-weight:900; }
+  .small { font-size:12px; color:#6b7280; font-weight:500; line-height:1.5; }
+  .note { margin-top:10px; padding:10px 12px; border:1px dashed #d1d5db; border-radius:12px; background:#fff; }
+  .sentenceBox {
+    padding:14px; border:1px solid #e5e7eb; border-radius:16px;
+    background:#fafafa;
+  }
+  .sentence {
+    font-size:28px; font-weight:900; line-height:1.25;
+    word-break:break-word;
+  }
+  .meta { margin-top:6px; display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
+  .chip { font-size:12px; border:1px solid #e5e7eb; background:#fff; border-radius:999px; padding:3px 8px; color:#374151; }
+  select, input[type="range"], input[type="text"] {
+    border:1px solid #e5e7eb; border-radius:12px; padding:8px 10px; background:#fff; outline:none;
+  }
+  select:focus, input[type="text"]:focus { border-color:#111827; }
+  textarea {
+    width:100%; min-height:90px; border-radius:12px; border:1px solid #e5e7eb;
+    padding:10px 12px; font-size:14px; outline:none;
+  }
+  textarea:focus { border-color:#111827; }
+  .scoreGood { color:#16a34a; font-weight:900; }
+  .scoreMid  { color:#ca8a04; font-weight:900; }
+  .scoreBad  { color:#dc2626; font-weight:900; }
+  table { width:100%; border-collapse:collapse; }
+  th, td { border-bottom:1px solid #e5e7eb; padding:8px 6px; text-align:left; font-size:13px; vertical-align:top; }
+  th { color:#6b7280; font-weight:800; }
+  .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
 </style>
 </head>
 
 <body>
-<div class="header">
-  <div class="title">
-    English for Tourism – Sentence Listener
-    <span class="badge">逐句按、逐句聽（無自動續讀）</span>
+  <div class="header">
+    <div class="title">
+      English Sentence Listener <span class="badge">朗讀 + Shadowing 跟讀比對 + 使用統計</span>
+    </div>
+    <div class="badge" id="statusBadge">資料：未載入</div>
   </div>
-</div>
 
-<div class="main">
-  <div class="grid">
+  <div class="main">
+    <div class="grid">
 
-    <!-- 左：控制 -->
-    <div class="card">
-      <div class="label">資料</div>
-      <div class="notice small">
-        讀取：<span class="mono">./guide_corpus_sentences.json</span><br/>
-        操作方式：點句子或按「播放本句 / 下一句」。
-      </div>
+      <!-- 左：朗讀 + Shadowing -->
+      <div class="card">
+        <div class="row">
+          <div class="group">
+            <div class="label">資料來源</div>
+            <div class="seg">
+              <button id="loadFileBtn" class="active">讀取 english_data.json</button>
+              <button id="pasteBtn">貼上 JSON</button>
+            </div>
+            <div class="small">預設讀取同資料夾的 <span class="mono">english_data.json</span>（你可自行改檔名）</div>
+          </div>
 
-      <div class="small" style="margin-top:8px;">
-        載入訊息：<span id="loadMsg" class="mono">loading...</span>
-      </div>
+          <div class="group">
+            <div class="label">Voice（TTS）</div>
+            <select id="voiceSel"></select>
+            <div class="small">若沒有英語 voice，仍可播放（瀏覽器會挑預設）</div>
+          </div>
 
-      <hr class="hr"/>
+          <div class="group">
+            <div class="label">語速</div>
+            <input id="rateRange" type="range" min="0.6" max="1.2" step="0.05" value="0.95" />
+            <div class="small">rate: <span id="rateVal">0.95</span></div>
+          </div>
 
-      <div class="row">
-        <div class="group">
-          <div class="label">Deck（PPT）</div>
-          <select id="deckSel"></select>
+          <div class="group">
+            <div class="label">隨機</div>
+            <div class="seg">
+              <button id="seqBtn" class="active">依序</button>
+              <button id="randBtn">隨機</button>
+            </div>
+          </div>
         </div>
-        <div class="group">
-          <div class="label">Slide</div>
-          <select id="slideSel"></select>
+
+        <hr class="hr" />
+
+        <div class="sentenceBox">
+          <div id="sentence" class="sentence">（尚未載入句子）</div>
+          <div class="meta">
+            <span class="chip" id="idxChip">#-/-</span>
+            <span class="chip" id="srcChip">source: -</span>
+            <span class="chip" id="deckChip">deck: -</span>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button id="prevBtn" class="ghost">⬅ 上一句</button>
+          <button id="speakBtn" class="playBtn">🔊 朗讀</button>
+          <button id="nextBtn" class="primary">下一句 ➡</button>
+          <button id="autoBtn" class="ghost">▶ 自動朗讀（全部）</button>
+          <button id="stopAutoBtn" class="danger" disabled>停止自動</button>
+        </div>
+
+        <div class="note">
+          <div style="font-weight:900;">🎙 Shadowing 跟讀模式</div>
+          <div class="small">
+            流程：先按朗讀 → 按開始跟讀 → 你唸一句 → 停止 → 顯示辨識文字與相似度分數（越高越接近）。
+            <br/>使用 <span class="mono">SpeechRecognition</span>：Chrome/Edge 最穩；Safari 可能不支援。
+          </div>
+
+          <div class="actions">
+            <button id="shadowStartBtn" class="primary">開始跟讀</button>
+            <button id="shadowStopBtn" class="ghost" disabled>停止</button>
+            <button id="shadowClearBtn" class="danger">清除結果</button>
+          </div>
+
+          <div class="row" style="margin-top:10px;">
+            <div class="group" style="flex:1; min-width:240px;">
+              <div class="label">你的辨識結果（transcript）</div>
+              <textarea id="shadowTranscript" placeholder="（跟讀後會出現辨識文字…）"></textarea>
+            </div>
+            <div class="group" style="min-width:220px;">
+              <div class="label">相似度分數</div>
+              <div class="kpi" id="shadowScore">-</div>
+              <div class="small">依字詞相似度與編輯距離混合計分（0–100）</div>
+            </div>
+          </div>
+
+          <div class="small" style="margin-top:6px;">
+            Tip：英文辨識更穩的方式是「慢一點、句子分短一點、避開背景噪音」。
+          </div>
+        </div>
+
+      </div>
+
+      <!-- 右：使用統計 -->
+      <div class="card">
+        <div class="row" style="align-items:center; justify-content:space-between;">
+          <div>
+            <div style="font-weight:900; font-size:18px;">📊 學生使用統計</div>
+            <div class="small">
+              這裡先做「本機統計（localStorage）」：同一台裝置會累積。可匯出 CSV 交給你彙整。
+              若要「全班集中統計」，我可以再幫你接 Firebase / Google Sheet / 伺服器 API。
+            </div>
+          </div>
+          <div class="badge" id="statsBadge">session：0s</div>
+        </div>
+
+        <hr class="hr" />
+
+        <div class="row">
+          <div class="group">
+            <div class="label">播放次數</div>
+            <div class="kpi" id="kpiPlays">0</div>
+          </div>
+          <div class="group">
+            <div class="label">跟讀次數</div>
+            <div class="kpi" id="kpiShadows">0</div>
+          </div>
+          <div class="group">
+            <div class="label">平均分數</div>
+            <div class="kpi" id="kpiAvg">-</div>
+          </div>
+        </div>
+
+        <div class="actions" style="margin-top:8px;">
+          <button id="exportBtn" class="primary">匯出 CSV</button>
+          <button id="resetStatsBtn" class="danger">清除本機統計</button>
+        </div>
+
+        <div class="note">
+          <div style="font-weight:900;">🏅 最近 10 次 Shadowing</div>
+          <div class="small">包含：時間、句子、分數、辨識片段</div>
+          <div style="max-height:330px; overflow:auto; margin-top:8px;">
+            <table>
+              <thead>
+                <tr>
+                  <th>Time</th>
+                  <th>Score</th>
+                  <th>Sentence</th>
+                  <th>Transcript</th>
+                </tr>
+              </thead>
+              <tbody id="recentTable"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="note small">
+          <div style="font-weight:900;">（可選）GA4 事件上報</div>
+          你若已有 GA4，可把 Measurement ID 填入程式的 <span class="mono">GA_MEASUREMENT_ID</span>，我已預留事件：
+          <span class="mono">play_sentence</span>、<span class="mono">shadow_done</span>、<span class="mono">auto_play_start/stop</span>。
         </div>
       </div>
 
-      <hr class="hr"/>
+    </div>
 
-      <div class="row">
-        <div class="group">
-          <div class="label">Voice（英文語音）</div>
-          <select id="voiceSel"></select>
-          <div class="small">已自動優先排序較自然的 voice（若你的系統有提供）。</div>
+    <!-- JSON 貼上區（彈出） -->
+    <div id="pasteModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.4); padding:18px;">
+      <div class="card" style="max-width:980px; margin:0 auto; height: calc(100vh - 36px); overflow:auto;">
+        <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;">
+          <div style="font-weight:900; font-size:18px;">貼上你的英文句庫 JSON</div>
+          <button id="closePaste" class="ghost">關閉</button>
         </div>
-      </div>
-
-      <div class="row" style="margin-top:8px;">
-        <div class="group">
-          <div class="label">語速 Rate：<span id="rateVal" class="mono">1.0</span></div>
-          <input id="rate" type="range" min="0.6" max="1.4" step="0.1" value="1.0" />
+        <div class="small" style="margin-top:6px;">
+          只要 JSON 裡面能抽到句子即可；我會盡量自動識別結構（例如 decks/slides/sentences、banks、sentences list…）。
         </div>
-        <div class="group">
-          <div class="label">音高 Pitch：<span id="pitchVal" class="mono">1.0</span></div>
-          <input id="pitch" type="range" min="0.7" max="1.3" step="0.1" value="1.0" />
+        <div style="margin-top:10px;">
+          <textarea id="jsonPasteArea" style="min-height:360px;" placeholder='請貼上 JSON...'></textarea>
         </div>
-      </div>
-
-      <div class="row" style="margin-top:8px;">
-        <div class="group">
-          <div class="label">音量 Volume：<span id="volVal" class="mono">1.0</span></div>
-          <input id="vol" type="range" min="0.2" max="1.0" step="0.1" value="1.0" />
+        <div class="actions">
+          <button id="applyPaste" class="primary">載入</button>
+          <button id="pasteExample" class="playBtn">貼上範例</button>
         </div>
-      </div>
-
-      <div class="actions">
-        <button id="playOne" class="primary">▶ 播放本句</button>
-        <button id="replayOne" class="ghost">↻ 重播本句</button>
-        <button id="nextOne" class="primary">下一句 ▶</button>
-        <button id="pause" class="ghost">⏸ 暫停</button>
-        <button id="resume" class="ghost">⏵ 繼續</button>
-        <button id="stop" class="danger">■ 停止</button>
-      </div>
-
-      <div class="small" style="margin-top:8px;">
-        建議參數：Rate 0.9～1.1、Pitch 0.9～1.1（可減少僵硬感）。
-      </div>
-
-      <hr class="hr"/>
-
-      <div class="kpiLine">
-        <div class="kpi">狀態：<span id="status" class="mono">loading</span></div>
-        <div class="kpi">句子：<span id="count" class="mono">0</span></div>
-        <div class="kpi">目前：<span id="idx" class="mono">-</span></div>
       </div>
     </div>
 
-    <!-- 右：句子 -->
-    <div class="card">
-      <div class="topline">
-        <div>
-          <div style="font-weight:900; font-size:18px;">句子列表</div>
-          <div class="small" id="meta">—</div>
-        </div>
-        <div class="pill" id="pill">loading</div>
-      </div>
-
-      <hr class="hr"/>
-
-      <div id="sentBox" class="sentences"></div>
-
-      <div class="small" style="margin-top:10px;">
-        點任一句會「選取該句」並可播放。<br/>
-        ✅ Done（綠）：你已經聽過　｜　⬛ Active（黑）：目前選取
-      </div>
-    </div>
-
   </div>
-</div>
 
 <script>
 /* ============================================================
-  Helpers
+   設定：你的 JSON 檔名（可改）
 ============================================================ */
-const $ = (id)=>document.getElementById(id);
-function setText(id, t){ $(id).textContent = t; }
+const DATA_FILE = "english_data.json";
 
 /* ============================================================
-  Data
+   （可選）GA4：如要啟用，把 ID 填入（例如 "G-XXXXXXXXXX"）
 ============================================================ */
-let DATA = null;
-let deckIndex = 0;
-let slideIndex = 0;
-let currentSentIndex = 0;
-
-/* ============================================================
-  Status
-============================================================ */
-function setStatus(s){
-  setText("status", s);
-  $("pill").textContent = s;
+const GA_MEASUREMENT_ID = ""; // <-- optional
+function gaEvent(name, params={}){
+  // 不存在就安靜略過
+  if(!GA_MEASUREMENT_ID) return;
+  if(typeof window.gtag === "function"){
+    window.gtag("event", name, params);
+  }
 }
-function setLoadMsg(t){ setText("loadMsg", t); }
 
 /* ============================================================
-  Accessors
+   共用工具
 ============================================================ */
-function getDeck(){ return DATA?.decks?.[deckIndex] || null; }
-function getSlide(){ return getDeck()?.slides?.[slideIndex] || null; }
-function getSentences(){ return getSlide()?.sentences || []; }
+function rand(n){ return Math.floor(Math.random()*n); }
+function shuffle(a){ return a.sort(()=>Math.random()-0.5); }
+function clamp(x, a, b){ return Math.max(a, Math.min(b, x)); }
+
+function nowISO(){
+  const d = new Date();
+  return d.toISOString().replace("T"," ").slice(0,19);
+}
+function safeText(s){ return (s||"").toString().replace(/\s+/g," ").trim(); }
 
 /* ============================================================
-  TTS (no auto-continue)
+   TTS：英文朗讀
 ============================================================ */
 let voices = [];
-let speaking = false;
-let lastSpokenIndex = -1;
-
-function isEnglishVoice(v){
-  return (v.lang || "").toLowerCase().startsWith("en");
-}
-
-// 優先挑「較自然」的 voice（若系統提供）
-function voiceScore(v){
-  const name = (v.name || "").toLowerCase();
-  const lang = (v.lang || "").toLowerCase();
-
-  let score = 0;
-
-  // 優先英文
-  if(isEnglishVoice(v)) score += 50;
-
-  // 偏好 en-us / en-gb
-  if(lang === "en-us") score += 20;
-  if(lang === "en-gb") score += 18;
-
-  // 偏好較自然的標記（不同系統可能不同）
-  const goodHints = ["neural","natural","premium","enhanced","google","microsoft","zira","aria","jenny","guy","ryan","samantha","daniel","olivia"];
-  for(const h of goodHints){
-    if(name.includes(h)) { score += 6; break; }
-  }
-
-  // 避免太機械的常見標記（若遇到）
-  const badHints = ["espeak","mbrola","default"];
-  for(const b of badHints){
-    if(name.includes(b)) { score -= 8; break; }
-  }
-
-  return score;
-}
+let selectedVoiceURI = "";
+let ttsRate = 0.95;
 
 function loadVoices(){
-  if(!("speechSynthesis" in window)){
-    $("voiceSel").innerHTML = `<option>SpeechSynthesis not supported</option>`;
-    return;
-  }
-  const all = window.speechSynthesis.getVoices() || [];
-  const en = all.filter(isEnglishVoice);
-  voices = (en.length ? en : all).slice();
+  if(!("speechSynthesis" in window)) return;
+  voices = window.speechSynthesis.getVoices?.() || [];
+  const sel = document.getElementById("voiceSel");
+  sel.innerHTML = "";
 
-  // sort by our scoring
-  voices.sort((a,b)=> voiceScore(b) - voiceScore(a));
+  // 優先英文
+  const list = voices
+    .map(v => ({ v, isEN: (v.lang||"").toLowerCase().startsWith("en") }))
+    .sort((a,b)=> (b.isEN - a.isEN));
 
-  $("voiceSel").innerHTML = "";
-  voices.forEach((v,i)=>{
+  list.forEach(({v})=>{
     const opt = document.createElement("option");
-    opt.value = String(i);
+    opt.value = v.voiceURI;
     opt.textContent = `${v.name} (${v.lang})`;
-    $("voiceSel").appendChild(opt);
+    sel.appendChild(opt);
   });
 
-  // choose best by default
-  $("voiceSel").value = "0";
+  // default：第一個英文 voice
+  const en = list.find(x => x.isEN);
+  selectedVoiceURI = (en?.v.voiceURI) || (list[0]?.v.voiceURI) || "";
+  if(selectedVoiceURI) sel.value = selectedVoiceURI;
+}
+
+function speakEN(text){
+  if(!("speechSynthesis" in window)){
+    alert("此瀏覽器不支援 SpeechSynthesis。建議 Chrome/Edge。");
+    return;
+  }
+  const t = safeText(text);
+  if(!t) return;
+
+  window.speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(t);
+  u.lang = "en-US";
+  u.rate = ttsRate;
+
+  const v = voices.find(x => x.voiceURI === selectedVoiceURI);
+  if(v) u.voice = v;
+
+  window.speechSynthesis.speak(u);
 }
 
 if("speechSynthesis" in window){
   window.speechSynthesis.onvoiceschanged = () => loadVoices();
 }
 
-function cleanSentenceForTTS(s){
-  // 不改寫原文（A 原則），只做 TTS 朗讀友善的最小清理
-  let t = (s || "").trim();
-  t = t.replace(/\s+/g, " ");
-  // 把奇怪的連續標點稍微拉順，避免 TTS 卡頓
-  t = t.replace(/\.{3,}/g, "...");
-  t = t.replace(/([!?]){2,}/g, "$1");
-  return t;
+/* ============================================================
+   句庫：載入與抽取（盡量兼容）
+============================================================ */
+let sentenceList = []; // [{ text, source, deck }]
+let idx = 0;
+let playMode = "seq"; // seq | rand
+
+function flattenSentencesFromAnyJSON(obj){
+  const out = [];
+
+  // 1) decks -> slides -> sentences
+  if(obj && Array.isArray(obj.decks)){
+    obj.decks.forEach(deck=>{
+      const deckName = deck.source_file || deck.name || "deck";
+      const slides = deck.slides || deck.slide_items || deck.items || [];
+      if(Array.isArray(slides)){
+        slides.forEach(s=>{
+          const ss = s.sentences || s.sents || s.lines || [];
+          if(Array.isArray(ss)){
+            ss.forEach((t,i)=>{
+              const text = safeText(t);
+              if(text) out.push({ text, source: `slide ${s.slide ?? ""}`.trim(), deck: deckName });
+            });
+          }
+          // 如果只有 text_blocks
+          const tb = s.text_blocks || [];
+          if(Array.isArray(tb) && (!s.sentences || !Array.isArray(s.sentences))){
+            tb.forEach(t=>{
+              const text = safeText(t);
+              if(text) out.push({ text, source: `slide ${s.slide ?? ""}`.trim(), deck: deckName });
+            });
+          }
+        });
+      }
+    });
+  }
+
+  // 2) banks -> greetings/words/others (若你拿它當句庫)
+  if(obj && obj.banks && typeof obj.banks === "object"){
+    Object.entries(obj.banks).forEach(([bankName, arr])=>{
+      if(Array.isArray(arr)){
+        arr.forEach(item=>{
+          if(item && typeof item === "object"){
+            const cand = item.en || item.text || item.sentence;
+            if(cand){
+              const text = safeText(cand);
+              if(text) out.push({ text, source: bankName, deck: "banks" });
+            }
+          } else if(typeof item === "string"){
+            const text = safeText(item);
+            if(text) out.push({ text, source: bankName, deck: "banks" });
+          }
+        });
+      }
+    });
+  }
+
+  // 3) top-level sentences array
+  if(obj && Array.isArray(obj.sentences)){
+    obj.sentences.forEach(t=>{
+      const text = safeText(t);
+      if(text) out.push({ text, source: "sentences", deck: "root" });
+    });
+  }
+
+  // 去重（完全相同 text）
+  const seen = new Set();
+  return out.filter(x=>{
+    const k = x.text.toLowerCase();
+    if(seen.has(k)) return false;
+    seen.add(k);
+    return true;
+  });
 }
 
-function speakOnce(text){
-  if(!("speechSynthesis" in window)){
-    alert("此瀏覽器不支援 SpeechSynthesis。建議 Chrome / Edge。");
+function setStatus(msg){
+  document.getElementById("statusBadge").textContent = msg;
+}
+function renderSentence(){
+  if(sentenceList.length === 0){
+    document.getElementById("sentence").textContent = "（尚未載入句子）";
+    document.getElementById("idxChip").textContent = "#-/-";
+    document.getElementById("srcChip").textContent = "source: -";
+    document.getElementById("deckChip").textContent = "deck: -";
     return;
   }
-  window.speechSynthesis.cancel();
-
-  const u = new SpeechSynthesisUtterance(text);
-
-  const v = voices[Number($("voiceSel").value || 0)];
-  if(v) u.voice = v;
-
-  u.lang = v?.lang || "en-US";
-  u.rate = Number($("rate").value || 1.0);
-  u.pitch = Number($("pitch").value || 1.0);
-  u.volume = Number($("vol").value || 1.0);
-
-  // 句子前後給一點點停頓（用空白+逗點技巧讓 TTS 停一下）
-  // 注意：不改句子內容，只在 utterance 層加入微停頓
-  const prefixPause = " ";
-  const suffixPause = " ";
-  u.text = prefixPause + text + suffixPause;
-
-  u.onstart = ()=>{ speaking = true; setStatus("speaking"); };
-  u.onend = ()=>{ speaking = false; setStatus("ready"); };
-  u.onerror = ()=>{ speaking = false; setStatus("error"); };
-
-  window.speechSynthesis.speak(u);
+  const s = sentenceList[idx];
+  document.getElementById("sentence").textContent = s.text;
+  document.getElementById("idxChip").textContent = `#${idx+1}/${sentenceList.length}`;
+  document.getElementById("srcChip").textContent = `source: ${s.source || "-"}`;
+  document.getElementById("deckChip").textContent = `deck: ${s.deck || "-"}`;
 }
 
-function pauseSpeak(){
-  if(window.speechSynthesis?.speaking && !window.speechSynthesis.paused){
-    window.speechSynthesis.pause();
-    setStatus("paused");
-  }
-}
-function resumeSpeak(){
-  if(window.speechSynthesis?.paused){
-    window.speechSynthesis.resume();
-    setStatus("speaking");
-  }
-}
-function stopSpeak(){
-  speaking = false;
-  window.speechSynthesis?.cancel();
-  setStatus("ready");
-}
-
-/* ============================================================
-  Rendering
-============================================================ */
-function renderSelectors(){
-  const deckSel = $("deckSel");
-  const slideSel = $("slideSel");
-
-  deckSel.innerHTML = "";
-  DATA.decks.forEach((d,i)=>{
-    const opt = document.createElement("option");
-    opt.value = String(i);
-    opt.textContent = d.source_file || ("Deck " + (i+1));
-    deckSel.appendChild(opt);
-  });
-  deckSel.value = String(deckIndex);
-
-  slideSel.innerHTML = "";
-  const d = getDeck();
-  d.slides.forEach((s,i)=>{
-    const opt = document.createElement("option");
-    opt.value = String(i);
-    const label = `Slide ${s.slide}` + (s.title_guess ? ` — ${s.title_guess}` : "");
-    opt.textContent = label.length > 80 ? label.slice(0,80) + "…" : label;
-    slideSel.appendChild(opt);
-  });
-  slideSel.value = String(slideIndex);
-}
-
-function renderSentences(){
-  const box = $("sentBox");
-  box.innerHTML = "";
-
-  const d = getDeck();
-  const s = getSlide();
-  const arr = getSentences();
-
-  setText("count", String(arr.length));
-  $("meta").textContent = `${d.source_file} ｜ Slide ${s.slide}${s.title_guess ? " ｜ " + s.title_guess : ""}`;
-
-  // clamp current index
-  if(currentSentIndex < 0) currentSentIndex = 0;
-  if(currentSentIndex >= arr.length) currentSentIndex = Math.max(0, arr.length - 1);
-
-  arr.forEach((t,i)=>{
-    const div = document.createElement("div");
-    div.className = "s";
-    div.textContent = t;
-
-    div.onclick = ()=>{
-      stopSpeak();
-      currentSentIndex = i;
-      markSentences();
-    };
-
-    box.appendChild(div);
-  });
-
-  markSentences();
-}
-
-function markSentences(){
-  const nodes = Array.from(document.querySelectorAll(".s"));
-  nodes.forEach((n,i)=>{
-    n.classList.remove("active","done");
-    if(i < currentSentIndex) n.classList.add("done");
-    if(i === currentSentIndex) n.classList.add("active");
-  });
-  setText("idx", (getSentences().length ? String(currentSentIndex+1) : "-"));
-}
-
-/* ============================================================
-  Controls (no auto-continue)
-============================================================ */
-function playCurrent(){
-  const arr = getSentences();
-  if(!arr.length) return;
-  const text = cleanSentenceForTTS(arr[currentSentIndex]);
-  lastSpokenIndex = currentSentIndex;
-  markSentences();
-  speakOnce(text);
-}
-function replayCurrent(){
-  if(lastSpokenIndex === -1){
-    playCurrent();
-    return;
-  }
-  currentSentIndex = lastSpokenIndex;
-  playCurrent();
-}
-function nextSentence(){
-  const arr = getSentences();
-  if(!arr.length) return;
-  stopSpeak();
-  currentSentIndex = Math.min(currentSentIndex + 1, arr.length - 1);
-  markSentences();
-  playCurrent();
-}
-
-/* ============================================================
-  Events
-============================================================ */
-$("rate").addEventListener("input", ()=> setText("rateVal", Number($("rate").value).toFixed(1)));
-$("pitch").addEventListener("input", ()=> setText("pitchVal", Number($("pitch").value).toFixed(1)));
-$("vol").addEventListener("input", ()=> setText("volVal", Number($("vol").value).toFixed(1)));
-
-$("deckSel").addEventListener("change", ()=>{
-  stopSpeak();
-  deckIndex = Number($("deckSel").value || 0);
-  slideIndex = 0;
-  currentSentIndex = 0;
-  lastSpokenIndex = -1;
-  renderSelectors();
-  renderSentences();
-  setStatus("ready");
-});
-$("slideSel").addEventListener("change", ()=>{
-  stopSpeak();
-  slideIndex = Number($("slideSel").value || 0);
-  currentSentIndex = 0;
-  lastSpokenIndex = -1;
-  renderSentences();
-  setStatus("ready");
-});
-
-$("playOne").onclick = ()=> playCurrent();
-$("replayOne").onclick = ()=> replayCurrent();
-$("nextOne").onclick = ()=> nextSentence();
-$("pause").onclick = ()=> pauseSpeak();
-$("resume").onclick = ()=> resumeSpeak();
-$("stop").onclick = ()=> stopSpeak();
-
-/* ============================================================
-  Boot
-============================================================ */
-async function boot(){
-  setStatus("loading");
-  setText("rateVal", Number($("rate").value).toFixed(1));
-  setText("pitchVal", Number($("pitch").value).toFixed(1));
-  setText("volVal", Number($("vol").value).toFixed(1));
-
-  loadVoices();
-
+async function loadJSONFile(){
   try{
-    const res = await fetch("./guide_corpus_sentences.json", { cache:"no-store" });
+    setStatus("資料：載入中…");
+    const res = await fetch(DATA_FILE, { cache: "no-store" });
     if(!res.ok) throw new Error("HTTP " + res.status);
-    const json = await res.json();
-    if(!json?.decks?.length) throw new Error("JSON loaded but decks is empty/missing.");
-
-    DATA = json;
-    deckIndex = 0;
-    slideIndex = 0;
-    currentSentIndex = 0;
-    lastSpokenIndex = -1;
-
-    renderSelectors();
-    renderSentences();
-    setLoadMsg("OK");
-    setStatus("ready");
+    const obj = await res.json();
+    sentenceList = flattenSentencesFromAnyJSON(obj);
+    idx = 0;
+    setStatus(`資料：已載入（${sentenceList.length} 句）`);
+    renderSentence();
   }catch(e){
-    console.error(e);
-    setLoadMsg("FAILED: " + (e.message || e));
-    setStatus("load-failed");
-    alert("載入 JSON 失敗：請確認 guide_corpus_sentences.json 與 index.html 同層，且 GitHub Pages 已更新。");
+    setStatus("資料：載入失敗（改用貼上 JSON）");
+    alert("讀取 " + DATA_FILE + " 失敗：\n" + (e.message || e) + "\n\n你可以改用「貼上 JSON」或確認檔名/路徑。");
   }
 }
-boot();
+
+/* ============================================================
+   自動朗讀（全部）
+============================================================ */
+let autoPlaying = false;
+let autoTimer = null;
+
+function setAutoUI(){
+  document.getElementById("autoBtn").disabled = autoPlaying || sentenceList.length === 0;
+  document.getElementById("stopAutoBtn").disabled = !autoPlaying;
+}
+
+function nextIndex(){
+  if(sentenceList.length === 0) return 0;
+  if(playMode === "rand"){
+    return rand(sentenceList.length);
+  }
+  return (idx + 1) % sentenceList.length;
+}
+function prevIndex(){
+  if(sentenceList.length === 0) return 0;
+  if(playMode === "rand"){
+    return rand(sentenceList.length);
+  }
+  return (idx - 1 + sentenceList.length) % sentenceList.length;
+}
+
+function stopAuto(){
+  autoPlaying = false;
+  if(autoTimer) clearTimeout(autoTimer);
+  autoTimer = null;
+  setAutoUI();
+  gaEvent("auto_play_stop", { total_sentences: sentenceList.length });
+}
+
+function startAuto(){
+  if(sentenceList.length === 0) return;
+  autoPlaying = true;
+  setAutoUI();
+  gaEvent("auto_play_start", { total_sentences: sentenceList.length });
+
+  const playOne = () => {
+    if(!autoPlaying) return;
+    const s = sentenceList[idx];
+    statsAddPlay(s);
+    speakEN(s.text);
+
+    // 粗估一句長度 + 緩衝
+    const ms = clamp(800 + s.text.length * 55, 1800, 9000);
+    autoTimer = setTimeout(()=>{
+      idx = nextIndex();
+      renderSentence();
+      playOne();
+    }, ms);
+  };
+  playOne();
+}
+
+/* ============================================================
+   Shadowing：錄音 + SpeechRecognition + 相似度
+============================================================ */
+const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+let recog = null;
+let recognizing = false;
+
+let mediaRecorder = null;
+let recordedChunks = [];
+let lastAudioBlob = null;
+
+function ensureRecognition(){
+  if(!SpeechRecognition){
+    alert("此瀏覽器不支援 SpeechRecognition（語音辨識）。建議 Chrome/Edge。");
+    return null;
+  }
+  if(recog) return recog;
+
+  recog = new SpeechRecognition();
+  recog.lang = "en-US";
+  recog.interimResults = true;
+  recog.continuous = true;
+
+  recog.onstart = ()=> {
+    recognizing = true;
+    document.getElementById("shadowStartBtn").disabled = true;
+    document.getElementById("shadowStopBtn").disabled = false;
+  };
+  recog.onend = ()=> {
+    recognizing = false;
+    document.getElementById("shadowStartBtn").disabled = false;
+    document.getElementById("shadowStopBtn").disabled = true;
+  };
+  recog.onerror = (e)=> {
+    console.log(e);
+  };
+
+  let finalText = "";
+  recog.onresult = (event)=> {
+    let interim = "";
+    for(let i = event.resultIndex; i < event.results.length; i++){
+      const res = event.results[i];
+      const txt = res[0].transcript;
+      if(res.isFinal){
+        finalText += (finalText ? " " : "") + txt.trim();
+      } else {
+        interim += txt;
+      }
+    }
+    const merged = safeText(finalText + " " + interim);
+    document.getElementById("shadowTranscript").value = merged;
+  };
+
+  return recog;
+}
+
+async function startRecording(){
+  try{
+    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    recordedChunks = [];
+    mediaRecorder = new MediaRecorder(stream);
+    mediaRecorder.ondataavailable = (e)=> {
+      if(e.data && e.data.size > 0) recordedChunks.push(e.data);
+    };
+    mediaRecorder.onstop = ()=> {
+      lastAudioBlob = new Blob(recordedChunks, { type: "audio/webm" });
+      // 停止所有 tracks
+      stream.getTracks().forEach(t=>t.stop());
+    };
+    mediaRecorder.start();
+  }catch(e){
+    alert("無法啟用麥克風：" + (e.message || e));
+  }
+}
+
+function stopRecording(){
+  if(mediaRecorder && mediaRecorder.state !== "inactive"){
+    mediaRecorder.stop();
+  }
+}
+
+function normalizeForCompare(s){
+  return safeText(s)
+    .toLowerCase()
+    .replace(/[“”‘’]/g, "'")
+    .replace(/[^a-z0-9'\s]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function levenshtein(a,b){
+  const m=a.length, n=b.length;
+  if(m===0) return n;
+  if(n===0) return m;
+  const dp = Array.from({length:m+1}, ()=> new Array(n+1).fill(0));
+  for(let i=0;i<=m;i++) dp[i][0]=i;
+  for(let j=0;j<=n;j++) dp[0][j]=j;
+  for(let i=1;i<=m;i++){
+    for(let j=1;j<=n;j++){
+      const cost = a[i-1]===b[j-1] ? 0 : 1;
+      dp[i][j] = Math.min(
+        dp[i-1][j] + 1,
+        dp[i][j-1] + 1,
+        dp[i-1][j-1] + cost
+      );
+    }
+  }
+  return dp[m][n];
+}
+
+function tokenF1(ref, hyp){
+  const r = ref.split(" ").filter(Boolean);
+  const h = hyp.split(" ").filter(Boolean);
+  if(r.length===0 && h.length===0) return 1;
+  if(r.length===0 || h.length===0) return 0;
+
+  const rCount = new Map();
+  r.forEach(t=> rCount.set(t, (rCount.get(t)||0)+1));
+
+  let match = 0;
+  h.forEach(t=>{
+    const c = rCount.get(t)||0;
+    if(c>0){
+      match++;
+      rCount.set(t, c-1);
+    }
+  });
+
+  const prec = match / h.length;
+  const rec  = match / r.length;
+  if(prec+rec===0) return 0;
+  return (2*prec*rec)/(prec+rec);
+}
+
+function similarityScore(target, spoken){
+  const a = normalizeForCompare(target);
+  const b = normalizeForCompare(spoken);
+  if(!a && !b) return 100;
+  if(!a || !b) return 0;
+
+  const dist = levenshtein(a,b);
+  const maxLen = Math.max(a.length, b.length);
+  const editSim = 1 - (dist / maxLen);
+
+  const f1 = tokenF1(a,b);
+
+  // 混合：字串編輯相似度 60% + token F1 40%
+  const score = (editSim*0.6 + f1*0.4) * 100;
+  return Math.round(clamp(score, 0, 100));
+}
+
+function scoreClass(s){
+  if(s >= 85) return "scoreGood";
+  if(s >= 65) return "scoreMid";
+  return "scoreBad";
+}
+
+function setShadowScore(val){
+  const el = document.getElementById("shadowScore");
+  if(val === null || val === undefined || val === "-"){
+    el.textContent = "-";
+    el.className = "kpi";
+    return;
+  }
+  el.textContent = val;
+  el.className = "kpi " + scoreClass(val);
+}
+
+/* ============================================================
+   使用統計（localStorage）
+============================================================ */
+const LS_KEY = "eng_shadow_stats_v1";
+const LS_RECENT = "eng_shadow_recent_v1";
+
+let sessionStart = Date.now();
+let sessionTimer = null;
+
+function loadStats(){
+  try{
+    return JSON.parse(localStorage.getItem(LS_KEY) || "{}");
+  }catch(_){
+    return {};
+  }
+}
+function saveStats(st){
+  localStorage.setItem(LS_KEY, JSON.stringify(st));
+}
+function loadRecent(){
+  try{
+    return JSON.parse(localStorage.getItem(LS_RECENT) || "[]");
+  }catch(_){
+    return [];
+  }
+}
+function saveRecent(arr){
+  localStorage.setItem(LS_RECENT, JSON.stringify(arr));
+}
+
+function ensureStatsShape(st){
+  st.plays = st.plays || 0;
+  st.shadows = st.shadows || 0;
+  st.scoreSum = st.scoreSum || 0;
+  st.scoreN = st.scoreN || 0;
+  st.bySentence = st.bySentence || {}; // key -> {plays, shadows, best, lastScore}
+  return st;
+}
+
+function keyForSentence(s){
+  return (s?.text || "").slice(0, 120);
+}
+
+function statsAddPlay(s){
+  const st = ensureStatsShape(loadStats());
+  st.plays++;
+
+  const k = keyForSentence(s);
+  st.bySentence[k] = st.bySentence[k] || { plays:0, shadows:0, best:0, lastScore:null };
+  st.bySentence[k].plays++;
+
+  saveStats(st);
+  renderStats();
+  gaEvent("play_sentence", { idx: idx+1, total: sentenceList.length });
+}
+
+function statsAddShadow(s, score, transcript){
+  const st = ensureStatsShape(loadStats());
+  st.shadows++;
+  st.scoreSum += score;
+  st.scoreN++;
+
+  const k = keyForSentence(s);
+  st.bySentence[k] = st.bySentence[k] || { plays:0, shadows:0, best:0, lastScore:null };
+  st.bySentence[k].shadows++;
+  st.bySentence[k].best = Math.max(st.bySentence[k].best||0, score);
+  st.bySentence[k].lastScore = score;
+
+  saveStats(st);
+
+  // recent
+  const rec = loadRecent();
+  rec.unshift({
+    time: nowISO(),
+    score,
+    sentence: s.text,
+    transcript: safeText(transcript).slice(0, 140)
+  });
+  saveRecent(rec.slice(0,10));
+  renderStats();
+  renderRecent();
+  gaEvent("shadow_done", { score });
+}
+
+function renderRecent(){
+  const tbody = document.getElementById("recentTable");
+  const rec = loadRecent();
+  tbody.innerHTML = "";
+  if(rec.length === 0){
+    const tr = document.createElement("tr");
+    tr.innerHTML = `<td colspan="4" class="small">（尚無紀錄）</td>`;
+    tbody.appendChild(tr);
+    return;
+  }
+  rec.forEach(r=>{
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+      <td class="small">${r.time}</td>
+      <td><span class="${scoreClass(r.score)}">${r.score}</span></td>
+      <td class="small">${r.sentence}</td>
+      <td class="small">${r.transcript || "—"}</td>
+    `;
+    tbody.appendChild(tr);
+  });
+}
+
+function renderStats(){
+  const st = ensureStatsShape(loadStats());
+  document.getElementById("kpiPlays").textContent = st.plays;
+  document.getElementById("kpiShadows").textContent = st.shadows;
+  document.getElementById("kpiAvg").textContent = st.scoreN ? Math.round(st.scoreSum / st.scoreN) : "-";
+}
+
+function tickSession(){
+  const s = Math.floor((Date.now() - sessionStart) / 1000);
+  document.getElementById("statsBadge").textContent = `session：${s}s`;
+}
+
+function exportCSV(){
+  const st = ensureStatsShape(loadStats());
+  const rec = loadRecent();
+
+  // Summary + Recent
+  const rows = [];
+  rows.push(["type","time","plays","shadows","avg_score","score","sentence","transcript"].join(","));
+  const avg = st.scoreN ? (st.scoreSum / st.scoreN) : "";
+  rows.push(["summary", nowISO(), st.plays, st.shadows, avg, "", "", ""].map(csvEsc).join(","));
+  rec.forEach(r=>{
+    rows.push(["recent", r.time, "", "", "", r.score, r.sentence, r.transcript].map(csvEsc).join(","));
+  });
+
+  const blob = new Blob([rows.join("\n")], { type:"text/csv;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "shadowing_stats.csv";
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+}
+
+function csvEsc(v){
+  const s = (v===null || v===undefined) ? "" : String(v);
+  if(/[",\n]/.test(s)) return `"${s.replace(/"/g,'""')}"`;
+  return s;
+}
+
+/* ============================================================
+   UI 綁定
+============================================================ */
+document.getElementById("voiceSel").addEventListener("change", (e)=>{
+  selectedVoiceURI = e.target.value;
+});
+
+document.getElementById("rateRange").addEventListener("input", (e)=>{
+  ttsRate = parseFloat(e.target.value);
+  document.getElementById("rateVal").textContent = ttsRate.toFixed(2);
+});
+
+document.getElementById("seqBtn").onclick = ()=>{
+  playMode = "seq";
+  document.getElementById("seqBtn").classList.add("active");
+  document.getElementById("randBtn").classList.remove("active");
+};
+document.getElementById("randBtn").onclick = ()=>{
+  playMode = "rand";
+  document.getElementById("randBtn").classList.add("active");
+  document.getElementById("seqBtn").classList.remove("active");
+};
+
+document.getElementById("prevBtn").onclick = ()=>{
+  if(sentenceList.length === 0) return;
+  idx = prevIndex();
+  renderSentence();
+};
+document.getElementById("nextBtn").onclick = ()=>{
+  if(sentenceList.length === 0) return;
+  idx = nextIndex();
+  renderSentence();
+};
+
+document.getElementById("speakBtn").onclick = ()=>{
+  if(sentenceList.length === 0) return;
+  const s = sentenceList[idx];
+  statsAddPlay(s);
+  speakEN(s.text);
+};
+
+document.getElementById("autoBtn").onclick = startAuto;
+document.getElementById("stopAutoBtn").onclick = stopAuto;
+
+document.getElementById("loadFileBtn").onclick = loadJSONFile;
+
+/* paste modal */
+const pasteModal = document.getElementById("pasteModal");
+document.getElementById("pasteBtn").onclick = ()=> pasteModal.style.display="block";
+document.getElementById("closePaste").onclick = ()=> pasteModal.style.display="none";
+
+document.getElementById("pasteExample").onclick = ()=>{
+  document.getElementById("jsonPasteArea").value = JSON.stringify({
+    version:"example",
+    decks:[{
+      source_file:"Demo.pptx",
+      slides:[
+        { slide:1, sentences:["Hello everyone.", "Please repeat after me."] },
+        { slide:2, sentences:["Today we practice shadowing.", "Speak clearly and slowly."] }
+      ]
+    }]
+  }, null, 2);
+};
+
+document.getElementById("applyPaste").onclick = ()=>{
+  try{
+    const raw = document.getElementById("jsonPasteArea").value.trim();
+    if(!raw) return alert("請先貼上 JSON。");
+    const obj = JSON.parse(raw);
+    sentenceList = flattenSentencesFromAnyJSON(obj);
+    idx = 0;
+    setStatus(`資料：已載入（${sentenceList.length} 句 / pasted）`);
+    renderSentence();
+    setAutoUI();
+    pasteModal.style.display="none";
+  }catch(e){
+    alert("JSON 解析失敗：" + (e.message || e));
+  }
+};
+
+/* Shadowing buttons */
+document.getElementById("shadowClearBtn").onclick = ()=>{
+  document.getElementById("shadowTranscript").value = "";
+  setShadowScore("-");
+};
+
+document.getElementById("shadowStartBtn").onclick = async ()=>{
+  if(sentenceList.length === 0) return alert("尚未載入句子。");
+  const r = ensureRecognition();
+  if(!r) return;
+
+  document.getElementById("shadowTranscript").value = "";
+  setShadowScore("-");
+
+  // 開始錄音（可留存音檔；目前不做上傳，只是保留擴充可能）
+  await startRecording();
+
+  try { r.start(); } catch(_) {}
+};
+
+document.getElementById("shadowStopBtn").onclick = ()=>{
+  if(recog && recognizing){
+    recog.stop();
+  }
+  stopRecording();
+
+  // 停止後稍等一下讓 transcript 收斂
+  setTimeout(()=>{
+    const spoken = document.getElementById("shadowTranscript").value;
+    const target = sentenceList[idx].text;
+    const sc = similarityScore(target, spoken);
+    setShadowScore(sc);
+
+    // 記錄統計
+    statsAddShadow(sentenceList[idx], sc, spoken);
+  }, 250);
+};
+
+/* Stats buttons */
+document.getElementById("exportBtn").onclick = exportCSV;
+document.getElementById("resetStatsBtn").onclick = ()=>{
+  if(!confirm("確定要清除本機統計嗎？（此動作無法復原）")) return;
+  localStorage.removeItem(LS_KEY);
+  localStorage.removeItem(LS_RECENT);
+  renderStats();
+  renderRecent();
+};
+
+/* ============================================================
+   初始化
+============================================================ */
+(function init(){
+  loadVoices();
+  ttsRate = parseFloat(document.getElementById("rateRange").value);
+  document.getElementById("rateVal").textContent = ttsRate.toFixed(2);
+
+  renderStats();
+  renderRecent();
+
+  sessionTimer = setInterval(tickSession, 1000);
+  tickSession();
+
+  loadJSONFile();
+  setAutoUI();
+})();
 </script>
+
+<!-- （可選）GA4：如果你要啟用 GA4，把 GA_MEASUREMENT_ID 填上，並取消註解以下 -->
+<!--
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-XXXXXXXXXX');
+</script>
+-->
 </body>
 </html>
