@@ -14,7 +14,7 @@
 
   .main { max-width:1100px; margin:0 auto; padding:16px; }
   .grid { display:grid; grid-template-columns: 1fr; gap:12px; }
-  @media (min-width: 980px){ .grid { grid-template-columns: 360px 1fr; } }
+  @media (min-width: 980px){ .grid { grid-template-columns: 380px 1fr; } }
 
   .card { background:#fff; border:1px solid #e5e7eb; border-radius:16px; padding:14px; }
   .row { display:flex; gap:12px; flex-wrap:wrap; align-items:flex-end; }
@@ -49,7 +49,6 @@
     background:#fafafa;
   }
 
-  /* 句子容器：用 span 顯示逐詞聚焦 */
   .sentence {
     font-size:30px; font-weight:900; line-height:1.25;
     word-break:break-word;
@@ -64,70 +63,121 @@
   .meta { margin-top:6px; display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
   .chip { font-size:12px; border:1px solid #e5e7eb; background:#fff; border-radius:999px; padding:3px 8px; color:#374151; }
 
-  .list { display:flex; flex-direction:column; gap:8px; }
-  .item {
-    border:1px solid #e5e7eb; border-radius:14px; padding:10px; background:#fff; cursor:pointer;
-  }
-  .item:hover { border-color:#cbd5e1; }
-  .item.active { border-color:#111827; box-shadow:0 10px 18px rgba(17,24,39,0.08); }
-  .itemTitle { font-weight:900; }
-  .itemSub { font-size:12px; color:#6b7280; margin-top:2px; line-height:1.4; }
-
-  .pillRow { display:flex; gap:6px; flex-wrap:wrap; margin-top:6px; }
-  .pill { font-size:12px; border:1px solid #e5e7eb; background:#fff; border-radius:999px; padding:2px 8px; color:#374151; }
-
-  .twoCols { display:grid; grid-template-columns: 1fr; gap:10px; }
-  @media (min-width: 980px){ .twoCols { grid-template-columns: 1fr 1fr; } }
-
   .kbd { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+
+  /* =============== 左側：Slide 層 + 句子層（不捲動、一頁簡潔） =============== */
+  .navWrap{
+    display:grid;
+    grid-template-rows: auto auto 1fr; /* 上面:搜尋/篩選，中間:說明，下面:二欄列表 */
+    gap:10px;
+  }
+  .navGrid{
+    display:grid;
+    grid-template-columns: 1fr 1fr;  /* 左 Slide 列表 / 右 句子列表 */
+    gap:10px;
+    height: 460px;                   /* 固定高度：頁面不需要捲動（可視情況調整） */
+  }
+  .panel{
+    border:1px solid #e5e7eb;
+    border-radius:14px;
+    background:#fff;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+    min-height:0;
+  }
+  .panelHead{
+    padding:10px 10px;
+    border-bottom:1px solid #e5e7eb;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:8px;
+    background:#fff;
+  }
+  .panelTitle{ font-weight:900; font-size:13px; }
+  .panelBody{
+    padding:8px;
+    overflow:auto;     /* 只在列表區內捲動（整頁不捲動） */
+    min-height:0;
+  }
+  .itemBtn{
+    width:100%;
+    text-align:left;
+    border:1px solid #e5e7eb;
+    background:#fff;
+    border-radius:12px;
+    padding:8px 10px;
+    cursor:pointer;
+    margin-bottom:8px;
+  }
+  .itemBtn:hover{ border-color:#cbd5e1; }
+  .itemBtn.active{
+    border-color:#111827;
+    box-shadow:0 10px 18px rgba(17,24,39,0.08);
+  }
+  .itTop{ font-weight:900; font-size:13px; }
+  .itSub{ font-size:12px; color:#6b7280; margin-top:2px; line-height:1.3; }
+  .counter{ font-size:12px; color:#6b7280; }
 </style>
 </head>
 
 <body>
   <div class="header">
-    <div class="title">English Sentence Reader <span class="badge">主題/Slide 選擇 + 朗讀逐詞聚焦</span></div>
+    <div class="title">English Sentence Reader <span class="badge">Slide層 + 句子層點選（單頁簡潔）</span></div>
     <div class="badge" id="statusBadge">資料：未載入</div>
   </div>
 
   <div class="main">
     <div class="grid">
 
-      <!-- 左：主題/Slide 選擇與預覽 -->
+      <!-- 左：主題/Slide/句子（兩層表列點選，不用整頁捲動） -->
       <div class="card">
-        <div style="font-weight:900; font-size:16px;">📚 主題 / Slide</div>
-        <div class="small" style="margin-top:4px;">
-          從 JSON 的 <span class="kbd">decks → slides → sentences</span> 結構讀取。
-        </div>
-
-        <hr class="hr" />
-
-        <div class="row">
-          <div class="group" style="min-width:100%;">
-            <div class="label">搜尋（主題/Slide 標題/句子）</div>
-            <input id="searchBox" type="search" placeholder="輸入關鍵字，例如: restaurant / airport / shadowing ..." />
+        <div class="navWrap">
+          <div>
+            <div style="font-weight:900; font-size:16px;">📚 主題 / Slide / 句子</div>
+            <div class="small" style="margin-top:4px;">
+              採用「Slide 層 → 句子層」點選。整頁不捲動；列表區內可捲動。
+            </div>
           </div>
 
-          <div class="group" style="min-width:100%;">
-            <div class="label">主題（Deck）</div>
-            <select id="deckSel"></select>
-            <div class="small">選擇主題後，可再選 Slide 篩句子。</div>
+          <div class="row">
+            <div class="group" style="min-width:100%;">
+              <div class="label">搜尋（deck/slide title/句子）</div>
+              <input id="searchBox" type="search" placeholder="輸入關鍵字，例如: restaurant / airport / shadowing ..." />
+            </div>
+
+            <div class="group" style="min-width:100%;">
+              <div class="label">主題（Deck）</div>
+              <select id="deckSel"></select>
+              <div class="small">選主題後，左欄列出此主題的所有 slides。</div>
+            </div>
           </div>
 
-          <div class="group" style="min-width:100%;">
-            <div class="label">Slide</div>
-            <select id="slideSel"></select>
+          <div class="navGrid">
+            <!-- Slide 層 -->
+            <div class="panel">
+              <div class="panelHead">
+                <div class="panelTitle">Slides</div>
+                <div class="counter" id="slideCount">0</div>
+              </div>
+              <div class="panelBody" id="slideList"></div>
+            </div>
+
+            <!-- 句子層 -->
+            <div class="panel">
+              <div class="panelHead">
+                <div class="panelTitle">Sentences</div>
+                <div class="counter" id="sentCount">0</div>
+              </div>
+              <div class="panelBody" id="sentList"></div>
+            </div>
+          </div>
+
+          <div class="note small">
+            小技巧：先選主題，再點 Slide；右欄會列出該 Slide 的句子。點句子即開始在右側顯示（可朗讀/自動朗讀）。
           </div>
         </div>
-
-        <div class="note small">
-          你可以先選主題/Slide，再用右側「自動朗讀（全部）」或單句朗讀。
-        </div>
-
-        <hr class="hr" />
-
-        <div style="font-weight:900;">🔎 句子預覽（點一下直接跳到那一句）</div>
-        <div class="small" style="margin:4px 0 10px;">顯示最多 80 句（避免太長卡住）。</div>
-        <div id="previewList" class="list"></div>
       </div>
 
       <!-- 右：朗讀與控制 -->
@@ -184,8 +234,8 @@
         </div>
 
         <div class="note small">
-          逐詞聚焦：用 <span class="kbd">SpeechSynthesisUtterance.onboundary</span> 事件（Chrome/Edge 最穩）。
-          自動朗讀會以「目前主題/Slide/搜尋」的篩選結果為清單播放。
+          逐詞聚焦：使用 <span class="kbd">SpeechSynthesisUtterance.onboundary</span>（Chrome/Edge 最穩）。
+          自動朗讀會以「目前 Deck + 搜尋」與「目前選到的 Slide（若有）」作為播放清單。
         </div>
       </div>
 
@@ -206,19 +256,18 @@ function safeText(s){ return (s||"").toString().replace(/\s+/g," ").trim(); }
 function clamp(x,a,b){ return Math.max(a, Math.min(b, x)); }
 
 /* ============================================================
-   資料結構（保留 deck/slide）
-   - decks: [{ source_file/name, slides:[{slide, title?, sentences:[]}] }]
+   資料狀態
 ============================================================ */
 let rawData = null;
-let decks = [];              // normalized decks
-let allSentences = [];       // flattened list for fast filtering
-let filtered = [];           // current filtered list (subset)
+let decks = [];                 // normalized decks
+let currentDeckName = "__ALL__";
+let currentSlideKey = "__ALL__"; // `${deck}||${slide}`
+let filteredSentences = [];     // current list for playback/navigation
 let idx = 0;
-let playMode = "seq";        // seq | rand
+let playMode = "seq";           // seq | rand
 
 /* ============================================================
    TTS：英文朗讀 + 逐詞聚焦（onboundary）
-   - Voice only en-US
 ============================================================ */
 let voices = [];
 let selectedVoiceURI = "";
@@ -231,8 +280,6 @@ let activeTokenIndex = -1;
 function loadVoices(){
   if(!("speechSynthesis" in window)) return;
   const all = window.speechSynthesis.getVoices?.() || [];
-
-  // 僅 en-US
   voices = all.filter(v => (v.lang || "").toLowerCase() === "en-us");
 
   const sel = document.getElementById("voiceSel");
@@ -256,7 +303,6 @@ function loadVoices(){
     selectedVoiceURI = "";
   }
 }
-
 if("speechSynthesis" in window){
   window.speechSynthesis.onvoiceschanged = () => loadVoices();
 }
@@ -311,13 +357,12 @@ function renderSentenceWithTokens(text){
   if(last < s.length){
     box.appendChild(document.createTextNode(s.slice(last)));
   }
-
   if(tokenSpans.length === 0){
     box.textContent = s;
   }
 }
 
-function speakENWithHighlight(text){
+function speakENWithHighlight(text, onEnd){
   if(!("speechSynthesis" in window)){
     alert("此瀏覽器不支援 SpeechSynthesis。建議 Chrome/Edge。");
     return;
@@ -352,8 +397,14 @@ function speakENWithHighlight(text){
     if(ans >= 0) setHighlight(ans);
   };
 
-  u.onend = () => setTimeout(()=> clearHighlight(), 120);
-  u.onerror = () => setTimeout(()=> clearHighlight(), 120);
+  u.onend = () => {
+    setTimeout(()=> clearHighlight(), 120);
+    if(typeof onEnd === "function") onEnd();
+  };
+  u.onerror = () => {
+    setTimeout(()=> clearHighlight(), 120);
+    if(typeof onEnd === "function") onEnd();
+  };
 
   window.speechSynthesis.speak(u);
 }
@@ -388,49 +439,27 @@ function normalizeDecks(obj){
   return out;
 }
 
-function flattenAll(decks){
-  const out = [];
-  decks.forEach(d=>{
-    d.slides.forEach(s=>{
-      s.sentences.forEach((t, ti)=>{
-        out.push({
-          text: t,
-          deck: d.name,
-          slide: s.slide,
-          slideTitle: s.title || "",
-          source: `slide ${s.slide}`.trim(),
-          key: `${d.name}||${s.slide}||${t.toLowerCase()}`
-        });
-      });
-    });
-  });
-
-  // 去重（全域）
-  const seen = new Set();
-  return out.filter(x=>{
-    const k = x.text.toLowerCase();
-    if(seen.has(k)) return false;
-    seen.add(k);
-    return true;
-  });
-}
-
 async function loadJSONFile(){
   try{
+    stopAuto();
     setStatus("資料：載入中…");
     const res = await fetch(DATA_FILE, { cache:"no-store" });
     if(!res.ok) throw new Error("HTTP " + res.status);
     rawData = await res.json();
 
     decks = normalizeDecks(rawData);
-    allSentences = flattenAll(decks);
 
-    setStatus(`資料：已載入（${decks.length} 主題 / ${allSentences.length} 句）`);
+    // init selections
+    currentDeckName = "__ALL__";
+    currentSlideKey = "__ALL__";
+    idx = 0;
 
-    buildSelectors();
-    applyFilter(); // init filtered & preview
+    setStatus(`資料：已載入（${decks.length} 主題）`);
+    buildDeckSelector();
+    buildSlideLayer();    // 左欄 slides
+    buildSentenceLayer(); // 右欄 sentences
+    rebuildPlaybackList();
     renderCurrent();
-
     setAutoUI();
   }catch(e){
     setStatus("資料：載入失敗");
@@ -439,14 +468,12 @@ async function loadJSONFile(){
 }
 
 /* ============================================================
-   主題/Slide UI：選擇器 + 預覽清單
+   左側：Deck selector + Slide層 + 句子層
 ============================================================ */
-function buildSelectors(){
+function buildDeckSelector(){
   const deckSel = document.getElementById("deckSel");
-  const slideSel = document.getElementById("slideSel");
-
   deckSel.innerHTML = "";
-  // Deck options
+
   const optAll = document.createElement("option");
   optAll.value = "__ALL__";
   optAll.textContent = "（全部主題）";
@@ -459,146 +486,265 @@ function buildSelectors(){
     deckSel.appendChild(opt);
   });
 
-  // Slide options initial
-  slideSel.innerHTML = "";
-  const sAll = document.createElement("option");
-  sAll.value = "__ALL__";
-  sAll.textContent = "（全部 slide）";
-  slideSel.appendChild(sAll);
+  deckSel.value = currentDeckName;
 
   deckSel.onchange = ()=>{
-    rebuildSlideOptions();
-    applyFilter();
+    stopAuto();
+    currentDeckName = deckSel.value;
+    currentSlideKey = "__ALL__"; // reset slide selection
+    idx = 0;
+    buildSlideLayer();
+    buildSentenceLayer();
+    rebuildPlaybackList();
+    renderCurrent();
+    setAutoUI();
   };
-  slideSel.onchange = ()=> applyFilter();
-  document.getElementById("searchBox").oninput = ()=> applyFilter();
 
-  rebuildSlideOptions();
+  document.getElementById("searchBox").oninput = ()=>{
+    stopAuto();
+    idx = 0;
+    buildSlideLayer();
+    buildSentenceLayer();
+    rebuildPlaybackList();
+    renderCurrent();
+    setAutoUI();
+  };
 }
 
-function rebuildSlideOptions(){
-  const deckSel = document.getElementById("deckSel");
-  const slideSel = document.getElementById("slideSel");
-  const deckVal = deckSel.value;
-
-  slideSel.innerHTML = "";
-  const sAll = document.createElement("option");
-  sAll.value = "__ALL__";
-  sAll.textContent = "（全部 slide）";
-  slideSel.appendChild(sAll);
-
-  let slides = [];
-  if(deckVal === "__ALL__"){
-    // union all slides
-    decks.forEach(d=> d.slides.forEach(s=> slides.push({ deck:d.name, slide:s.slide, title:s.title })));
-  }else{
-    const d = decks.find(x => x.name === deckVal);
-    if(d) slides = d.slides.map(s=> ({ deck:d.name, slide:s.slide, title:s.title }));
-  }
-
-  // unique slide label by (deck,slide)
-  slides.forEach(s=>{
-    const opt = document.createElement("option");
-    opt.value = `${s.deck}||${s.slide}`;
-    const t = s.title ? ` — ${s.title}` : "";
-    opt.textContent = `[${s.deck}] slide ${s.slide}${t}`;
-    slideSel.appendChild(opt);
-  });
-
-  slideSel.value = "__ALL__";
+function getDecksInScope(){
+  if(currentDeckName === "__ALL__") return decks;
+  const d = decks.find(x => x.name === currentDeckName);
+  return d ? [d] : [];
 }
 
-function applyFilter(){
-  const deckVal = document.getElementById("deckSel").value;
-  const slideVal = document.getElementById("slideSel").value;
-  const q = safeText(document.getElementById("searchBox").value).toLowerCase();
-
-  filtered = allSentences.filter(s=>{
-    let ok = true;
-
-    if(deckVal !== "__ALL__") ok = ok && (s.deck === deckVal);
-
-    if(slideVal !== "__ALL__"){
-      const [d, sl] = slideVal.split("||");
-      ok = ok && (s.deck === d) && (String(s.slide) === String(sl));
-    }
-
-    if(q){
-      const hay = `${s.deck} ${s.slide} ${s.slideTitle} ${s.text}`.toLowerCase();
-      ok = ok && hay.includes(q);
-    }
-
-    return ok;
-  });
-
-  idx = 0;
-  buildPreview();
-  renderCurrent();
-  setAutoUI();
-}
-
-function buildPreview(){
-  const box = document.getElementById("previewList");
+function buildSlideLayer(){
+  const box = document.getElementById("slideList");
   box.innerHTML = "";
 
-  const max = 80;
-  const list = filtered.slice(0, max);
+  const q = safeText(document.getElementById("searchBox").value).toLowerCase();
+  const scopeDecks = getDecksInScope();
 
-  if(filtered.length === 0){
+  // collect slides with counts under search filter
+  const slides = [];
+  scopeDecks.forEach(d=>{
+    d.slides.forEach(s=>{
+      const slideKey = `${d.name}||${s.slide}`;
+      const title = s.title || "";
+      // sentence count after search filter
+      const list = s.sentences.filter(t=>{
+        if(!q) return true;
+        const hay = `${d.name} ${s.slide} ${title} ${t}`.toLowerCase();
+        return hay.includes(q);
+      });
+      if(list.length > 0){
+        slides.push({
+          deck: d.name,
+          slide: s.slide,
+          title,
+          key: slideKey,
+          count: list.length
+        });
+      }
+    });
+  });
+
+  // sort by deck then slide no
+  slides.sort((a,b)=>{
+    if(a.deck !== b.deck) return a.deck.localeCompare(b.deck);
+    return Number(a.slide) - Number(b.slide);
+  });
+
+  document.getElementById("slideCount").textContent = `${slides.length} slides`;
+
+  if(slides.length === 0){
     const div = document.createElement("div");
     div.className = "note small";
-    div.textContent = "目前篩選結果為 0 句。請調整主題/Slide/搜尋條件。";
+    div.textContent = "沒有符合的 Slide。請調整主題或搜尋條件。";
     box.appendChild(div);
     return;
   }
 
-  list.forEach((s, i)=>{
-    const it = document.createElement("div");
-    it.className = "item" + (i === idx ? " active" : "");
+  // add "ALL slides" pseudo item
+  const allBtn = document.createElement("button");
+  allBtn.className = "itemBtn" + (currentSlideKey === "__ALL__" ? " active" : "");
+  allBtn.innerHTML = `<div class="itTop">（全部 slides）</div><div class="itSub">依目前主題/搜尋彙整播放清單</div>`;
+  allBtn.onclick = ()=>{
+    stopAuto();
+    currentSlideKey = "__ALL__";
+    idx = 0;
+    buildSlideLayer();
+    buildSentenceLayer();
+    rebuildPlaybackList();
+    renderCurrent();
+    setAutoUI();
+  };
+  box.appendChild(allBtn);
 
-    const title = document.createElement("div");
-    title.className = "itemTitle";
-    title.textContent = s.text;
-
-    const sub = document.createElement("div");
-    sub.className = "itemSub";
-    const t = s.slideTitle ? ` — ${s.slideTitle}` : "";
-    sub.textContent = `[${s.deck}] slide ${s.slide}${t}`;
-
-    const pills = document.createElement("div");
-    pills.className = "pillRow";
-    const p1 = document.createElement("span"); p1.className="pill"; p1.textContent = "點我跳到此句";
-    const p2 = document.createElement("span"); p2.className="pill"; p2.textContent = "可朗讀";
-    pills.appendChild(p1); pills.appendChild(p2);
-
-    it.appendChild(title);
-    it.appendChild(sub);
-    it.appendChild(pills);
-
-    it.onclick = ()=>{
+  slides.forEach(s=>{
+    const btn = document.createElement("button");
+    btn.className = "itemBtn" + (currentSlideKey === s.key ? " active" : "");
+    const t = s.title ? ` — ${s.title}` : "";
+    btn.innerHTML = `<div class="itTop">[${s.deck}] slide ${s.slide}${t}</div><div class="itSub">共 ${s.count} 句</div>`;
+    btn.onclick = ()=>{
       stopAuto();
-      idx = i;
+      currentSlideKey = s.key;
+      idx = 0;
+      buildSlideLayer();
+      buildSentenceLayer();
+      rebuildPlaybackList();
       renderCurrent();
-      // re-highlight active item
-      buildPreview();
+      setAutoUI();
     };
+    box.appendChild(btn);
+  });
+}
 
-    box.appendChild(it);
+function buildSentenceLayer(){
+  const box = document.getElementById("sentList");
+  box.innerHTML = "";
+
+  const q = safeText(document.getElementById("searchBox").value).toLowerCase();
+  const scopeDecks = getDecksInScope();
+
+  let deckFilter = null;
+  let slideFilter = null;
+
+  if(currentSlideKey !== "__ALL__"){
+    const [d, sl] = currentSlideKey.split("||");
+    deckFilter = d;
+    slideFilter = sl;
+  }
+
+  // build sentence list for selected slide (or all)
+  const list = [];
+  scopeDecks.forEach(d=>{
+    if(deckFilter && d.name !== deckFilter) return;
+    d.slides.forEach(s=>{
+      if(slideFilter && String(s.slide) !== String(slideFilter)) return;
+
+      s.sentences.forEach(t=>{
+        const text = safeText(t);
+        if(!text) return;
+        if(q){
+          const hay = `${d.name} ${s.slide} ${s.title||""} ${text}`.toLowerCase();
+          if(!hay.includes(q)) return;
+        }
+        list.push({
+          text,
+          deck: d.name,
+          slide: s.slide,
+          slideTitle: s.title || "",
+          source: `slide ${s.slide}`,
+          key: `${d.name}||${s.slide}||${text.toLowerCase()}`
+        });
+      });
+    });
   });
 
-  if(filtered.length > max){
-    const more = document.createElement("div");
-    more.className = "note small";
-    more.textContent = `預覽只顯示前 ${max} 句；目前共有 ${filtered.length} 句。可用搜尋縮小範圍。`;
-    box.appendChild(more);
+  // global unique by lowercase text (avoid duplicates)
+  const seen = new Set();
+  const uniq = list.filter(x=>{
+    const k = x.text.toLowerCase();
+    if(seen.has(k)) return false;
+    seen.add(k);
+    return true;
+  });
+
+  document.getElementById("sentCount").textContent = `${uniq.length} sentences`;
+
+  if(uniq.length === 0){
+    const div = document.createElement("div");
+    div.className = "note small";
+    div.textContent = "沒有符合的句子。";
+    box.appendChild(div);
+    return;
+  }
+
+  // render sentences as compact buttons
+  uniq.slice(0, 120).forEach((s, i)=>{
+    const btn = document.createElement("button");
+    btn.className = "itemBtn" + (filteredSentences[idx]?.key === s.key ? " active" : "");
+    const sub = s.slideTitle ? ` — ${s.slideTitle}` : "";
+    btn.innerHTML = `<div class="itTop">${s.text}</div><div class="itSub">[${s.deck}] slide ${s.slide}${sub}</div>`;
+    btn.onclick = ()=>{
+      stopAuto();
+      // rebuild playback list first, then set idx to this sentence in that list
+      rebuildPlaybackList();
+      const j = filteredSentences.findIndex(x => x.key === s.key);
+      idx = j >= 0 ? j : 0;
+      renderCurrent();
+      setAutoUI();
+      // refresh highlight state in sentence list
+      buildSentenceLayer();
+    };
+    box.appendChild(btn);
+  });
+
+  if(uniq.length > 120){
+    const div = document.createElement("div");
+    div.className = "note small";
+    div.textContent = `句子太多，僅顯示前 120 句。可用搜尋縮小。`;
+    box.appendChild(div);
   }
 }
 
 /* ============================================================
-   顯示/導航（針對 filtered）
+   Playback list（右側控制使用的清單）
+   - 依 Deck + 搜尋 +（若選 Slide 則限於該 Slide）
+============================================================ */
+function rebuildPlaybackList(){
+  const q = safeText(document.getElementById("searchBox").value).toLowerCase();
+  const scopeDecks = getDecksInScope();
+
+  let deckFilter = null;
+  let slideFilter = null;
+  if(currentSlideKey !== "__ALL__"){
+    const [d, sl] = currentSlideKey.split("||");
+    deckFilter = d;
+    slideFilter = sl;
+  }
+
+  const list = [];
+  scopeDecks.forEach(d=>{
+    if(deckFilter && d.name !== deckFilter) return;
+    d.slides.forEach(s=>{
+      if(slideFilter && String(s.slide) !== String(slideFilter)) return;
+      s.sentences.forEach(t=>{
+        const text = safeText(t);
+        if(!text) return;
+        if(q){
+          const hay = `${d.name} ${s.slide} ${s.title||""} ${text}`.toLowerCase();
+          if(!hay.includes(q)) return;
+        }
+        list.push({
+          text,
+          deck: d.name,
+          slide: s.slide,
+          slideTitle: s.title || "",
+          source: `slide ${s.slide}`,
+          key: `${d.name}||${s.slide}||${text.toLowerCase()}`
+        });
+      });
+    });
+  });
+
+  // unique by lowercase sentence
+  const seen = new Set();
+  filteredSentences = list.filter(x=>{
+    const k = x.text.toLowerCase();
+    if(seen.has(k)) return false;
+    seen.add(k);
+    return true;
+  });
+
+  idx = clamp(idx, 0, Math.max(0, filteredSentences.length - 1));
+}
+
+/* ============================================================
+   顯示/導航（針對 filteredSentences）
 ============================================================ */
 function renderCurrent(){
-  if(filtered.length === 0){
+  if(filteredSentences.length === 0){
     document.getElementById("sentence").textContent = "（目前沒有句子）";
     document.getElementById("idxChip").textContent = "#-/-";
     document.getElementById("srcChip").textContent = "source: -";
@@ -607,40 +753,36 @@ function renderCurrent(){
     tokenSpans = []; tokenRanges = []; activeTokenIndex = -1;
     return;
   }
-  idx = clamp(idx, 0, filtered.length - 1);
-  const s = filtered[idx];
+  idx = clamp(idx, 0, filteredSentences.length - 1);
+  const s = filteredSentences[idx];
 
   renderSentenceWithTokens(s.text);
-  document.getElementById("idxChip").textContent = `#${idx+1}/${filtered.length}`;
+  document.getElementById("idxChip").textContent = `#${idx+1}/${filteredSentences.length}`;
   document.getElementById("srcChip").textContent = `source: ${s.source || "-"}`;
   document.getElementById("deckChip").textContent = `deck: ${s.deck || "-"}`;
   const t = s.slideTitle ? ` — ${s.slideTitle}` : "";
   document.getElementById("slideChip").textContent = `slide: ${s.slide}${t}`;
-
-  // 同步左側預覽的 active 樣式（避免每次都重建太重）
-  // 這裡用重建（因為最多 80）
-  buildPreview();
 }
 
 function nextIndex(){
-  if(filtered.length === 0) return 0;
-  if(playMode === "rand") return rand(filtered.length);
-  return (idx + 1) % filtered.length;
+  if(filteredSentences.length === 0) return 0;
+  if(playMode === "rand") return rand(filteredSentences.length);
+  return (idx + 1) % filteredSentences.length;
 }
 function prevIndex(){
-  if(filtered.length === 0) return 0;
-  if(playMode === "rand") return rand(filtered.length);
-  return (idx - 1 + filtered.length) % filtered.length;
+  if(filteredSentences.length === 0) return 0;
+  if(playMode === "rand") return rand(filteredSentences.length);
+  return (idx - 1 + filteredSentences.length) % filteredSentences.length;
 }
 
 /* ============================================================
-   自動朗讀（針對 filtered）+ 停止
+   自動朗讀 + 停止
 ============================================================ */
 let autoPlaying = false;
 let autoTimer = null;
 
 function setAutoUI(){
-  document.getElementById("autoBtn").disabled = autoPlaying || filtered.length === 0;
+  document.getElementById("autoBtn").disabled = autoPlaying || filteredSentences.length === 0;
   document.getElementById("stopAutoBtn").disabled = !autoPlaying;
 }
 
@@ -654,21 +796,24 @@ function stopAuto(){
 }
 
 function startAuto(){
-  if(filtered.length === 0) return;
+  if(filteredSentences.length === 0) return;
   autoPlaying = true;
   setAutoUI();
 
   const playOne = () => {
     if(!autoPlaying) return;
-    const s = filtered[idx];
-    speakENWithHighlight(s.text);
+    const s = filteredSentences[idx];
 
-    const ms = clamp(900 + s.text.length * 55, 2000, 10000);
-    autoTimer = setTimeout(()=>{
+    // 朗讀完才跳下一句（更準確）
+    speakENWithHighlight(s.text, ()=>{
+      if(!autoPlaying) return;
       idx = nextIndex();
       renderCurrent();
-      playOne();
-    }, ms);
+      // 句子列表 active 更新
+      buildSentenceLayer();
+      // 小延遲避免邊界事件卡住
+      autoTimer = setTimeout(playOne, 120);
+    });
   };
 
   playOne();
@@ -698,28 +843,30 @@ document.getElementById("randBtn").onclick = ()=>{
 };
 
 document.getElementById("prevBtn").onclick = ()=>{
-  if(filtered.length === 0) return;
+  if(filteredSentences.length === 0) return;
   stopAuto();
   idx = prevIndex();
   renderCurrent();
+  buildSentenceLayer();
 };
 document.getElementById("nextBtn").onclick = ()=>{
-  if(filtered.length === 0) return;
+  if(filteredSentences.length === 0) return;
   stopAuto();
   idx = nextIndex();
   renderCurrent();
+  buildSentenceLayer();
 };
 document.getElementById("speakBtn").onclick = ()=>{
-  if(filtered.length === 0) return;
+  if(filteredSentences.length === 0) return;
   stopAuto();
-  speakENWithHighlight(filtered[idx].text);
+  speakENWithHighlight(filteredSentences[idx].text);
+  buildSentenceLayer();
 };
 
 document.getElementById("autoBtn").onclick = startAuto;
 document.getElementById("stopAutoBtn").onclick = stopAuto;
 
 document.getElementById("loadFileBtn").onclick = ()=>{
-  stopAuto();
   loadJSONFile();
 };
 
